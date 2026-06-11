@@ -1,0 +1,870 @@
+{
+  "items": [
+    {
+      "id": "audit_1781192700455_92403",
+      "at": "2026-06-11T15:45:00.455Z",
+      "action": "discord_login",
+      "by": "1449109712825225436",
+      "meta": {
+        "username": "max.tester",
+        "roles": 4
+      }
+    },
+    {
+      "id": "audit_1781192073098_826622",
+      "at": "2026-06-11T15:34:33.098Z",
+      "action": "admin_data_reset",
+      "by": "447008003170762753",
+      "meta": {
+        "targets": [
+          "wache",
+          "abgaben",
+          "sanctions",
+          "absences",
+          "cashbox"
+        ],
+        "changedTargets": [
+          "wache",
+          "abgaben",
+          "sanctions",
+          "absences",
+          "cashbox"
+        ]
+      }
+    },
+    {
+      "id": "audit_1781191830124_907223",
+      "at": "2026-06-11T15:30:30.124Z",
+      "action": "discord_login",
+      "by": "447008003170762753",
+      "meta": {
+        "username": "melih_g",
+        "roles": 5
+      }
+    },
+    {
+      "id": "audit_1781189816197_642379",
+      "at": "2026-06-11T14:56:56.197Z",
+      "action": "inventory_updated",
+      "by": "447008003170762753",
+      "meta": {
+        "userId": "447008003170762753"
+      }
+    },
+    {
+      "id": "audit_1781189789591_353249",
+      "at": "2026-06-11T14:56:29.591Z",
+      "action": "inventory_updated",
+      "by": "447008003170762753",
+      "meta": {
+        "userId": "447008003170762753"
+      }
+    },
+    {
+      "id": "audit_1781166409399_227469",
+      "at": "2026-06-11T08:26:49.399Z",
+      "action": "discord_login",
+      "by": "623592195240230914",
+      "meta": {
+        "username": "elrafa.",
+        "roles": 8
+      }
+    },
+    {
+      "id": "audit_1781156782389_638528",
+      "at": "2026-06-11T05:46:22.389Z",
+      "action": "discord_login",
+      "by": "325382005455978496",
+      "meta": {
+        "username": "like1984",
+        "roles": 5
+      }
+    },
+    {
+      "id": "audit_1781146242626_172709",
+      "at": "2026-06-11T02:50:42.626Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "syndikat-exit-exit",
+        "location": {
+          "x": 64.549037,
+          "y": 73.582536,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146242625
+        }
+      }
+    },
+    {
+      "id": "audit_1781146229427_777651",
+      "at": "2026-06-11T02:50:29.427Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "mafia-kaz-kazal",
+        "location": {
+          "x": 59.06583,
+          "y": 53.385167,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146229426
+        }
+      }
+    },
+    {
+      "id": "audit_1781146221712_334635",
+      "at": "2026-06-11T02:50:21.712Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "mc-mor-mc-morteco-mc",
+        "location": {
+          "x": 65.371518,
+          "y": 50.885167,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146221711
+        }
+      }
+    },
+    {
+      "id": "audit_1781146220249_939770",
+      "at": "2026-06-11T02:50:20.249Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "mc-rd-mc-red-district-mc",
+        "location": {
+          "x": 65.851299,
+          "y": 50.687799,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146220248
+        }
+      }
+    },
+    {
+      "id": "audit_1781146219017_66154",
+      "at": "2026-06-11T02:50:19.017Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "mc-mor-mc-morteco-mc",
+        "location": {
+          "x": 64.754658,
+          "y": 46.80622,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146219016
+        }
+      }
+    },
+    {
+      "id": "audit_1781146217561_766351",
+      "at": "2026-06-11T02:50:17.561Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "mc-rd-mc-red-district-mc",
+        "location": {
+          "x": 65.165898,
+          "y": 46.740431,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146217560
+        }
+      }
+    },
+    {
+      "id": "audit_1781146216612_542578",
+      "at": "2026-06-11T02:50:16.612Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "mafia-novera",
+        "location": {
+          "x": 63.932176,
+          "y": 43.450957,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146216611
+        }
+      }
+    },
+    {
+      "id": "audit_1781146210190_516298",
+      "at": "2026-06-11T02:50:10.190Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "mafia-kan-kenway",
+        "location": {
+          "x": 42.479126,
+          "y": 52.069378,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146210188
+        }
+      }
+    },
+    {
+      "id": "audit_1781146206067_941066",
+      "at": "2026-06-11T02:50:06.067Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "mafia-novera",
+        "location": {
+          "x": 54.130943,
+          "y": 53.779904,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146206065
+        }
+      }
+    },
+    {
+      "id": "audit_1781146198867_348244",
+      "at": "2026-06-11T02:49:58.867Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "mafia-mns-mansoor",
+        "location": {
+          "x": 41.451025,
+          "y": 49.043062,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146198866
+        }
+      }
+    },
+    {
+      "id": "audit_1781146194463_466032",
+      "at": "2026-06-11T02:49:54.463Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "kartell-k-a-kavkaz",
+        "location": {
+          "x": 55.090504,
+          "y": 43.385167,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146194462
+        }
+      }
+    },
+    {
+      "id": "audit_1781146189928_480742",
+      "at": "2026-06-11T02:49:49.928Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "kartell-lj-los-jueces",
+        "location": {
+          "x": 36.379058,
+          "y": 43.714115,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146189927
+        }
+      }
+    },
+    {
+      "id": "audit_1781146186795_192519",
+      "at": "2026-06-11T02:49:46.795Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "kartell-lpc-luzpura",
+        "location": {
+          "x": 38.915041,
+          "y": 41.80622,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146186794
+        }
+      }
+    },
+    {
+      "id": "audit_1781146182521_267697",
+      "at": "2026-06-11T02:49:42.521Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "syndikat-de-die-eintracht",
+        "location": {
+          "x": 45.35781,
+          "y": 39.898325,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146182520
+        }
+      }
+    },
+    {
+      "id": "audit_1781146181382_657584",
+      "at": "2026-06-11T02:49:41.382Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "kartell-vv-varkow",
+        "location": {
+          "x": 52.48598,
+          "y": 41.477273,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146181381
+        }
+      }
+    },
+    {
+      "id": "audit_1781146177706_803214",
+      "at": "2026-06-11T02:49:37.706Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "mafia-black-legacy",
+        "location": {
+          "x": 50.909558,
+          "y": 40.095694,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146177705
+        }
+      }
+    },
+    {
+      "id": "audit_1781146168955_186701",
+      "at": "2026-06-11T02:49:28.955Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "syndikat-ms-midnight-syndicat",
+        "location": {
+          "x": 37.968721,
+          "y": 50.813397,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146168953
+        }
+      }
+    },
+    {
+      "id": "audit_1781146163575_86387",
+      "at": "2026-06-11T02:49:23.575Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "mc-mor-mc-morteco-mc",
+        "location": {
+          "x": 62.727896,
+          "y": 55.157895,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146163573
+        }
+      }
+    },
+    {
+      "id": "audit_1781146162590_27414",
+      "at": "2026-06-11T02:49:22.590Z",
+      "action": "location_saved",
+      "by": "web",
+      "meta": {
+        "id": "kartell-bp-black-python",
+        "location": {
+          "x": 16.230295,
+          "y": 54.526316,
+          "region": "overview",
+          "label": "",
+          "generated": false,
+          "updatedAt": 1781146162588
+        }
+      }
+    },
+    {
+      "id": "audit_1781146139444_539848",
+      "at": "2026-06-11T02:48:59.444Z",
+      "action": "discord_login",
+      "by": "447008003170762753",
+      "meta": {
+        "username": "melih_g",
+        "roles": 5
+      }
+    },
+    {
+      "id": "audit_1781145294825_938690",
+      "at": "2026-06-11T02:34:54.825Z",
+      "action": "discord_login",
+      "by": "1397359665695948904",
+      "meta": {
+        "username": "einfachlucaa",
+        "roles": 5
+      }
+    },
+    {
+      "id": "audit_1781145019458_408664",
+      "at": "2026-06-11T02:30:19.458Z",
+      "action": "report_settings_updated",
+      "by": "447008003170762753",
+      "meta": {
+        "reportSettings": {
+          "weeklyReportsEnabled": true,
+          "monthlyReportsEnabled": true,
+          "waitForLatestAbgabeDeadline": true,
+          "abgabeShiftMode": "wait_latest",
+          "weeklyReportHour": 23,
+          "weeklyReportMinute": 59,
+          "monthlyReportDay": 28,
+          "monthlyReportHour": 23,
+          "monthlyReportMinute": 59,
+          "updatedAt": 1781145019453,
+          "updatedBy": "447008003170762753"
+        }
+      }
+    },
+    {
+      "id": "audit_1781144806080_601096",
+      "at": "2026-06-11T02:26:46.080Z",
+      "action": "discord_login",
+      "by": "447008003170762753",
+      "meta": {
+        "username": "melih_g",
+        "roles": 5
+      }
+    },
+    {
+      "id": "audit_1781144680261_714448",
+      "at": "2026-06-11T02:24:40.261Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://achievements-indicating-page-geek.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781141813111_236186",
+      "at": "2026-06-11T01:36:53.111Z",
+      "action": "trading_config_updated",
+      "by": "token",
+      "meta": {
+        "type": "product",
+        "key": "item"
+      }
+    },
+    {
+      "id": "audit_1781141121537_323635",
+      "at": "2026-06-11T01:25:21.537Z",
+      "action": "inventory_updated",
+      "by": "token",
+      "meta": {
+        "userId": "token"
+      }
+    },
+    {
+      "id": "audit_1781140720757_750524",
+      "at": "2026-06-11T01:18:40.757Z",
+      "action": "inventory_updated",
+      "by": "token",
+      "meta": {
+        "userId": "token"
+      }
+    },
+    {
+      "id": "audit_1781140703077_860408",
+      "at": "2026-06-11T01:18:23.077Z",
+      "action": "inventory_updated",
+      "by": "token",
+      "meta": {
+        "userId": "token"
+      }
+    },
+    {
+      "id": "audit_1781140492278_781284",
+      "at": "2026-06-11T01:14:52.278Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://implementation-quotations-gage-anniversary.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781133869210_71972",
+      "at": "2026-06-10T23:24:29.211Z",
+      "action": "discord_login",
+      "by": "1307392555742269564",
+      "meta": {
+        "username": "flo.w79",
+        "roles": 4
+      }
+    },
+    {
+      "id": "audit_1781132798617_979186",
+      "at": "2026-06-10T23:06:38.617Z",
+      "action": "discord_login",
+      "by": "447008003170762753",
+      "meta": {
+        "username": "melih_g",
+        "roles": 5
+      }
+    },
+    {
+      "id": "audit_1781132383104_105358",
+      "at": "2026-06-10T22:59:43.104Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://encouraged-modify-visiting-keith.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781062736173_474232",
+      "at": "2026-06-10T03:38:56.173Z",
+      "action": "discord_login",
+      "by": "447008003170762753",
+      "meta": {
+        "username": "melih_g",
+        "roles": 5
+      }
+    },
+    {
+      "id": "audit_1781062694521_28304",
+      "at": "2026-06-10T03:38:14.521Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://programmers-practitioner-carlo-jersey.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781062660297_178097",
+      "at": "2026-06-10T03:37:40.297Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://dept-arrival-delivered-lessons.trycloudflare.com",
+        "status": "online"
+      }
+    },
+    {
+      "id": "audit_1781062415879_944157",
+      "at": "2026-06-10T03:33:35.879Z",
+      "action": "discord_login",
+      "by": "447008003170762753",
+      "meta": {
+        "username": "melih_g",
+        "roles": 5
+      }
+    },
+    {
+      "id": "audit_1781062369423_639499",
+      "at": "2026-06-10T03:32:49.423Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://analytical-industries-referring-cloudy.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781062221461_696911",
+      "at": "2026-06-10T03:30:21.461Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://download-examining-titles-production.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781062191838_956331",
+      "at": "2026-06-10T03:29:51.838Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://substance-moved-infections-planners.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781061797872_605990",
+      "at": "2026-06-10T03:23:17.872Z",
+      "action": "sanctions_bulk_deleted",
+      "by": "447008003170762753",
+      "meta": {
+        "count": 23,
+        "discord": {
+          "attempted": 23,
+          "deleted": 23,
+          "failed": 0,
+          "noMessage": 0,
+          "scanned": 0
+        }
+      }
+    },
+    {
+      "id": "audit_1781061795900_472260",
+      "at": "2026-06-10T03:23:15.900Z",
+      "action": "sanctions_bulk_deleted",
+      "by": "447008003170762753",
+      "meta": {
+        "count": 23,
+        "discord": {
+          "attempted": 23,
+          "deleted": 23,
+          "failed": 0,
+          "noMessage": 0,
+          "scanned": 0
+        }
+      }
+    },
+    {
+      "id": "audit_1781061701567_167993",
+      "at": "2026-06-10T03:21:41.567Z",
+      "action": "discord_login",
+      "by": "447008003170762753",
+      "meta": {
+        "username": "melih_g",
+        "roles": 5
+      }
+    },
+    {
+      "id": "audit_1781061516551_208469",
+      "at": "2026-06-10T03:18:36.551Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://differences-fisheries-modes-tops.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781061421839_59570",
+      "at": "2026-06-10T03:17:01.839Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://golden-field-tired-colorado.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781060308159_46758",
+      "at": "2026-06-10T02:58:28.159Z",
+      "action": "discord_login",
+      "by": "447008003170762753",
+      "meta": {
+        "username": "melih_g",
+        "roles": 5
+      }
+    },
+    {
+      "id": "audit_1781060254423_595353",
+      "at": "2026-06-10T02:57:34.423Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://womens-keith-seventh-protein.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781059791929_282021",
+      "at": "2026-06-10T02:49:51.929Z",
+      "action": "discord_login",
+      "by": "447008003170762753",
+      "meta": {
+        "username": "melih_g",
+        "roles": 5
+      }
+    },
+    {
+      "id": "audit_1781059740771_203275",
+      "at": "2026-06-10T02:49:00.771Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://replacing-civil-managed-ampland.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781059719899_941075",
+      "at": "2026-06-10T02:48:39.899Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://temperatures-carbon-admission-collective.trycloudflare.com",
+        "status": "offline",
+        "messageId": "1514098102766665788",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781059715567_798019",
+      "at": "2026-06-10T02:48:35.567Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://advertisers-occasions-transcript-str.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781059609795_403136",
+      "at": "2026-06-10T02:46:49.795Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://temperatures-carbon-admission-collective.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781059600134_243335",
+      "at": "2026-06-10T02:46:40.134Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://approach-friendly-way-counter.trycloudflare.com",
+        "status": "offline",
+        "messageId": "1514098102766665788",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781059534752_892767",
+      "at": "2026-06-10T02:45:34.752Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://approach-friendly-way-counter.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781059517398_985937",
+      "at": "2026-06-10T02:45:17.398Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://older-maryland-worked-handled.trycloudflare.com",
+        "status": "offline",
+        "messageId": "1514089676586356807",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781058973279_931647",
+      "at": "2026-06-10T02:36:13.279Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://pine-presently-metals-store.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781058338270_75871",
+      "at": "2026-06-10T02:25:38.270Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://older-maryland-worked-handled.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781057690263_94018",
+      "at": "2026-06-10T02:14:50.263Z",
+      "action": "discord_login",
+      "by": "447008003170762753",
+      "meta": {
+        "username": "melih_g",
+        "roles": 5
+      }
+    },
+    {
+      "id": "audit_1781057670737_862931",
+      "at": "2026-06-10T02:14:30.737Z",
+      "action": "discord_login",
+      "by": "447008003170762753",
+      "meta": {
+        "username": "melih_g",
+        "roles": 5
+      }
+    },
+    {
+      "id": "audit_1781057658407_724746",
+      "at": "2026-06-10T02:14:18.407Z",
+      "action": "discord_login",
+      "by": "447008003170762753",
+      "meta": {
+        "username": "melih_g",
+        "roles": 5
+      }
+    },
+    {
+      "id": "audit_1781057508756_158857",
+      "at": "2026-06-10T02:11:48.756Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://enhancements-westminster-trailer-tunes.trycloudflare.com",
+        "status": "online",
+        "channelId": "1513989902658961499"
+      }
+    },
+    {
+      "id": "audit_1781057452441_655120",
+      "at": "2026-06-10T02:10:52.441Z",
+      "action": "public_url_updated",
+      "by": "start-public",
+      "meta": {
+        "url": "https://pricing-groundwater-accounting-letters.trycloudflare.com",
+        "status": "online"
+      }
+    }
+  ]
+}

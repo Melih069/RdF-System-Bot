@@ -1,0 +1,4272 @@
+{
+  "weeks": {
+    "2026-W24": {
+      "createdAt": "2026-06-10T03:16:58.016Z",
+      "weekKey": "2026-W24",
+      "categories": {
+        "routen": {
+          "1227254024248496161": {
+            "userId": "1227254024248496161",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.716Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "727337828752818186": {
+            "userId": "727337828752818186",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.720Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "1261286888761856122": {
+            "userId": "1261286888761856122",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.745Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "724238471018840074": {
+            "userId": "724238471018840074",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.759Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "522090867897663488": {
+            "userId": "522090867897663488",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.769Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "688358335937904672": {
+            "userId": "688358335937904672",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.698Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "332581895785283584": {
+            "userId": "332581895785283584",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.701Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "451086657568112641": {
+            "userId": "451086657568112641",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.706Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.711Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "1449109712825225436": {
+            "userId": "1449109712825225436",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.727Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "1457182169087606784": {
+            "userId": "1457182169087606784",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.732Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "1397359665695948904": {
+            "userId": "1397359665695948904",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.736Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "303203573708226564": {
+            "userId": "303203573708226564",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.740Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "481229229472874502": {
+            "userId": "481229229472874502",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.749Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "325382005455978496": {
+            "userId": "325382005455978496",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.754Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "1495791328691490826": {
+            "userId": "1495791328691490826",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.764Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          }
+        },
+        "patronen": {
+          "1227254024248496161": {
+            "userId": "1227254024248496161",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.791Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "727337828752818186": {
+            "userId": "727337828752818186",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.794Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "625604865317535744": {
+            "userId": "625604865317535744",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.815Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "1261286888761856122": {
+            "userId": "1261286888761856122",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.824Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "724238471018840074": {
+            "userId": "724238471018840074",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.839Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "522090867897663488": {
+            "userId": "522090867897663488",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.848Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "688358335937904672": {
+            "userId": "688358335937904672",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.774Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "451086657568112641": {
+            "userId": "451086657568112641",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.780Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.785Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "1449109712825225436": {
+            "userId": "1449109712825225436",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.802Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "1457182169087606784": {
+            "userId": "1457182169087606784",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.807Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "1397359665695948904": {
+            "userId": "1397359665695948904",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.811Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "303203573708226564": {
+            "userId": "303203573708226564",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.819Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "481229229472874502": {
+            "userId": "481229229472874502",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.827Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "325382005455978496": {
+            "userId": "325382005455978496",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.832Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          },
+          "1495791328691490826": {
+            "userId": "1495791328691490826",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T14:00:00.843Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [
+              "thu"
+            ],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          }
+        },
+        "schwarzpulver": {},
+        "meth": {}
+      },
+      "weeklyReportPosted": false,
+      "monthAccumulatedFor": [],
+      "requiredMembers": {
+        "routen": {
+          "createdAt": "2026-06-10T03:16:58.017Z",
+          "createdTs": 1781061418017,
+          "updatedAt": "2026-06-10T03:16:58.017Z",
+          "updatedTs": 1781061418017,
+          "frozen": false,
+          "reason": "prepaid-touch",
+          "userIds": [
+            "1227254024248496161",
+            "727337828752818186",
+            "1261286888761856122",
+            "724238471018840074",
+            "522090867897663488",
+            "688358335937904672",
+            "332581895785283584",
+            "451086657568112641",
+            "1307392555742269564",
+            "1449109712825225436",
+            "1457182169087606784",
+            "1397359665695948904",
+            "303203573708226564",
+            "481229229472874502",
+            "325382005455978496",
+            "1495791328691490826"
+          ],
+          "roleReceivedTs": {
+            "1227254024248496161": 1778891912039,
+            "727337828752818186": 1779916115366,
+            "1261286888761856122": 1779648539461,
+            "724238471018840074": 1778785900562,
+            "522090867897663488": 1778785901787,
+            "688358335937904672": 1779918733894,
+            "332581895785283584": 1780433735565,
+            "451086657568112641": 1778785901052,
+            "1307392555742269564": 1778785900000,
+            "1449109712825225436": 1778785834948,
+            "1457182169087606784": 1779294929335,
+            "1397359665695948904": 1779730147342,
+            "303203573708226564": 1778889590445,
+            "481229229472874502": 1779916118735,
+            "325382005455978496": 1778785900653,
+            "1495791328691490826": 1778785901572
+          }
+        },
+        "patronen": {
+          "createdAt": "2026-06-10T03:16:58.031Z",
+          "createdTs": 1781061418031,
+          "updatedAt": "2026-06-10T03:16:58.031Z",
+          "updatedTs": 1781061418031,
+          "frozen": false,
+          "reason": "prepaid-touch",
+          "userIds": [
+            "1227254024248496161",
+            "727337828752818186",
+            "625604865317535744",
+            "1261286888761856122",
+            "724238471018840074",
+            "522090867897663488",
+            "688358335937904672",
+            "451086657568112641",
+            "1307392555742269564",
+            "1449109712825225436",
+            "1457182169087606784",
+            "1397359665695948904",
+            "303203573708226564",
+            "481229229472874502",
+            "325382005455978496",
+            "1495791328691490826"
+          ],
+          "roleReceivedTs": {
+            "1227254024248496161": 1777759187169,
+            "727337828752818186": 1779829189049,
+            "625604865317535744": 1779047642801,
+            "1261286888761856122": 1779648531124,
+            "724238471018840074": 1776717786412,
+            "522090867897663488": 1777672183234,
+            "688358335937904672": 1779922743977,
+            "451086657568112641": 1778425631022,
+            "1307392555742269564": 1772243272677,
+            "1449109712825225436": 1777233141177,
+            "1457182169087606784": 1779047039838,
+            "1397359665695948904": 1779584692269,
+            "303203573708226564": 1778889636561,
+            "481229229472874502": 1779829661724,
+            "325382005455978496": 1777757739912,
+            "1495791328691490826": 1777059571657
+          }
+        }
+      }
+    },
+    "2026-W23": {
+      "createdAt": "2026-06-10T03:17:00.873Z",
+      "weekKey": "2026-W23",
+      "categories": {
+        "routen": {
+          "1227254024248496161": {
+            "userId": "1227254024248496161",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:02:18.094Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400052
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.886Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:02:18.094Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "727337828752818186": {
+            "userId": "727337828752818186",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.892Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400063
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.892Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1261286888761856122": {
+            "userId": "1261286888761856122",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.896Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400070
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.896Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "724238471018840074": {
+            "userId": "724238471018840074",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.900Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400076
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.900Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "522090867897663488": {
+            "userId": "522090867897663488",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:02:18.102Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400082
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.903Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:02:18.102Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "688358335937904672": {
+            "userId": "688358335937904672",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.907Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400087
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.907Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "451086657568112641": {
+            "userId": "451086657568112641",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.911Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400093
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.911Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.914Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400100
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.914Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1449109712825225436": {
+            "userId": "1449109712825225436",
+            "status": "nicht_abgegeben",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T07:05:00.809Z",
+            "updatedBy": null,
+            "note": "Am Abgabetag abgemeldet – Nachholung nach Abmeldung",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "recovery_after_absence",
+              "firstDueTs": 1781417556147,
+              "finalDueTs": 1781590356147,
+              "lastReminderAt": 1781161200631,
+              "lastWarningAt": 0
+            },
+            "sanctionIssued": true,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.918Z",
+                "action": "followup_start",
+                "absenceUntilTs": 1781158356147
+              }
+            ]
+          },
+          "1457182169087606784": {
+            "userId": "1457182169087606784",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.922Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400106
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.922Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1397359665695948904": {
+            "userId": "1397359665695948904",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.928Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400112
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.928Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "303203573708226564": {
+            "userId": "303203573708226564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.932Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400118
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.932Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "481229229472874502": {
+            "userId": "481229229472874502",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:02:18.107Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400128
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.938Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:02:18.107Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "325382005455978496": {
+            "userId": "325382005455978496",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.943Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400133
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.943Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1495791328691490826": {
+            "userId": "1495791328691490826",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.946Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400138
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.946Z",
+                "action": "overdue_start"
+              }
+            ]
+          }
+        },
+        "patronen": {
+          "1227254024248496161": {
+            "userId": "1227254024248496161",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:02:18.114Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400143
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.957Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:02:18.114Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "727337828752818186": {
+            "userId": "727337828752818186",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.962Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400148
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.962Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "625604865317535744": {
+            "userId": "625604865317535744",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.965Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400154
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.965Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1261286888761856122": {
+            "userId": "1261286888761856122",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.969Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400160
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.969Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "724238471018840074": {
+            "userId": "724238471018840074",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.972Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400165
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.972Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "522090867897663488": {
+            "userId": "522090867897663488",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:02:18.119Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400170
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.976Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:02:18.119Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "688358335937904672": {
+            "userId": "688358335937904672",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.980Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400175
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.980Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "451086657568112641": {
+            "userId": "451086657568112641",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.983Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400180
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.983Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.987Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400184
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.987Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1449109712825225436": {
+            "userId": "1449109712825225436",
+            "status": "nicht_abgegeben",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T07:05:00.819Z",
+            "updatedBy": null,
+            "note": "Am Abgabetag abgemeldet – Nachholung nach Abmeldung",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "recovery_after_absence",
+              "firstDueTs": 1781417556147,
+              "finalDueTs": 1781590356147,
+              "lastReminderAt": 1781161200635,
+              "lastWarningAt": 0
+            },
+            "sanctionIssued": true,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.991Z",
+                "action": "followup_start",
+                "absenceUntilTs": 1781158356147
+              }
+            ]
+          },
+          "1457182169087606784": {
+            "userId": "1457182169087606784",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.996Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400189
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.996Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1397359665695948904": {
+            "userId": "1397359665695948904",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:00.999Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400194
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:00.999Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "303203573708226564": {
+            "userId": "303203573708226564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:01.003Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400199
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:01.003Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "481229229472874502": {
+            "userId": "481229229472874502",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:01.006Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400204
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:01.006Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "325382005455978496": {
+            "userId": "325382005455978496",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:02:18.125Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400210
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:01.010Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:02:18.125Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1495791328691490826": {
+            "userId": "1495791328691490826",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T03:17:01.014Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781132400215
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T03:17:01.014Z",
+                "action": "overdue_start"
+              }
+            ]
+          }
+        },
+        "schwarzpulver": {},
+        "meth": {}
+      },
+      "weeklyReportPosted": true,
+      "monthAccumulatedFor": [],
+      "requiredMembers": {
+        "routen": {
+          "createdAt": "2026-06-10T03:17:00.877Z",
+          "createdTs": 1781061420877,
+          "updatedAt": "2026-06-10T03:17:00.877Z",
+          "updatedTs": 1781061420877,
+          "frozen": true,
+          "reason": "scheduled-weekly-report",
+          "userIds": [
+            "1227254024248496161",
+            "727337828752818186",
+            "1261286888761856122",
+            "724238471018840074",
+            "522090867897663488",
+            "688358335937904672",
+            "451086657568112641",
+            "1307392555742269564",
+            "1449109712825225436",
+            "1457182169087606784",
+            "1397359665695948904",
+            "303203573708226564",
+            "481229229472874502",
+            "325382005455978496",
+            "1495791328691490826"
+          ],
+          "roleReceivedTs": {
+            "1227254024248496161": 1778891912039,
+            "727337828752818186": 1779916115366,
+            "1261286888761856122": 1779648539461,
+            "724238471018840074": 1778785900562,
+            "522090867897663488": 1778785901787,
+            "688358335937904672": 1779918733894,
+            "451086657568112641": 1778785901052,
+            "1307392555742269564": 1778785900000,
+            "1449109712825225436": 1778785834948,
+            "1457182169087606784": 1779294929335,
+            "1397359665695948904": 1779730147342,
+            "303203573708226564": 1778889590445,
+            "481229229472874502": 1779916118735,
+            "325382005455978496": 1778785900653,
+            "1495791328691490826": 1778785901572
+          }
+        },
+        "patronen": {
+          "createdAt": "2026-06-10T03:17:00.878Z",
+          "createdTs": 1781061420878,
+          "updatedAt": "2026-06-10T03:17:00.878Z",
+          "updatedTs": 1781061420878,
+          "frozen": true,
+          "reason": "scheduled-weekly-report",
+          "userIds": [
+            "1227254024248496161",
+            "727337828752818186",
+            "625604865317535744",
+            "1261286888761856122",
+            "724238471018840074",
+            "522090867897663488",
+            "688358335937904672",
+            "451086657568112641",
+            "1307392555742269564",
+            "1449109712825225436",
+            "1457182169087606784",
+            "1397359665695948904",
+            "303203573708226564",
+            "481229229472874502",
+            "325382005455978496",
+            "1495791328691490826"
+          ],
+          "roleReceivedTs": {
+            "1227254024248496161": 1777759187169,
+            "727337828752818186": 1779829189049,
+            "625604865317535744": 1779047642801,
+            "1261286888761856122": 1779648531124,
+            "724238471018840074": 1776717786412,
+            "522090867897663488": 1777672183234,
+            "688358335937904672": 1779922743977,
+            "451086657568112641": 1778425631022,
+            "1307392555742269564": 1772243272677,
+            "1449109712825225436": 1777233141177,
+            "1457182169087606784": 1779047039838,
+            "1397359665695948904": 1779584692269,
+            "303203573708226564": 1778889636561,
+            "481229229472874502": 1779829661724,
+            "325382005455978496": 1777757739912,
+            "1495791328691490826": 1777059571657
+          }
+        }
+      },
+      "weeklyReportMessages": [
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514397754783174677",
+          "updatedAt": "2026-06-11T02:01:21.916Z"
+        },
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514397758927278240",
+          "updatedAt": "2026-06-11T02:01:27.437Z"
+        },
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514397762601488567",
+          "updatedAt": "2026-06-11T02:01:34.281Z"
+        }
+      ],
+      "weeklyReportPostedAt": "2026-06-10T23:00:15.234Z",
+      "weeklyReportUpdatedAt": "2026-06-11T02:01:34.281Z",
+      "weeklyReportDeadlineTs": 1780869540000
+    },
+    "2026-W12": {
+      "createdAt": "2026-06-10T23:00:00.224Z",
+      "weekKey": "2026-W12",
+      "categories": {
+        "routen": {},
+        "patronen": {
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": null,
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          }
+        },
+        "schwarzpulver": {},
+        "meth": {}
+      },
+      "weeklyReportPosted": false,
+      "monthAccumulatedFor": [],
+      "requiredMembers": {
+        "routen": {
+          "createdAt": "2026-06-10T23:00:00.225Z",
+          "createdTs": 1781132400225,
+          "updatedAt": "2026-06-10T23:00:00.225Z",
+          "updatedTs": 1781132400225,
+          "frozen": true,
+          "reason": "prepaid-touch",
+          "userIds": [],
+          "roleReceivedTs": {}
+        },
+        "patronen": {
+          "createdAt": "2026-06-10T23:00:00.226Z",
+          "createdTs": 1781132400226,
+          "updatedAt": "2026-06-10T23:00:00.226Z",
+          "updatedTs": 1781132400226,
+          "frozen": true,
+          "reason": "prepaid-touch",
+          "userIds": [
+            "1307392555742269564"
+          ],
+          "roleReceivedTs": {
+            "1307392555742269564": 1772243272677
+          }
+        }
+      }
+    },
+    "2026-W13": {
+      "createdAt": "2026-06-10T23:00:00.227Z",
+      "weekKey": "2026-W13",
+      "categories": {
+        "routen": {},
+        "patronen": {
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": null,
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          }
+        },
+        "schwarzpulver": {},
+        "meth": {}
+      },
+      "weeklyReportPosted": false,
+      "monthAccumulatedFor": [],
+      "requiredMembers": {
+        "routen": {
+          "createdAt": "2026-06-10T23:00:00.228Z",
+          "createdTs": 1781132400228,
+          "updatedAt": "2026-06-10T23:00:00.228Z",
+          "updatedTs": 1781132400228,
+          "frozen": true,
+          "reason": "prepaid-touch",
+          "userIds": [],
+          "roleReceivedTs": {}
+        },
+        "patronen": {
+          "createdAt": "2026-06-10T23:00:00.229Z",
+          "createdTs": 1781132400229,
+          "updatedAt": "2026-06-10T23:00:00.229Z",
+          "updatedTs": 1781132400229,
+          "frozen": true,
+          "reason": "prepaid-touch",
+          "userIds": [
+            "1307392555742269564"
+          ],
+          "roleReceivedTs": {
+            "1307392555742269564": 1772243272677
+          }
+        }
+      }
+    },
+    "2026-W14": {
+      "createdAt": "2026-06-10T23:00:00.229Z",
+      "weekKey": "2026-W14",
+      "categories": {
+        "routen": {},
+        "patronen": {
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": null,
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          }
+        },
+        "schwarzpulver": {},
+        "meth": {}
+      },
+      "weeklyReportPosted": false,
+      "monthAccumulatedFor": [],
+      "requiredMembers": {
+        "routen": {
+          "createdAt": "2026-06-10T23:00:00.230Z",
+          "createdTs": 1781132400230,
+          "updatedAt": "2026-06-10T23:00:00.230Z",
+          "updatedTs": 1781132400230,
+          "frozen": true,
+          "reason": "prepaid-touch",
+          "userIds": [],
+          "roleReceivedTs": {}
+        },
+        "patronen": {
+          "createdAt": "2026-06-10T23:00:00.231Z",
+          "createdTs": 1781132400231,
+          "updatedAt": "2026-06-10T23:00:00.231Z",
+          "updatedTs": 1781132400231,
+          "frozen": true,
+          "reason": "prepaid-touch",
+          "userIds": [
+            "1307392555742269564"
+          ],
+          "roleReceivedTs": {
+            "1307392555742269564": 1772243272677
+          }
+        }
+      }
+    },
+    "2026-W15": {
+      "createdAt": "2026-06-10T23:00:00.231Z",
+      "weekKey": "2026-W15",
+      "categories": {
+        "routen": {},
+        "patronen": {
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": null,
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          }
+        },
+        "schwarzpulver": {},
+        "meth": {}
+      },
+      "weeklyReportPosted": false,
+      "monthAccumulatedFor": [],
+      "requiredMembers": {
+        "routen": {
+          "createdAt": "2026-06-10T23:00:00.232Z",
+          "createdTs": 1781132400232,
+          "updatedAt": "2026-06-10T23:00:00.232Z",
+          "updatedTs": 1781132400232,
+          "frozen": true,
+          "reason": "prepaid-touch",
+          "userIds": [],
+          "roleReceivedTs": {}
+        },
+        "patronen": {
+          "createdAt": "2026-06-10T23:00:00.232Z",
+          "createdTs": 1781132400232,
+          "updatedAt": "2026-06-10T23:00:00.232Z",
+          "updatedTs": 1781132400232,
+          "frozen": true,
+          "reason": "prepaid-touch",
+          "userIds": [
+            "1307392555742269564"
+          ],
+          "roleReceivedTs": {
+            "1307392555742269564": 1772243272677
+          }
+        }
+      }
+    },
+    "2026-W16": {
+      "createdAt": "2026-06-10T23:00:00.233Z",
+      "weekKey": "2026-W16",
+      "categories": {
+        "routen": {},
+        "patronen": {
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": null,
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          }
+        },
+        "schwarzpulver": {},
+        "meth": {}
+      },
+      "weeklyReportPosted": false,
+      "monthAccumulatedFor": [],
+      "requiredMembers": {
+        "routen": {
+          "createdAt": "2026-06-10T23:00:00.233Z",
+          "createdTs": 1781132400233,
+          "updatedAt": "2026-06-10T23:00:00.233Z",
+          "updatedTs": 1781132400233,
+          "frozen": true,
+          "reason": "prepaid-touch",
+          "userIds": [],
+          "roleReceivedTs": {}
+        },
+        "patronen": {
+          "createdAt": "2026-06-10T23:00:00.234Z",
+          "createdTs": 1781132400234,
+          "updatedAt": "2026-06-10T23:00:00.234Z",
+          "updatedTs": 1781132400234,
+          "frozen": true,
+          "reason": "prepaid-touch",
+          "userIds": [
+            "1307392555742269564"
+          ],
+          "roleReceivedTs": {
+            "1307392555742269564": 1772243272677
+          }
+        }
+      }
+    },
+    "2026-W17": {
+      "createdAt": "2026-06-10T23:00:00.234Z",
+      "weekKey": "2026-W17",
+      "categories": {
+        "routen": {},
+        "patronen": {
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "offen",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": null,
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": null,
+            "sanctionIssued": false,
+            "history": []
+          }
+        },
+        "schwarzpulver": {},
+        "meth": {}
+      },
+      "weeklyReportPosted": false,
+      "monthAccumulatedFor": [],
+      "requiredMembers": {
+        "routen": {
+          "createdAt": "2026-06-10T23:00:00.235Z",
+          "createdTs": 1781132400235,
+          "updatedAt": "2026-06-10T23:00:00.235Z",
+          "updatedTs": 1781132400235,
+          "frozen": true,
+          "reason": "prepaid-touch",
+          "userIds": [],
+          "roleReceivedTs": {}
+        },
+        "patronen": {
+          "createdAt": "2026-06-10T23:00:00.236Z",
+          "createdTs": 1781132400236,
+          "updatedAt": "2026-06-10T23:00:00.236Z",
+          "updatedTs": 1781132400236,
+          "frozen": true,
+          "reason": "prepaid-touch",
+          "userIds": [
+            "1307392555742269564"
+          ],
+          "roleReceivedTs": {
+            "1307392555742269564": 1772243272677
+          }
+        }
+      }
+    },
+    "2026-W18": {
+      "createdAt": "2026-06-10T23:00:00.236Z",
+      "weekKey": "2026-W18",
+      "categories": {
+        "routen": {},
+        "patronen": {
+          "724238471018840074": {
+            "userId": "724238471018840074",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.678Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136000993
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:00.242Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.678Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.683Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001012
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:00.248Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.683Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1449109712825225436": {
+            "userId": "1449109712825225436",
+            "status": "nicht_abgegeben",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T07:05:00.732Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781161200637
+            },
+            "sanctionIssued": true,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:00.252Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1495791328691490826": {
+            "userId": "1495791328691490826",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.690Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001025
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:00.256Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.690Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          }
+        },
+        "schwarzpulver": {},
+        "meth": {}
+      },
+      "weeklyReportPosted": true,
+      "monthAccumulatedFor": [],
+      "requiredMembers": {
+        "patronen": {
+          "createdAt": "2026-06-10T23:00:00.237Z",
+          "createdTs": 1781132400237,
+          "updatedAt": "2026-06-10T23:00:00.237Z",
+          "updatedTs": 1781132400237,
+          "frozen": true,
+          "reason": "auto-sanction-scan",
+          "userIds": [
+            "724238471018840074",
+            "1307392555742269564",
+            "1449109712825225436",
+            "1495791328691490826"
+          ],
+          "roleReceivedTs": {
+            "724238471018840074": 1776717786412,
+            "1307392555742269564": 1772243272677,
+            "1449109712825225436": 1777233141177,
+            "1495791328691490826": 1777059571657
+          }
+        },
+        "routen": {
+          "createdAt": "2026-06-10T23:00:00.241Z",
+          "createdTs": 1781132400241,
+          "updatedAt": "2026-06-10T23:00:00.241Z",
+          "updatedTs": 1781132400241,
+          "frozen": true,
+          "reason": "prepaid-touch",
+          "userIds": [],
+          "roleReceivedTs": {}
+        }
+      },
+      "weeklyReportMessages": [
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514403795772248174",
+          "updatedAt": "2026-06-11T02:00:03.148Z"
+        },
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514403819180658779",
+          "updatedAt": "2026-06-11T02:00:03.871Z"
+        },
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514403837710958724",
+          "updatedAt": "2026-06-11T02:00:04.340Z"
+        }
+      ],
+      "weeklyReportPostedAt": "2026-06-10T23:00:11.366Z",
+      "weeklyReportUpdatedAt": "2026-06-11T02:00:04.342Z",
+      "weeklyReportDeadlineTs": 1777845540000
+    },
+    "2026-W19": {
+      "createdAt": "2026-06-10T23:00:13.710Z",
+      "weekKey": "2026-W19",
+      "categories": {
+        "routen": {},
+        "patronen": {
+          "1227254024248496161": {
+            "userId": "1227254024248496161",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.697Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001062
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:13.716Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.697Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "724238471018840074": {
+            "userId": "724238471018840074",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.702Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001074
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:13.721Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.702Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "522090867897663488": {
+            "userId": "522090867897663488",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.710Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001080
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:13.774Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.710Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.716Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001088
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:13.778Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.716Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1449109712825225436": {
+            "userId": "1449109712825225436",
+            "status": "nicht_abgegeben",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T07:05:00.748Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781161200651
+            },
+            "sanctionIssued": true,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:13.785Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "325382005455978496": {
+            "userId": "325382005455978496",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.721Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001094
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:13.830Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.721Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1495791328691490826": {
+            "userId": "1495791328691490826",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.726Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001102
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:13.834Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.726Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          }
+        },
+        "schwarzpulver": {},
+        "meth": {}
+      },
+      "weeklyReportPosted": true,
+      "monthAccumulatedFor": [],
+      "requiredMembers": {
+        "routen": {
+          "createdAt": "2026-06-10T23:00:13.711Z",
+          "createdTs": 1781132413711,
+          "updatedAt": "2026-06-10T23:00:13.711Z",
+          "updatedTs": 1781132413711,
+          "frozen": true,
+          "reason": "auto-sanction-scan",
+          "userIds": [],
+          "roleReceivedTs": {}
+        },
+        "patronen": {
+          "createdAt": "2026-06-10T23:00:13.711Z",
+          "createdTs": 1781132413711,
+          "updatedAt": "2026-06-10T23:00:13.711Z",
+          "updatedTs": 1781132413711,
+          "frozen": true,
+          "reason": "auto-sanction-scan",
+          "userIds": [
+            "1227254024248496161",
+            "724238471018840074",
+            "522090867897663488",
+            "1307392555742269564",
+            "1449109712825225436",
+            "325382005455978496",
+            "1495791328691490826"
+          ],
+          "roleReceivedTs": {
+            "1227254024248496161": 1777759187169,
+            "724238471018840074": 1776717786412,
+            "522090867897663488": 1777672183234,
+            "1307392555742269564": 1772243272677,
+            "1449109712825225436": 1777233141177,
+            "325382005455978496": 1777757739912,
+            "1495791328691490826": 1777059571657
+          }
+        }
+      },
+      "weeklyReportMessages": [
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514403873610268692",
+          "updatedAt": "2026-06-11T02:00:09.342Z"
+        },
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514403903930765352",
+          "updatedAt": "2026-06-11T02:00:15.252Z"
+        },
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514403923207913642",
+          "updatedAt": "2026-06-11T02:00:21.148Z"
+        }
+      ],
+      "weeklyReportPostedAt": "2026-06-10T23:00:30.268Z",
+      "weeklyReportUpdatedAt": "2026-06-11T02:00:21.148Z",
+      "weeklyReportDeadlineTs": 1778450340000
+    },
+    "2026-W20": {
+      "createdAt": "2026-06-10T23:00:31.642Z",
+      "weekKey": "2026-W20",
+      "categories": {
+        "routen": {},
+        "patronen": {
+          "1227254024248496161": {
+            "userId": "1227254024248496161",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:31.650Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001144
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:31.650Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "724238471018840074": {
+            "userId": "724238471018840074",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.731Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001182
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:31.657Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.731Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "522090867897663488": {
+            "userId": "522090867897663488",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.737Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001231
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:31.663Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.737Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "451086657568112641": {
+            "userId": "451086657568112641",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.743Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001270
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:31.669Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.743Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.747Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001298
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:31.676Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.747Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1449109712825225436": {
+            "userId": "1449109712825225436",
+            "status": "nicht_abgegeben",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T07:05:00.756Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781161200659
+            },
+            "sanctionIssued": true,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:31.681Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "325382005455978496": {
+            "userId": "325382005455978496",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.753Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001307
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:31.685Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.753Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1495791328691490826": {
+            "userId": "1495791328691490826",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:34.757Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001323
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:31.690Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:34.757Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          }
+        },
+        "schwarzpulver": {},
+        "meth": {}
+      },
+      "weeklyReportPosted": true,
+      "monthAccumulatedFor": [],
+      "requiredMembers": {
+        "routen": {
+          "createdAt": "2026-06-10T23:00:31.643Z",
+          "createdTs": 1781132431643,
+          "updatedAt": "2026-06-10T23:00:31.643Z",
+          "updatedTs": 1781132431643,
+          "frozen": true,
+          "reason": "auto-sanction-scan",
+          "userIds": [],
+          "roleReceivedTs": {}
+        },
+        "patronen": {
+          "createdAt": "2026-06-10T23:00:31.644Z",
+          "createdTs": 1781132431644,
+          "updatedAt": "2026-06-10T23:00:31.644Z",
+          "updatedTs": 1781132431644,
+          "frozen": true,
+          "reason": "auto-sanction-scan",
+          "userIds": [
+            "1227254024248496161",
+            "724238471018840074",
+            "522090867897663488",
+            "451086657568112641",
+            "1307392555742269564",
+            "1449109712825225436",
+            "325382005455978496",
+            "1495791328691490826"
+          ],
+          "roleReceivedTs": {
+            "1227254024248496161": 1777759187169,
+            "724238471018840074": 1776717786412,
+            "522090867897663488": 1777672183234,
+            "451086657568112641": 1778425631022,
+            "1307392555742269564": 1772243272677,
+            "1449109712825225436": 1777233141177,
+            "325382005455978496": 1777757739912,
+            "1495791328691490826": 1777059571657
+          }
+        }
+      },
+      "weeklyReportMessages": [
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514403957651275876",
+          "updatedAt": "2026-06-11T02:00:28.214Z"
+        },
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514403985027502161",
+          "updatedAt": "2026-06-11T02:00:33.945Z"
+        },
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514404015147057252",
+          "updatedAt": "2026-06-11T02:00:39.749Z"
+        }
+      ],
+      "weeklyReportPostedAt": "2026-06-10T23:00:52.035Z",
+      "weeklyReportUpdatedAt": "2026-06-11T02:00:39.749Z",
+      "weeklyReportDeadlineTs": 1779055140000
+    },
+    "2026-W21": {
+      "createdAt": "2026-06-10T23:00:53.739Z",
+      "weekKey": "2026-W21",
+      "categories": {
+        "routen": {
+          "1227254024248496161": {
+            "userId": "1227254024248496161",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.524Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001335
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.745Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.524Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "724238471018840074": {
+            "userId": "724238471018840074",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.530Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001345
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.754Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.530Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "522090867897663488": {
+            "userId": "522090867897663488",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.536Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001352
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.759Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.536Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "451086657568112641": {
+            "userId": "451086657568112641",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.541Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001357
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.763Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.541Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.548Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001363
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.767Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.548Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1449109712825225436": {
+            "userId": "1449109712825225436",
+            "status": "nicht_abgegeben",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T07:05:00.765Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781161200667
+            },
+            "sanctionIssued": true,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.771Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "303203573708226564": {
+            "userId": "303203573708226564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.553Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001370
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.776Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.553Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "325382005455978496": {
+            "userId": "325382005455978496",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.558Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001376
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.782Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.558Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1495791328691490826": {
+            "userId": "1495791328691490826",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.563Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001382
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.786Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.563Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          }
+        },
+        "patronen": {
+          "1227254024248496161": {
+            "userId": "1227254024248496161",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.568Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001388
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.793Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.568Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "625604865317535744": {
+            "userId": "625604865317535744",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:53.798Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001394
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.798Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "724238471018840074": {
+            "userId": "724238471018840074",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:53.803Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001401
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.803Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "522090867897663488": {
+            "userId": "522090867897663488",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.575Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001406
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.808Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.575Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "451086657568112641": {
+            "userId": "451086657568112641",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.580Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001413
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.812Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.580Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.585Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001419
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.816Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.585Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1449109712825225436": {
+            "userId": "1449109712825225436",
+            "status": "nicht_abgegeben",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T07:05:00.774Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781161200676
+            },
+            "sanctionIssued": true,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.820Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1457182169087606784": {
+            "userId": "1457182169087606784",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.590Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001426
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.824Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.590Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "303203573708226564": {
+            "userId": "303203573708226564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.595Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001433
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.828Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.595Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "325382005455978496": {
+            "userId": "325382005455978496",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.601Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001440
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.833Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.601Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1495791328691490826": {
+            "userId": "1495791328691490826",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:00:57.606Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001447
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:00:53.836Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:00:57.606Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          }
+        },
+        "schwarzpulver": {},
+        "meth": {}
+      },
+      "weeklyReportPosted": true,
+      "monthAccumulatedFor": [],
+      "requiredMembers": {
+        "routen": {
+          "createdAt": "2026-06-10T23:00:53.739Z",
+          "createdTs": 1781132453739,
+          "updatedAt": "2026-06-10T23:00:53.739Z",
+          "updatedTs": 1781132453739,
+          "frozen": true,
+          "reason": "auto-sanction-scan",
+          "userIds": [
+            "1227254024248496161",
+            "724238471018840074",
+            "522090867897663488",
+            "451086657568112641",
+            "1307392555742269564",
+            "1449109712825225436",
+            "303203573708226564",
+            "325382005455978496",
+            "1495791328691490826"
+          ],
+          "roleReceivedTs": {
+            "1227254024248496161": 1778891912039,
+            "724238471018840074": 1778785900562,
+            "522090867897663488": 1778785901787,
+            "451086657568112641": 1778785901052,
+            "1307392555742269564": 1778785900000,
+            "1449109712825225436": 1778785834948,
+            "303203573708226564": 1778889590445,
+            "325382005455978496": 1778785900653,
+            "1495791328691490826": 1778785901572
+          }
+        },
+        "patronen": {
+          "createdAt": "2026-06-10T23:00:53.740Z",
+          "createdTs": 1781132453740,
+          "updatedAt": "2026-06-10T23:00:53.740Z",
+          "updatedTs": 1781132453740,
+          "frozen": true,
+          "reason": "auto-sanction-scan",
+          "userIds": [
+            "1227254024248496161",
+            "625604865317535744",
+            "724238471018840074",
+            "522090867897663488",
+            "451086657568112641",
+            "1307392555742269564",
+            "1449109712825225436",
+            "1457182169087606784",
+            "303203573708226564",
+            "325382005455978496",
+            "1495791328691490826"
+          ],
+          "roleReceivedTs": {
+            "1227254024248496161": 1777759187169,
+            "625604865317535744": 1779047642801,
+            "724238471018840074": 1776717786412,
+            "522090867897663488": 1777672183234,
+            "451086657568112641": 1778425631022,
+            "1307392555742269564": 1772243272677,
+            "1449109712825225436": 1777233141177,
+            "1457182169087606784": 1779047039838,
+            "303203573708226564": 1778889636561,
+            "325382005455978496": 1777757739912,
+            "1495791328691490826": 1777059571657
+          }
+        }
+      },
+      "weeklyReportMessages": [
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514404063134089246",
+          "updatedAt": "2026-06-11T02:00:45.482Z"
+        },
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514404108445159630",
+          "updatedAt": "2026-06-11T02:00:51.003Z"
+        },
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514404145426333816",
+          "updatedAt": "2026-06-11T02:00:58.018Z"
+        }
+      ],
+      "weeklyReportPostedAt": "2026-06-10T23:01:21.823Z",
+      "weeklyReportUpdatedAt": "2026-06-11T02:00:58.018Z",
+      "weeklyReportDeadlineTs": 1779659940000
+    },
+    "2026-W22": {
+      "createdAt": "2026-06-10T23:01:24.628Z",
+      "weekKey": "2026-W22",
+      "categories": {
+        "routen": {
+          "1227254024248496161": {
+            "userId": "1227254024248496161",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.399Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001455
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.639Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.399Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "724238471018840074": {
+            "userId": "724238471018840074",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:24.663Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001463
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.663Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "522090867897663488": {
+            "userId": "522090867897663488",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.407Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001469
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.668Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.407Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "451086657568112641": {
+            "userId": "451086657568112641",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:24.674Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001476
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.674Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.413Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001483
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.678Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.413Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1449109712825225436": {
+            "userId": "1449109712825225436",
+            "status": "nicht_abgegeben",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T07:05:00.783Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781161200684
+            },
+            "sanctionIssued": true,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.683Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1457182169087606784": {
+            "userId": "1457182169087606784",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.420Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001492
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.687Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.420Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "303203573708226564": {
+            "userId": "303203573708226564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.425Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001499
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.692Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.425Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1261286888761856122": {
+            "userId": "1261286888761856122",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.431Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001506
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.696Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.431Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "325382005455978496": {
+            "userId": "325382005455978496",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.437Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001518
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.700Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.437Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1495791328691490826": {
+            "userId": "1495791328691490826",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.443Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001529
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.705Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.443Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          }
+        },
+        "patronen": {
+          "1227254024248496161": {
+            "userId": "1227254024248496161",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.449Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001546
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.713Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.449Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "625604865317535744": {
+            "userId": "625604865317535744",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:24.718Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001553
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.718Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "724238471018840074": {
+            "userId": "724238471018840074",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.455Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001560
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.723Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.455Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "522090867897663488": {
+            "userId": "522090867897663488",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.461Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001567
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.728Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.461Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "451086657568112641": {
+            "userId": "451086657568112641",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:24.732Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001575
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.732Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1307392555742269564": {
+            "userId": "1307392555742269564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.467Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001582
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.736Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.467Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1449109712825225436": {
+            "userId": "1449109712825225436",
+            "status": "nicht_abgegeben",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-11T07:05:00.800Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781161200694
+            },
+            "sanctionIssued": true,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.740Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1457182169087606784": {
+            "userId": "1457182169087606784",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.472Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001589
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.745Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.472Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1397359665695948904": {
+            "userId": "1397359665695948904",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.478Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001599
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.749Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.478Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "303203573708226564": {
+            "userId": "303203573708226564",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.485Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001631
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.754Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.485Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          },
+          "1261286888761856122": {
+            "userId": "1261286888761856122",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:24.758Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001651
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.758Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "325382005455978496": {
+            "userId": "325382005455978496",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:24.763Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001664
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.763Z",
+                "action": "overdue_start"
+              }
+            ]
+          },
+          "1495791328691490826": {
+            "userId": "1495791328691490826",
+            "status": "warnphase",
+            "amount": 0,
+            "extra": 0,
+            "prepaidWeeks": 0,
+            "updatedAt": "2026-06-10T23:01:43.491Z",
+            "updatedBy": null,
+            "note": "",
+            "reminders": [],
+            "carryFromWeek": null,
+            "followUp": {
+              "type": "overdue_after_week",
+              "firstDueTs": null,
+              "finalDueTs": null,
+              "phaseDeadlineTs": null,
+              "lastReminderAt": 0,
+              "lastWarningAt": 1781136001673
+            },
+            "sanctionIssued": false,
+            "history": [
+              {
+                "at": "2026-06-10T23:01:24.767Z",
+                "action": "overdue_start"
+              }
+            ],
+            "sanctionSuppressed": true,
+            "sanctionSuppressedAt": "2026-06-10T23:01:43.491Z",
+            "sanctionSuppressedBy": "447008003170762753",
+            "sanctionSuppressedReason": "manual_no_all"
+          }
+        },
+        "schwarzpulver": {},
+        "meth": {}
+      },
+      "weeklyReportPosted": true,
+      "monthAccumulatedFor": [],
+      "requiredMembers": {
+        "routen": {
+          "createdAt": "2026-06-10T23:01:24.628Z",
+          "createdTs": 1781132484628,
+          "updatedAt": "2026-06-10T23:01:24.628Z",
+          "updatedTs": 1781132484628,
+          "frozen": true,
+          "reason": "auto-sanction-scan",
+          "userIds": [
+            "1227254024248496161",
+            "724238471018840074",
+            "522090867897663488",
+            "451086657568112641",
+            "1307392555742269564",
+            "1449109712825225436",
+            "1457182169087606784",
+            "303203573708226564",
+            "1261286888761856122",
+            "325382005455978496",
+            "1495791328691490826"
+          ],
+          "roleReceivedTs": {
+            "1227254024248496161": 1778891912039,
+            "724238471018840074": 1778785900562,
+            "522090867897663488": 1778785901787,
+            "451086657568112641": 1778785901052,
+            "1307392555742269564": 1778785900000,
+            "1449109712825225436": 1778785834948,
+            "1457182169087606784": 1779294929335,
+            "303203573708226564": 1778889590445,
+            "1261286888761856122": 1779648539461,
+            "325382005455978496": 1778785900653,
+            "1495791328691490826": 1778785901572
+          }
+        },
+        "patronen": {
+          "createdAt": "2026-06-10T23:01:24.629Z",
+          "createdTs": 1781132484629,
+          "updatedAt": "2026-06-10T23:01:24.629Z",
+          "updatedTs": 1781132484629,
+          "frozen": true,
+          "reason": "auto-sanction-scan",
+          "userIds": [
+            "1227254024248496161",
+            "625604865317535744",
+            "724238471018840074",
+            "522090867897663488",
+            "451086657568112641",
+            "1307392555742269564",
+            "1449109712825225436",
+            "1457182169087606784",
+            "1397359665695948904",
+            "303203573708226564",
+            "1261286888761856122",
+            "325382005455978496",
+            "1495791328691490826"
+          ],
+          "roleReceivedTs": {
+            "1227254024248496161": 1777759187169,
+            "625604865317535744": 1779047642801,
+            "724238471018840074": 1776717786412,
+            "522090867897663488": 1777672183234,
+            "451086657568112641": 1778425631022,
+            "1307392555742269564": 1772243272677,
+            "1449109712825225436": 1777233141177,
+            "1457182169087606784": 1779047039838,
+            "1397359665695948904": 1779584692269,
+            "303203573708226564": 1778889636561,
+            "1261286888761856122": 1779648531124,
+            "325382005455978496": 1777757739912,
+            "1495791328691490826": 1777059571657
+          }
+        }
+      },
+      "weeklyReportMessages": [
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514404215399645255",
+          "updatedAt": "2026-06-11T02:01:04.017Z"
+        },
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514404271678947429",
+          "updatedAt": "2026-06-11T02:01:09.371Z"
+        },
+        {
+          "channelId": "1480265038978617425",
+          "messageId": "1514404326901284865",
+          "updatedAt": "2026-06-11T02:01:15.017Z"
+        }
+      ],
+      "weeklyReportPostedAt": "2026-06-10T23:02:04.651Z",
+      "weeklyReportUpdatedAt": "2026-06-11T02:01:15.017Z",
+      "weeklyReportDeadlineTs": 1780264740000
+    }
+  },
+  "monthReports": {},
+  "archivedWeeks": {},
+  "archiveMeta": {
+    "lastRunAt": 1781193601273,
+    "lastArchivedCount": 0,
+    "keepWeeks": 12
+  }
+}
