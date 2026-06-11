@@ -1,0 +1,125 @@
+{
+  "locations": {
+    "kartell-bp-black-python": {
+      "x": 16.230295,
+      "y": 54.526316,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146162588
+    },
+    "mc-mor-mc-morteco-mc": {
+      "x": 65.371518,
+      "y": 50.885167,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146221711
+    },
+    "syndikat-ms-midnight-syndicat": {
+      "x": 37.968721,
+      "y": 50.813397,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146168953
+    },
+    "mafia-black-legacy": {
+      "x": 50.909558,
+      "y": 40.095694,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146177705
+    },
+    "kartell-vv-varkow": {
+      "x": 52.48598,
+      "y": 41.477273,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146181381
+    },
+    "syndikat-de-die-eintracht": {
+      "x": 45.35781,
+      "y": 39.898325,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146182520
+    },
+    "kartell-lpc-luzpura": {
+      "x": 38.915041,
+      "y": 41.80622,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146186794
+    },
+    "kartell-lj-los-jueces": {
+      "x": 36.379058,
+      "y": 43.714115,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146189927
+    },
+    "kartell-k-a-kavkaz": {
+      "x": 55.090504,
+      "y": 43.385167,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146194462
+    },
+    "mafia-mns-mansoor": {
+      "x": 41.451025,
+      "y": 49.043062,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146198866
+    },
+    "mafia-novera": {
+      "x": 63.932176,
+      "y": 43.450957,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146216611
+    },
+    "mafia-kan-kenway": {
+      "x": 42.479126,
+      "y": 52.069378,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146210188
+    },
+    "mc-rd-mc-red-district-mc": {
+      "x": 65.851299,
+      "y": 50.687799,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146220248
+    },
+    "mafia-kaz-kazal": {
+      "x": 59.06583,
+      "y": 53.385167,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146229426
+    },
+    "syndikat-exit-exit": {
+      "x": 64.549037,
+      "y": 73.582536,
+      "region": "overview",
+      "label": "",
+      "generated": false,
+      "updatedAt": 1781146242625
+    }
+  },
+  "plz": {}
+}

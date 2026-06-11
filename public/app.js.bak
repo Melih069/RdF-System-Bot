@@ -1,0 +1,2288 @@
+let DATA = null;
+let current = 'overview';
+let token = localStorage.getItem('dashboardToken') || '';
+let selectedFamily = null;
+let currentMapRegion = 'overview';
+let mapPickMode = false;
+let socket = null;
+
+const allPages = [
+  ['overview','Übersicht','Command Center','overview'],
+  ['map','Familienkarte','Interaktive Karte','map'],
+  ['families','Familien','PLZ, Schlüssel, Leadership','families'],
+  ['phonebook','Telefonbuch','12er / 11er / 10er / RV','phonebook'],
+  ['members','Eigene Mitglieder','Nummern & Discord IDs','members'],
+  ['abgaben','Abgaben','Wochenstatus bearbeiten','abgaben'],
+  ['abgabenStats','Abgabenstatistik','Quoten & Wochenübersicht','abgabenStats'],
+  ['sanctions','Ausgeteilte Sanktionen','Strafen & Bloodouts','sanctions'],
+  ['blood','Bloodin / Bloodout','Blood-Lifecycle','blood'],
+  ['cashbox','Familienkasse','Transaktionen','cashbox'],
+  ['inventory','Lager','Waffen, Westen, Munition','inventory'],
+  ['terms','Termine','Antworten & Abstimmungen','terms'],
+  ['wache','Routenwache','Sessions & Wochen','wache'],
+  ['absences','Abmeldungen','aktive/inaktive Abmeldungen','absences'],
+  ['config','Monitoring','Stats & aktuelle Woche','config'],
+  ['leader_all','Zentrale Verwaltung','Leader Panel · Systemsteuerung · Admin Panel','leader_all']
+];
+let pages = allPages;
+const $ = sel => document.querySelector(sel);
+const esc = s => String(s ?? '').replace(/[&<>\"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[m]));
+const money = n => n === null || n === undefined ? '—' : new Intl.NumberFormat('de-DE').format(Number(n||0)) + ' $';
+function compactCardValue(v){
+  const s = String(v ?? '');
+  const m = s.match(/^([0-9.]+)\s*\$$/);
+  if(m){
+    const num = Number(m[1].replace(/\./g,''));
+    if(Number.isFinite(num) && Math.abs(num) >= 1000000) return new Intl.NumberFormat('de-DE',{maximumFractionDigits:2}).format(num/1000000) + ' Mio. $';
+    if(Number.isFinite(num) && Math.abs(num) >= 100000) return new Intl.NumberFormat('de-DE',{maximumFractionDigits:0}).format(num/1000) + ' Tsd. $';
+  }
+  return s;
+}
+const dt = v => !v ? '—' : new Date(Number(v) || v).toLocaleString('de-DE');
+const short = (s,n=34) => String(s||'').length>n?String(s).slice(0,n-1)+'…':String(s||'');
+const q = () => ($('#globalSearch')?.value || '').toLowerCase().trim();
+const perms = () => DATA?.me?.permissions || { modules:{}, actions:{} };
+const can = k => !!perms().actions?.[k];
+const mod = k => !!perms().modules?.[k];
+const authHeaders = () => token ? { 'Authorization': 'Bearer '+token, 'Content-Type':'application/json' } : { 'Content-Type':'application/json' };
+function toast(msg){ const el=document.createElement('div'); el.className='toast'; el.textContent=msg; document.body.appendChild(el); setTimeout(()=>el.remove(),2800); }
+function setTokenAndLoad(){ token=$('#tokenInput').value.trim(); localStorage.setItem('dashboardToken',token); loadPublicAuthInfo();
+load(); }
+async function logout(){ try{ await fetch('/auth/logout',{method:'POST'}); }catch(_){} localStorage.removeItem('dashboardToken'); location.reload(); }
+async function api(path, opts={}){ const res=await fetch(path,{...opts,headers:{...authHeaders(),...(opts.headers||{})}}); if(!res.ok) throw new Error((await res.json().catch(()=>({error:res.statusText}))).error||res.statusText); return res.json(); }
+async function loadPublicAuthInfo(){ const el=document.getElementById('publicAuthInfo'); if(el) el.classList.add('hidden'); }
+async function load(){ try{ DATA=await api('/api/bootstrap'); window.DATA=DATA; window.ME=DATA?.me; $('#login').classList.add('hidden'); $('#app').classList.remove('hidden'); pages=allPages.filter(p=>mod(p[3])); if(DATA?.me?.permissions?.roleGroups?.isAdminUser || DATA?.me?.permissions?.actions?.admin || DATA?.me?.permissions?.actions?.dashboardAdmin){ pages=allPages; } if(!pages.find(p=>p[0]===current)) current=pages[0]?.[0]||'overview'; buildNav(); userBox(); connectSocket(); renderCurrent(); }catch(e){ $('#login').classList.remove('hidden'); $('#app').classList.add('hidden'); loadPublicAuthInfo(); if(token) toast('Login/API Fehler: '+e.message); } }
+async function refresh(silent=false){ DATA=await api('/api/bootstrap'); window.DATA=DATA; window.ME=DATA?.me; pages=allPages.filter(p=>mod(p[3])); if(DATA?.me?.permissions?.roleGroups?.isAdminUser || DATA?.me?.permissions?.actions?.admin || DATA?.me?.permissions?.actions?.dashboardAdmin){ pages=allPages; } userBox(); renderCurrent(); if(!silent) toast('Daten aktualisiert'); }
+function userBox(){ const u=DATA?.me; $('#userBox').innerHTML=u?`<b>${esc(u.serverName||u.displayName||u.globalName||u.username||u.id)}</b><em>${esc(u.accessLabel||'Mitglied')}</em><em>Discord ID:<br>${esc(u.id)}</em>`:''; updateTopControls(); }
+function connectSocket(){ if(socket) return; socket=io(); socket.on('connect',()=>{$('#syncState').classList.add('online'); $('#syncState').lastChild.textContent=' online';}); socket.on('disconnect',()=>{$('#syncState').classList.remove('online'); $('#syncState').lastChild.textContent=' offline';}); socket.on('data:update', async ev=>{ await refresh(true); toast('Live-Update: '+ev.type); }); }
+function buildNav(){ $('#nav').innerHTML=pages.map(p=>`<button class="navbtn ${current===p[0]?'active':''}" onclick="go('${p[0]}')"><span>${icon(p[0])}</span>${p[1]}</button>`).join(''); }
+function icon(k){return {overview:'⌂',map:'⌖',families:'◇',phonebook:'☏',members:'♟',abgaben:'◆',abgabenStats:'％',sanctions:'⚖',blood:'◈',cashbox:'$',inventory:'▣',terms:'◷',wache:'◉',absences:'☾',config:'📊',settings:'⚙',leader_all:'⚙️'}[k]||'•'}
+
+const searchablePages = new Set(['map','families','phonebook','members','abgaben','sanctions','blood','cashbox','inventory','terms','wache','absences']);
+function updateTopControls(){
+  const search=$('#globalSearch'), refreshBtn=$('#topRefresh'), add=$('#quickAddFamily'), dl=$('#searchSuggestions');
+  if(search){
+    const show=searchablePages.has(current);
+    search.classList.toggle('hidden', !show);
+    search.placeholder = current==='map'||current==='families' ? 'Familie, Kürzel, PLZ oder Kategorie suchen …' : 'Suche in diesem Bereich …';
+  }
+  if(refreshBtn) refreshBtn.classList.toggle('hidden', current==='overview');
+  if(add) add.classList.toggle('hidden', !(can('familiesWrite') && (current==='map' || current==='families')));
+  if(dl && DATA){
+    const vals=[];
+    (DATA.families||[]).forEach(f=>{
+      [f.familie,f.kuerzel,f.plz,f.category].forEach(v=>{ if(v) vals.push(String(v)); });
+      Object.values(f.contacts||{}).forEach(c=>{ if(c?.name) vals.push(String(c.name)); if(c?.nummer) vals.push(String(c.nummer)); });
+    });
+    (DATA.members||[]).forEach(m=>[m.nickname,m.phone,m.id].forEach(v=>{ if(v) vals.push(String(v)); }));
+    dl.innerHTML=[...new Set(vals.filter(Boolean))].slice(0,350).map(v=>`<option value="${esc(v)}"></option>`).join('');
+  }
+}
+const settingLabels={
+  smartPingEnabled:['Intelligente Ping-Erkennung','Erkennt wichtige Erwähnungen und hilft, unnötige Pings zu vermeiden.'],
+  autoSanctionsEnabled:['Automatische Sanktionen','Erstellt/prüft Sanktionen automatisch nach Regelwerk.'],
+  termRemindersEnabled:['Termin-Erinnerungen','Sendet Erinnerungen für geplante Termine.'],
+  decisionHintsEnabled:['Entscheidungs-Hinweise','Gibt Hinweise/Erinnerungen bei offenen Entscheidungen.'],
+  leaderReminderDmEnabled:['Leader-DM-Erinnerungen','Schickt Leadern private Erinnerungen.'],
+  dashboardEnabled:['Dashboard-Abgaben aktiv','Aktiviert die Abgabenfunktionen im Dashboard.'],
+  fridayMissingReportEnabled:['Freitagsbericht: fehlende Abgaben','Meldet freitags fehlende Abgaben.'],
+  mondayOverdueReportEnabled:['Montagsbericht: überfällige Abgaben','Meldet montags überfällige Abgaben.'],
+  routeAdminFridayReportEnabled:['Routenwache-Freitagsbericht','Sendet freitags eine Zusammenfassung zur Routenwache.'],
+  routeAdminMondayReportEnabled:['Routenwache-Montagsbericht','Sendet montags eine Zusammenfassung zur Routenwache.'],
+  dryRunEnabled:['Testmodus / Dry Run','Aktionen werden getestet, ohne echte Änderungen/Posts auszuführen.'],
+  logSystemEnabled:['System-Logs aktiv','Schreibt wichtige Systemaktionen ins Log.'],
+  spamProtectionEnabled:['Spam-Schutz','Schützt Befehle und Buttons vor zu häufiger Nutzung.']
+};
+function niceSettingCard(k,set){ const [title,desc]=settingLabels[k]||[k,'']; return `<label class="card setting-card"><div><div class="label">${esc(title)}</div><p>${esc(desc)}</p></div><input id="set_${k}" type="checkbox" ${set[k]?'checked':''}></label>`; }
+function niceKey(k){ return ({routen:'Routenwache',patronen:'Patronen',schwarzgeld:'Schwarzgeld',meth:'Meth',termine:'Termine',sanktionen:'Sanktionen',ausgeteilt:'Ausgeteilte Sanktionen',abmeldungen:'Abmeldungen',familien:'Familien',cashbox:'Familienkasse',inventory:'Lager'}[k]||String(k).replace(/([A-Z])/g,' $1').replace(/^./,m=>m.toUpperCase())); }
+
+function go(p){ current=p; buildNav(); renderCurrent(); }
+function locked(){return '<div class="locked-note">Für diesen Bereich fehlt deiner Discord-Rolle die Berechtigung.</div>'}
+function renderCurrent(){ if(!DATA) return; const p=pages.find(x=>x[0]===current)||pages[0]; if(!p){ $('#content').innerHTML=locked(); return; } $('#pageTitle').textContent=p[1]; $('#pageSubtitle').textContent=p[2]; updateTopControls(); const fn={overview,map,families,phonebook,members,abgaben,abgabenStats,sanctions,blood,cashbox,inventory,terms,wache,absences,config,settings,leader_all:leaderAllOpen,dashboard:overview,monitoring:config}[current]; $('#content').innerHTML=fn?fn():locked(); afterRender(); }
+function filterRows(arr, fields){ const s=q(); if(!s) return arr; return arr.filter(x=>fields.map(f=> typeof f==='function'?f(x):x[f]).join(' ').toLowerCase().includes(s)); }
+function cards(obj){ return `<div class="cards">${Object.entries(obj).map(([k,v])=>`<div class="card"><div class="label">${esc(k)}</div><div class="value">${esc(compactCardValue(v))}</div></div>`).join('')}</div>`; }
+function group(arr,k){return arr.reduce((a,x)=>((a[x[k]||'—']??=[]).push(x),a),{})}
+function simpleTable(head, rows){ return `<div class="table-wrap"><table><thead><tr>${head.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c && String(c).startsWith('<')?c:esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`; }
+function overview(){ const s=DATA.stats; const pub=DATA.publicUrl||{}; const famByCat=group(DATA.families||[],'category'); const recentAudit=(DATA.audit?.items||[]).slice(0,8); const upcoming=(DATA.terms?.items||[]).slice(0,8); return `${cards({'Familien':s.families,'Eigene Mitglieder':s.members,'Kassenstand':money(s.cashBalance),'Offene Sanktionen':s.openSanctions,'Termine':s.terms,'Abgabe-Wochen':s.abgabenWeeks,'Lager-User':s.inventoryUsers,'Aktive Abmeldungen':s.absencesActive})}
+<div class="panel public-link-panel"><h2>Öffentlicher Dashboard-Link</h2>${pub.url?`<p><a class="public-link" href="${esc(pub.url)}" target="_blank">${esc(pub.url)}</a></p>`:'<p class="muted">Noch kein öffentlicher Link erzeugt. Starte <b>npm run start:public</b>.</p>'}<div class="toolbar"><span class="pill ${pub.status==='online'?'good':'bad'}">${esc(pub.status||'offline')}</span><span class="pill">Aktualisiert: ${dt(pub.updatedAt)}</span></div></div>
+<div class="grid"><div class="panel"><h2>Familien nach Kategorie</h2><div class="cards">${Object.entries(famByCat).map(([k,v])=>`<div class="card"><div class="label">${esc(k)}</div><div class="value">${v.length}</div></div>`).join('')}</div><h2>Letzte Termine</h2>${simpleTable(['Titel','Typ','Datum','Antworten'], upcoming.map(t=>[t.title,t.type,`${t.date||''} ${t.time||''}`,Object.keys(t.responses||{}).length]))}</div><div class="panel"><h2>Rollenrechte</h2>${simpleTable(['Bereich','Zugriff'], Object.entries(perms().modules||{}).map(([k,v])=>[k,v?'✅':'—']))}<h2>Audit / Monitoring</h2>${mod('config')?`<div class="timeline">${recentAudit.map(a=>`<div><b>${esc(a.action)}</b><br><span class="muted">${dt(a.at)} • ${esc(a.by)}</span></div>`).join('')||'<p class="muted">Noch keine Web-Aktionen.</p>'}</div>`:'<p class="muted">Monitoring nur für Leaderschaft.</p>'}</div></div>`; }
+
+function map(){
+  const fams=filterRows(DATA.families||[], [x=>`${x.familie} ${x.kuerzel} ${x.plz} ${x.category} ${JSON.stringify(x.contacts)}`]);
+  const cats=[...new Set((DATA.families||[]).map(f=>f.category))];
+  const placements=buildMapPlacements(fams);
+  const regions=['overview','county','east','desert','vinewood','central','south','harbor','airport','cayo','galapagos'];
+  if(!regions.includes(currentMapRegion)) currentMapRegion='overview';
+  const visible=placements.filter(p=>p.map.region===currentMapRegion);
+  const selected=(DATA.families||[]).find(f=>f.id===selectedFamily);
+  const selectedPlacement=selected?basePlacementForFamily(selected):null;
+  const needsRegionJump=selectedPlacement && currentMapRegion!=='overview' && selectedPlacement.region!==currentMapRegion;
+  return `<div class="toolbar"><span class="pill gold">${visible.length} Marker in ${esc(regionLabel(currentMapRegion))}</span><span class="pill">${fams.length} Familien gesamt</span>${cats.map(c=>`<button onclick="$('#globalSearch').value='${esc(c)}';renderCurrent()">${esc(c)}</button>`).join('')}<button onclick="$('#globalSearch').value='';renderCurrent()">Alle</button>${regions.map(r=>`<button class="${currentMapRegion===r?'primary':''}" onclick="setMapRegion('${r}')">${esc(regionLabel(r))}</button>`).join('')}${can('familiesWrite')?`<button class="${mapPickMode?'danger':'primary'}" onclick="toggleMapPick()">${mapPickMode?'PLZ-Klickmodus AUS':'PLZ-Position speichern'}</button><span class="pill">Drag & Drop Familien + Klickmodus Nummern</span>`:'<span class="pill">Automatik nach PLZ</span>'}</div><div class="grid map-layout"><div><div class="family-map real-map ${currentMapRegion==='overview'?'overview-map':''}" id="mapBox" style="background-image:url('${mapAssetForRegion(currentMapRegion)}')"><div class="map-overlay"><b>${esc(regionLabel(currentMapRegion))}</b><span>${currentMapRegion==='overview'?'Gesamtkarte – zeigt alle Familien gesammelt an.':(mapPickMode?'Klicke auf die richtige Nummer, gib PLZ ein und sie wird dauerhaft gespeichert.':'Marker landen automatisch auf der PLZ und können hier feinjustiert werden.')}</span></div>${visible.map(marker).join('')}</div><div class="map-footnote">${currentMapRegion==='overview'?'Hinweis: In der Gesamtkarte ist Drag & Drop deaktiviert. Wechsle in einen Bereich für manuelle Feinjustierung.':'Hinweis: Wenn die automatische PLZ-Position nicht perfekt passt, Marker einfach in diesem Bereich verschieben.'}</div></div><div class="panel"><h2>Ausgewählte Familie</h2><div id="mapDetail">${selectedFamily?familyDetailMini((DATA.families||[]).find(f=>f.id===selectedFamily)):'<p class="muted">Klicke auf einen Marker.</p>'}</div>${needsRegionJump?`<div class="map-jump-box"><p class="muted">Die ausgewählte Familie liegt im Bereich <b>${esc(regionLabel(selectedPlacement.region))}</b>.</p><button class="primary" onclick="setMapRegion('${selectedPlacement.region}')">Zum richtigen Kartenbereich springen</button></div>`:''}<hr style="border-color:var(--line)"><h2>PLZ-Positionen</h2>${plzCalibrationList()}<h2>Schnellsuche</h2><div class="mini-list">${fams.slice(0,28).map(f=>{const p=basePlacementForFamily(f);return `<div class="mini-row" onclick="focusFamilyOnMap('${f.id}')"><span><b>${esc(f.familie)}</b><br><em class="muted">${esc(f.category)} • ${esc(f.plz||'—')} • ${esc(f.kuerzel||'-')}</em></span><span class="tag">${esc(regionLabel(p.region))}</span></div>`}).join('')}</div></div></div>`;
+}
+function setMapRegion(region){ currentMapRegion=region; renderCurrent(); }
+function focusFamilyOnMap(id){ selectedFamily=id; const f=(DATA.families||[]).find(x=>x.id===id); if(!f) return; const p=basePlacementForFamily(f); currentMapRegion=p.region||'overview'; renderCurrent(); }
+function marker(item){ const f=item.family||item; const l=item.map||placementForFamily(f); const label=f.kuerzel&&f.kuerzel!=='-'?f.kuerzel:f.familie.slice(0,3); return `<div class="marker real-marker ${selectedFamily===f.id?'selected':''}" data-id="${f.id}" style="left:${l.x}%;top:${l.y}%" onclick="selectFamily('${f.id}')"><div class="pin"><span>${esc(label)}</span></div><div class="pin-meta">${esc(cleanPlzLabel(f.plz))}</div><div class="tooltip"><b>${esc(f.familie)}</b><br><span class="muted">${esc(f.category)} • PLZ ${esc(f.plz||'—')} • ${esc(regionLabel(l.region))}</span><br>${contactLine(f)}</div></div>`; }
+function afterRender(){ if(current==='map' && can('familiesWrite') && currentMapRegion!=='overview') { enableDrag(); enablePlzPicker(); } }
+
+function toggleMapPick(){ if(currentMapRegion==='overview'){ toast('Bitte zuerst einen Kartenbereich auswählen.'); return; } mapPickMode=!mapPickMode; renderCurrent(); }
+function enablePlzPicker(){ const box=$('#mapBox'); if(!box) return; box.addEventListener('click', async e=>{ if(!mapPickMode) return; if(e.target.closest('.marker')) return; const r=box.getBoundingClientRect(); const x=clamp((e.clientX-r.left)/r.width*100,2,98); const y=clamp((e.clientY-r.top)/r.height*100,4,96); const plz=prompt('Welche PLZ/Nummer liegt an dieser Stelle?'); if(!plz) return; await api('/api/map/plz',{method:'POST',body:JSON.stringify({plz:plz.trim(),x,y,region:currentMapRegion})}); toast('PLZ-Position gespeichert: '+plz); mapPickMode=false; await refresh(true); }); }
+function plzCalibrationList(){ const entries=Object.entries(DATA.mapLocations?.plz||{}).filter(([_,v])=>!currentMapRegion||currentMapRegion==='overview'||v.region===currentMapRegion).slice(0,24); if(!entries.length) return '<p class="muted">Noch keine manuell gespeicherten Nummernpositionen.</p>'; return `<div class="mini-list plz-list">${entries.map(([plz,l])=>`<div class="mini-row"><span><b>${esc(plz)}</b><br><em class="muted">${esc(regionLabel(l.region))} • ${Number(l.x||0).toFixed(1)} / ${Number(l.y||0).toFixed(1)}</em></span>${can('familiesWrite')?`<button onclick="deletePlzLocation('${esc(plz)}')">Löschen</button>`:''}</div>`).join('')}</div>`; }
+async function deletePlzLocation(plz){ if(!confirm('PLZ-Position löschen?')) return; await api('/api/map/plz/'+encodeURIComponent(plz),{method:'DELETE'}); await refresh(true); }
+
+function enableDrag(){ const box=$('#mapBox'); if(!box) return; box.querySelectorAll('.marker').forEach(m=>{ let down=false; m.addEventListener('pointerdown',e=>{down=true;m.classList.add('dragging');m.setPointerCapture(e.pointerId);}); m.addEventListener('pointermove',e=>{ if(!down)return; const r=box.getBoundingClientRect(); const x=Math.max(2,Math.min(98,(e.clientX-r.left)/r.width*100)); const y=Math.max(4,Math.min(96,(e.clientY-r.top)/r.height*100)); m.style.left=x+'%'; m.style.top=y+'%'; }); m.addEventListener('pointerup',async e=>{ if(!down)return; down=false;m.classList.remove('dragging'); const x=parseFloat(m.style.left), y=parseFloat(m.style.top); await api('/api/families/'+m.dataset.id+'/location',{method:'POST',body:JSON.stringify({x,y,label:'',region:currentMapRegion})}); toast('Kartenposition gespeichert'); await refresh(true); }); }); }
+function selectFamily(id){ selectedFamily=id; const f=(DATA.families||[]).find(x=>x.id===id); const d=$('#mapDetail'); if(d) d.innerHTML=familyDetailMini(f); else openFamilyDetail(id); }
+function familyDetailMini(f){ if(!f) return '<p class="muted">Nicht gefunden</p>'; const base=basePlacementForFamily(f); const p=placementForFamily(f); return `<div class="detail-title"><div><h2>${esc(f.familie)}</h2><p>${esc(f.category)} • ${esc(f.kuerzel||'-')} • PLZ ${esc(f.plz||'—')}</p></div><span class="pill ${String(f.schluessel).toLowerCase().includes('ja')?'good':'bad'}">Schlüssel: ${esc(f.schluessel||'—')}</span></div><div class="toolbar compact-toolbar"><span class="pill gold">Bereich: ${esc(regionLabel(base.region))}</span><span class="pill">Position: ${Number(p.x||0).toFixed(1)} / ${Number(p.y||0).toFixed(1)}</span><span class="pill">Quelle: ${p.manual?'manuell':'PLZ-Automatik'}</span></div><div class="contact-grid">${['12','11','10','rv1','rv2'].map(r=>contactCard(r,f.contacts?.[r])).join('')}</div><p>${esc(f.infos||'Keine Zusatzinfos')}</p><button class="primary" onclick="openFamilyDetail('${f.id}')">Profil öffnen</button> <button onclick="setMapRegion('${base.region}'); selectedFamily='${f.id}'; renderCurrent()">Auf Karte zeigen</button> ${can('familiesWrite')?`<button onclick="openFamilyModal('${f.id}')">Bearbeiten</button>`:''}`; }
+
+function contactLine(f){ return ['12','11','10'].map(r=>f.contacts?.[r]?.name?`(${r}) ${f.contacts[r].name}`:'').filter(Boolean).join(' • ') || 'Keine Führung eingetragen'; }
+function contactCard(r,c={}){ const label={rv1:'RV 1',rv2:'RV 2'}[r]||r+'er'; return `<div class="contact"><b>${label}</b><span>${esc(c?.name||'—')}</span><em>${esc(c?.nummer||'')}</em></div>`; }
+function families(){ const rows=filterRows(DATA.families||[],[x=>`${x.category} ${x.kuerzel} ${x.familie} ${x.plz} ${x.schluessel} ${x.infos} ${contactLine(x)}`]); return `<div class="section-actions"><div class="toolbar"><span class="pill gold">${rows.length} Familien</span></div>${can('familiesWrite')?'<button class="primary" onclick="openFamilyModal()">+ Familie anlegen</button>':''}</div><div class="table-wrap"><table><thead><tr><th>Kategorie</th><th>Kürzel</th><th>Familie</th><th>PLZ</th><th>Schlüssel</th><th>Führung</th><th>Infos</th><th></th></tr></thead><tbody>${rows.map(f=>`<tr><td>${esc(f.category)}</td><td><b>${esc(f.kuerzel||'-')}</b></td><td>${esc(f.familie)}</td><td>${esc(f.plz||'—')}</td><td>${esc(f.schluessel||'—')}</td><td>${esc(contactLine(f))}</td><td>${esc(f.infos||'')}</td><td><button onclick="openFamilyDetail('${f.id}')">Öffnen</button></td></tr>`).join('')}</tbody></table></div>`; }
+function phonebook(){ const rows=filterRows(DATA.families||[],[x=>`${x.familie} ${x.category} ${JSON.stringify(x.contacts)}`]); return `<div class="table-wrap"><table><thead><tr><th>Familie</th><th>12er</th><th>11er</th><th>10er</th><th>RV1</th><th>RV2</th><th></th></tr></thead><tbody>${rows.map(f=>`<tr><td><b>${esc(f.familie)}</b><br><span class="muted">${esc(f.category)} • ${esc(f.kuerzel||'-')}</span></td>${['12','11','10','rv1','rv2'].map(r=>`<td>${esc(f.contacts?.[r]?.name||'—')}<br><span class="muted">${esc(f.contacts?.[r]?.nummer||'')}</span></td>`).join('')}<td>${can('familiesWrite')?`<button onclick="openFamilyModal('${f.id}')">Bearbeiten</button>`:'—'}</td></tr>`).join('')}</tbody></table></div>`; }
+function members(){ const rows=filterRows(DATA.members||[],[x=>`${x.id} ${x.nickname} ${x.phone}`]); return `<div class="section-actions"><span class="pill gold">${rows.length} Mitglieder</span>${can('membersWrite')?'<button class="primary" onclick="openMemberModal()">+ Mitglied</button>':''}</div><div class="table-wrap"><table><thead><tr><th>Discord ID</th><th>Nickname</th><th>Telefon</th><th></th></tr></thead><tbody>${rows.map(m=>`<tr><td class="code">${esc(m.id)}</td><td>${esc(m.nickname)}</td><td>${esc(m.phone)}</td><td>${can('membersWrite')?`<button onclick="openMemberModal('${m.id}')">Bearbeiten</button>`:'—'}</td></tr>`).join('')}</tbody></table></div>`; }
+function abgaben(){ if(!DATA.abgaben) return locked(); const weeks=Object.keys(DATA.abgaben?.weeks||{}).sort().reverse(); const week=window.selWeek||weeks[0]; const cats=DATA.abgaben?.weeks?.[week]?.categories||{}; const rows=[]; Object.entries(cats).forEach(([cat,users])=>Object.entries(users||{}).forEach(([uid,a])=>rows.push({week,cat,uid,...a}))); const filt=filterRows(rows,[x=>`${x.week} ${x.cat} ${x.uid} ${x.status} ${x.note}`]); return `<div class="toolbar"><select style="max-width:240px" onchange="window.selWeek=this.value;renderCurrent()">${weeks.map(w=>`<option ${w===week?'selected':''}>${w}</option>`).join('')}</select><span class="pill gold">${filt.length} Einträge</span></div><div class="table-wrap"><table><thead><tr><th>Woche</th><th>Kategorie</th><th>User</th><th>Status</th><th>Betrag</th><th>Notiz</th><th>Update</th></tr></thead><tbody>${filt.map(a=>`<tr><td>${esc(a.week)}</td><td>${esc(a.cat)}</td><td class="code">${esc(a.uid)}</td><td>${badge(a.status)}</td><td>${money(a.amount)}</td><td>${esc(a.note||'')}</td><td>${can('abgabenWrite')?`<button onclick="openAbgabeModal('${a.week}','${a.cat}','${a.uid}')">Ändern</button>`:'—'}</td></tr>`).join('')}</tbody></table></div>`; }
+function badge(s){ const c=String(s||'').includes('abgegeben')?'good':String(s||'').includes('entschuldigt')?'good':String(s||'').includes('offen')?'bad':'gold'; return `<span class="pill ${c}">${esc(s||'—')}</span>`; }
+function abgabenStats(){ const st=DATA.abgabenStats||{weeks:[],totals:{}}; return `${cards({'Gesamt':st.totals.total||0,'Abgegeben':st.totals.abgegeben||0,'Offen':st.totals.offen||0,'Zu spät':st.totals.zuSpaet||0,'Entschuldigt':st.totals.entschuldigt||0,'Warnphase':st.totals.warnphase||0})}${simpleTable(['Woche','Gesamt','Abgegeben','Offen','Zu spät','Entschuldigt','Quote'], st.weeks.map(w=>[w.weekKey,w.total,w.abgegeben,w.offen,w.zuSpaet,w.entschuldigt, w.total?Math.round(w.abgegeben/w.total*100)+'%':'—']))}`; }
+function sanctions(){ const rows=filterRows(DATA.sanctions?.items||[],[x=>`${x.id} ${x.userId} ${x.catalogNo} ${x.catalogLabel} ${x.penaltyType} ${x.status} ${x.extraReason}`]); return `<div class="section-actions"><span class="pill gold">${rows.length} Sanktionen</span>${can('sanctionsWrite')?'<span class="pill">Sanktionen verteilen: erlaubt</span>':'<span class="pill">Nur Ansicht</span>'}</div><div class="table-wrap"><table><thead><tr><th>User</th><th>Katalog</th><th>Strafe</th><th>Status</th><th>Erstellt</th><th>Fällig</th><th></th></tr></thead><tbody>${rows.map(s=>`<tr><td class="code">${esc(s.userId)}</td><td><b>${esc(s.catalogNo)}</b><br>${esc(s.catalogLabel)}</td><td>${esc(s.penaltyType)} ${s.amount?money(s.amount):''}</td><td>${badge(s.status|| (s.paid?'bezahlt':'offen'))}</td><td>${dt(s.createdAt)}</td><td>${dt(s.dueAt)}</td><td>${can('sanctionsWrite')?`<button class="success" onclick="markSanctionPaid('${s.id}')">Bezahlt</button>`:'—'}</td></tr>`).join('')}</tbody></table></div>`; }
+function blood(){ const rows=filterRows(DATA.blood?.items||[],[x=>`${x.type} ${x.userId} ${x.name} ${x.reason} ${x.status}`]); return `<div class="section-actions"><span class="pill gold">${rows.length} Blood-Einträge</span><span class="pill">Bloodouts werden aus Sanktionen übernommen</span></div>${simpleTable(['Typ','User/Name','Grund','Datum','Quelle','Status'], rows.map(b=>[b.type||'Bloodout', b.name||b.userId, b.reason||'', dt(b.at), b.source||'manual', b.status||'']))}`; }
+function cashbox(){ if(!DATA.cashbox) return locked(); const tx=filterRows(DATA.cashbox?.transactions||[],[x=>`${x.id} ${x.category} ${x.customReason} ${x.note} ${x.createdBy}`]); return `${cards({'Kassenstand':money(DATA.cashbox?.balance||0),'Transaktionen':tx.length})}<div class="section-actions"><span></span>${can('cashboxWrite')?'<button class="primary" onclick="openCashModal()">+ Transaktion</button>':''}</div><div class="table-wrap"><table><thead><tr><th>Datum</th><th>Typ</th><th>Kategorie</th><th>Betrag</th><th>Grund / Notiz</th><th>Von</th></tr></thead><tbody>${tx.map(t=>`<tr><td>${dt(t.createdAt)}</td><td>${t.type==='expense'?'<span class="pill bad">Ausgabe</span>':'<span class="pill good">Einnahme</span>'}</td><td>${esc(t.category)}</td><td>${money(t.amount)}</td><td>${esc(t.customReason||'')}<br><span class="muted">${esc(t.note||'')}</span></td><td class="code">${esc(t.createdBy)}</td></tr>`).join('')}</tbody></table></div>`; }
+function inventory(){ const rows=Object.entries(DATA.inventory?.items||{}).map(([uid,i])=>({uid,...i})); const filt=filterRows(rows,[x=>`${x.uid} ${JSON.stringify(x.weapons)} ${x.munition}`]); const me=DATA.me?.id; return `<div class="table-wrap"><table><thead><tr><th>User</th><th>Waffen</th><th>Westen</th><th>Munition</th><th>Update</th><th></th></tr></thead><tbody>${filt.map(i=>`<tr><td class="code">${esc(i.uid)}</td><td>${Object.entries(i.weapons||{}).filter(([_,v])=>Number(v)>0).map(([k,v])=>`${esc(k)}: <b>${v}</b>`).join('<br>')||'—'}</td><td>Leicht: ${i.leichteWesten||0}<br>Schwer: ${i.schwereWesten||i.westen||0}</td><td>${i.munition||0}</td><td>${dt(i.updatedAt)}</td><td>${i.uid===me?`<button onclick="openInventoryModal('${i.uid}')">Eigenen Bestand bearbeiten</button>`:'—'}</td></tr>`).join('')}</tbody></table></div>`; }
+function terms(){ const rows=filterRows(DATA.terms?.items||[],[x=>`${x.title} ${x.type} ${x.date} ${x.time} ${JSON.stringify(x.responses)}`]); return `<div class="section-actions"><span class="pill gold">${rows.length} Termine</span>${can('termsCreate')?'<button class="primary" onclick="openTermModal()">+ Termin</button>':'<span class="pill">Nur Ansicht</span>'}</div><div class="table-wrap"><table><thead><tr><th>Titel</th><th>Typ</th><th>Datum</th><th>Antworten</th><th>Status</th></tr></thead><tbody>${rows.map(t=>{const r=t.responses||{};return `<tr><td>${esc(t.title)}</td><td>${esc(t.type)}</td><td>${esc(t.date)} ${esc(t.time)}</td><td><span class="pill good">Kann ${Object.values(r).filter(v=>v==='can').length}</span> <span class="pill gold">Vielleicht ${Object.values(r).filter(v=>v==='maybe').length}</span> <span class="pill bad">Nicht ${Object.values(r).filter(v=>v==='cannot').length}</span></td><td>${t.closed?'geschlossen':'offen'}</td></tr>`}).join('')}</tbody></table></div>`; }
+function wache(){ if(!DATA.wache) return locked(); const weeks=Object.keys(DATA.wache?.weeks||{}).sort().reverse(); const rows=weeks.map(w=>{const x=DATA.wache.weeks[w]; return [w,Object.keys(x.users||{}).length,(x.sessions||[]).length,x.weeklyReportPosted?'ja':'nein',x.sanctionsProcessed?'ja':'nein'];}); return simpleTable(['Woche','Teilnehmer','Sessions','Report','Sanktionen'], rows); }
+function absences(){ const rows=filterRows(DATA.absences?.items||[],[x=>`${x.userId} ${x.reason} ${x.active}`]); return `<div class="section-actions"><span class="pill gold">${rows.length} Abmeldungen</span>${can('absencesCreate')?'<button class="primary" onclick="openAbsenceModal()">+ Abmeldung</button>':''}</div><div class="table-wrap"><table><thead><tr><th>User</th><th>Von</th><th>Bis</th><th>Tage</th><th>Status</th><th>Grund</th></tr></thead><tbody>${rows.map(a=>`<tr><td class="code">${esc(a.userId)}</td><td>${dt(a.startTs)}</td><td>${dt(a.untilTs)}</td><td>${esc(a.days||'')}</td><td>${a.active?'<span class="pill good">aktiv</span>':'<span class="pill">inaktiv</span>'}</td><td>${esc(a.reason)}</td></tr>`).join('')}</tbody></table></div>`; }
+function config(){ if(!DATA.config) return locked(); const c=DATA.config||{}; const channels=Object.entries(c.channels||{}); const rules=c.settings?.rules||{}; return `<div class="grid"><div class="panel"><h2>Channels</h2>${simpleTable(['Name','Discord Channel ID'],channels.map(([k,v])=>[k,v]))}</div><div class="panel"><h2>Regeln</h2><pre class="code" style="white-space:pre-wrap">${esc(JSON.stringify(rules,null,2))}</pre><h2>Audit</h2><div class="timeline">${(DATA.audit?.items||[]).slice(0,18).map(a=>`<div><b>${esc(a.action)}</b><br><span class="muted">${dt(a.at)} • ${esc(a.by)}</span></div>`).join('')}</div></div></div>`; }
+function openModal(html){ $('#modalBody').innerHTML=html; $('#modal').classList.remove('hidden'); }
+function closeModal(){ $('#modal').classList.add('hidden'); }
+
+function openFamilyDetail(id){ const f=(DATA.families||[]).find(x=>x.id===id); if(!f)return; const base=basePlacementForFamily(f); const p=placementForFamily(f); openModal(`${familyDetailMini(f)}<div class="split"><div class="panel"><h2>Stammdaten</h2>${simpleTable(['Feld','Wert'],[['ID',f.id],['Kategorie',f.category],['Kürzel',f.kuerzel],['PLZ',f.plz],['Schlüssel',f.schluessel],['Datum Info',f.datum_info],['Infos',f.infos]])}</div><div class="panel"><h2>Kartenposition</h2><p>Bereich: <b>${esc(regionLabel(base.region))}</b><br>X: ${Number(p.x||0).toFixed(2)}%<br>Y: ${Number(p.y||0).toFixed(2)}%<br>Quelle: ${p.manual?'manuell gespeichert':'automatisch aus PLZ'}</p><button onclick="setMapRegion('${base.region}');current='map';selectedFamily='${f.id}';closeModal();buildNav();renderCurrent()">Auf Karte anzeigen</button></div></div>`); }
+function openFamilyModal(id){ if(!can('familiesWrite')) return toast('Keine Berechtigung.'); const f=id?(DATA.families||[]).find(x=>x.id===id):{contacts:{'12':{},'11':{},'10':{},rv1:{},rv2:{}},location:{x:50,y:50,region:'city'}}; const p=basePlacementForFamily(f); openModal(`<h2>${id?'Familie bearbeiten':'Familie anlegen'}</h2><form id="famForm" class="form-grid"><input name="id" type="hidden" value="${esc(f.id||'')}"><label>Kategorie<input name="category" value="${esc(f.category||'')}" required></label><label>Kürzel<input name="kuerzel" value="${esc(f.kuerzel||'')}"></label><label>Familie<input name="familie" value="${esc(f.familie||'')}" required></label><label>PLZ / Ort<input name="plz" value="${esc(f.plz||'')}"></label><label>Schlüssel<select name="schluessel"><option ${f.schluessel==='Ja'?'selected':''}>Ja</option><option ${f.schluessel==='Nein'?'selected':''}>Nein</option><option ${f.schluessel==='-'?'selected':''}>-</option></select></label><label>Datum Info<input name="datum_info" value="${esc(f.datum_info||'')}"></label><label class="full">Infos<textarea name="infos">${esc(f.infos||'')}</textarea></label>${['12','11','10','rv1','rv2'].map(r=>`<label>${r} Name<input name="${r}_name" value="${esc(f.contacts?.[r]?.name||'')}"></label><label>${r} Nummer<input name="${r}_nummer" value="${esc(f.contacts?.[r]?.nummer||'')}"></label>`).join('')}<label>Kartenbereich<select name="mapRegion">${['city','county','desert','east','cayo'].map(r=>`<option value="${r}" ${p.region===r?'selected':''}>${esc(regionLabel(r))}</option>`).join('')}</select></label><label>PLZ-Automatik Vorschlag<input value="${esc(regionLabel(autoPlacementForFamily(f).region))}" disabled></label><label>X Position<input name="x" type="number" step="0.01" value="${esc(Number(p.x||50).toFixed(2))}"></label><label>Y Position<input name="y" type="number" step="0.01" value="${esc(Number(p.y||50).toFixed(2))}"></label><div class="full"><button class="primary" type="submit">Speichern</button> ${id?`<button type="button" class="danger" onclick="deleteFamily('${id}')">Löschen</button>`:''}</div></form>`); $('#famForm').onsubmit=saveFamily; }
+async function saveFamily(e){ e.preventDefault(); const fd=new FormData(e.target); const contacts={}; ['12','11','10','rv1','rv2'].forEach(r=>contacts[r]={name:fd.get(r+'_name'),nummer:fd.get(r+'_nummer')}); const payload={id:fd.get('id')||undefined, category:fd.get('category'), kuerzel:fd.get('kuerzel'), familie:fd.get('familie'), plz:fd.get('plz'), schluessel:fd.get('schluessel'), datum_info:fd.get('datum_info'), infos:fd.get('infos'), contacts, location:{x:Number(fd.get('x')),y:Number(fd.get('y')),region:fd.get('mapRegion')}}; await api('/api/families',{method:'POST',body:JSON.stringify(payload)}); closeModal(); await refresh(true); toast('Familie gespeichert'); }
+
+async function deleteFamily(id){ if(!confirm('Familie wirklich löschen?'))return; await api('/api/families/'+id,{method:'DELETE',body:JSON.stringify({})}); closeModal(); await refresh(true); toast('Familie gelöscht'); }
+function openMemberModal(id){ if(!can('membersWrite')) return toast('Keine Berechtigung.'); const m=id?(DATA.members||[]).find(x=>x.id===id):{}; openModal(`<h2>Mitglied</h2><form id="memForm" class="form-grid"><label>Discord ID<input name="id" value="${esc(id||'')}"></label><label>Telefon<input name="phone" value="${esc(m?.phone||'')}"></label><label class="full">Nickname<input name="nickname" value="${esc(m?.nickname||'')}"></label><button class="primary full">Speichern</button></form>`); $('#memForm').onsubmit=async e=>{e.preventDefault();const fd=new FormData(e.target);await api('/api/members/'+fd.get('id'),{method:'POST',body:JSON.stringify({nickname:fd.get('nickname'),phone:fd.get('phone')})});closeModal();await refresh(true);toast('Mitglied gespeichert')}; }
+function openCashModal(){ if(!can('cashboxWrite')) return toast('Keine Berechtigung.'); openModal(`<h2>Kasseneintrag</h2><form id="cashForm" class="form-grid"><label>Typ<select name="type"><option value="income">Einnahme</option><option value="expense">Ausgabe</option></select></label><label>Betrag<input name="amount" type="number" required></label><label>Kategorie<input name="category" value="web"></label><label>Grund<input name="customReason" value="Web Eintrag"></label><label class="full">Notiz<textarea name="note"></textarea></label><button class="primary full">Speichern</button></form>`); $('#cashForm').onsubmit=async e=>{e.preventDefault();const o=Object.fromEntries(new FormData(e.target));await api('/api/cash/transactions',{method:'POST',body:JSON.stringify(o)});closeModal();await refresh(true);toast('Kasse aktualisiert')}; }
+async function markSanctionPaid(id){ if(!can('sanctionsWrite')) return toast('Keine Berechtigung.'); await api('/api/sanctions/'+id+'/status',{method:'POST',body:JSON.stringify({paid:true})}); await refresh(true); toast('Sanktion als bezahlt markiert'); }
+function openAbgabeModal(week,cat,uid){ if(!can('abgabenWrite')) return toast('Keine Berechtigung.'); openModal(`<h2>Abgabe ändern</h2><form id="abgForm" class="form-grid"><label>Status<select name="status"><option>offen</option><option>abgegeben</option><option>zu_spaet</option><option>entschuldigt</option><option>warnphase</option></select></label><label>Betrag<input name="amount" type="number" value="0"></label><label class="full">Notiz<textarea name="note"></textarea></label><button class="primary full">Speichern</button></form>`); $('#abgForm').onsubmit=async e=>{e.preventDefault();const fd=new FormData(e.target);await api('/api/abgaben/update',{method:'POST',body:JSON.stringify({weekKey:week,category:cat,userId:uid,patch:{status:fd.get('status'),amount:Number(fd.get('amount')),note:fd.get('note')}})});closeModal();await refresh(true);toast('Abgabe gespeichert')}; }
+function openTermModal(){ if(!can('termsCreate')) return toast('Keine Berechtigung.'); openModal(`<h2>Termin anlegen</h2><form id="termForm" class="form-grid"><label>Titel<input name="title" required></label><label>Typ<input name="type" value="Aufstellung"></label><label>Datum<input name="date" placeholder="TT.MM.JJJJ"></label><label>Uhrzeit<input name="time" placeholder="20:00"></label><button class="primary full">Speichern</button></form>`); $('#termForm').onsubmit=async e=>{e.preventDefault();const o=Object.fromEntries(new FormData(e.target));await api('/api/terms',{method:'POST',body:JSON.stringify(o)});closeModal();await refresh(true);toast('Termin gespeichert')}; }
+function openAbsenceModal(){ if(!can('absencesCreate')) return toast('Keine Berechtigung.'); openModal(`<h2>Abmeldung anlegen</h2><form id="absForm" class="form-grid"><label>User ID<input name="userId" required value="${esc(DATA.me?.id||'')}"></label><label>Tage<input name="days" type="number" value="5"></label><label class="full">Grund<input name="reason" value="Web-Abmeldung"></label><button class="primary full">Speichern</button></form>`); $('#absForm').onsubmit=async e=>{e.preventDefault();const o=Object.fromEntries(new FormData(e.target));await api('/api/absences',{method:'POST',body:JSON.stringify(o)});closeModal();await refresh(true);toast('Abmeldung gespeichert')}; }
+function openInventoryModal(uid){ if(uid!==DATA.me?.id) return toast('Du darfst nur deinen eigenen Bestand bearbeiten.'); const inv=DATA.inventory?.items?.[uid]||{}; openModal(`<h2>Eigenen Lagerbestand bearbeiten</h2><form id="invForm" class="form-grid"><label>Leichte Westen<input name="leichteWesten" type="number" value="${esc(inv.leichteWesten||0)}"></label><label>Schwere Westen<input name="schwereWesten" type="number" value="${esc(inv.schwereWesten||inv.westen||0)}"></label><label>Munition<input name="munition" type="number" value="${esc(inv.munition||0)}"></label><button class="primary full">Speichern</button></form>`); $('#invForm').onsubmit=async e=>{e.preventDefault();const fd=new FormData(e.target);await api('/api/inventory/'+uid,{method:'POST',body:JSON.stringify({patch:{leichteWesten:Number(fd.get('leichteWesten')),schwereWesten:Number(fd.get('schwereWesten')),munition:Number(fd.get('munition'))}})});closeModal();await refresh(true);toast('Lagerbestand gespeichert')}; }
+
+function mapAssetForRegion(region){ return ({overview:'/maps/overview.jpg',county:'/maps/county.jpg',east:'/maps/east.jpg',desert:'/maps/desert.jpg',vinewood:'/maps/vinewood.jpg',central:'/maps/central.jpg',south:'/maps/south.jpg',harbor:'/maps/harbor.jpg',airport:'/maps/airport.jpg',cayo:'/maps/cayo.jpg',galapagos:'/maps/galapagos.jpg'})[region]||'/maps/overview.jpg'; }
+function regionLabel(region){ return ({overview:'Gesamtkarte',county:'County / Paleto',east:'East / Route 15',desert:'Grand Senora / Sandy',vinewood:'Vinewood / Rockford',central:'Innenstadt / Del Perro',south:'South LS / Osten',harbor:'Hafen / Elysian',airport:'Airport',cayo:'Cayo',galapagos:'Galapagos'})[region]||region; }
+function cleanPlzLabel(plz){ const raw=String(plz||'').trim(); if(!raw) return '—'; const m=raw.match(/\d{3,5}(?:\s*[\/-]\s*\d{3,5})?/); return m?m[0].replace(/\s+/g,''):short(raw,10); }
+function parsePlzValue(raw){ const hits=String(raw||'').match(/\d{3,5}/g); if(!hits||!hits.length) return null; let n=Number(hits[0]); if(n>9999) n=Number(String(n).slice(0,4)); if(!Number.isFinite(n)) return null; return n; }
+function clamp(n,min,max){ return Math.max(min,Math.min(max,n)); }
+function savedPlzLocationFor(plz){ const key=cleanPlzLabel(plz); const map=DATA?.mapLocations?.plz||{}; if(map[key]) return {...map[key], manualPlz:true, generated:false}; const raw=String(plz||'').trim(); if(map[raw]) return {...map[raw], manualPlz:true, generated:false}; return null; }
+function autoPlacementForFamily(f){
+  const label=cleanPlzLabel(f?.plz);
+  const saved=savedPlzLocationFor(label);
+  if(saved) return { region:saved.region||'city', x:Number(saved.x), y:Number(saved.y), manualPlz:true, generated:false, code:parsePlzValue(label) };
+  const num=parsePlzValue(f?.plz);
+  if(num==null){
+    const seed=[...String(f?.id||'x')].reduce((a,c)=>a+c.charCodeAt(0),0);
+    return { region:'overview', x:10+(seed%80), y:10+((seed*7)%80), manual:false, generated:true, code:null };
+  }
+  const code=num;
+  const table = numberZoneFor(code);
+  const x = table.box.x1 + (table.box.x2-table.box.x1) * table.rx;
+  const y = table.box.y1 + (table.box.y2-table.box.y1) * table.ry;
+  return { region:table.region, x:clamp(x,2,98), y:clamp(y,4,96), manual:false, generated:true, code };
+}
+function numberZoneFor(code){
+  const c=Number(code);
+  const norm=(start,end,region,box)=>{ const t=(c-start)/Math.max(1,end-start); return {region,box,rx:clamp(t,0,1),ry:0.5}; };
+  if(c>=862&&c<=888) return norm(862,888,'galapagos',{x1:12,y1:20,x2:88,y2:78});
+  if(c>=1000&&c<=1104) return norm(1000,1104,'county',{x1:68,y1:56,x2:94,y2:92});
+  if(c>=2000&&c<=2059) return norm(2000,2059,'east',{x1:18,y1:24,x2:86,y2:62});
+  if(c>=3000&&c<=3064) return norm(3000,3064,'east',{x1:8,y1:52,x2:86,y2:86});
+  if(c>=4000&&c<=4024) return norm(4000,4024,'desert',{x1:40,y1:52,x2:92,y2:70});
+  if(c>=5000&&c<=5028) return norm(5000,5028,'desert',{x1:10,y1:20,x2:72,y2:68});
+  if(c>=5030&&c<=5064) return norm(5030,5064,'desert',{x1:3,y1:70,x2:12,y2:96});
+  if(c>=6000&&c<=6189) return norm(6000,6189,'vinewood',{x1:5,y1:8,x2:92,y2:42});
+  if(c>=6190&&c<=6205) return norm(6190,6205,'vinewood',{x1:20,y1:40,x2:60,y2:52});
+  if(c>=7000&&c<=7039) return norm(7000,7039,'vinewood',{x1:2,y1:50,x2:30,y2:70});
+  if(c>=7040&&c<=7189) return norm(7040,7189,'vinewood',{x1:8,y1:44,x2:74,y2:76});
+  if(c>=7190&&c<=7288) return norm(7190,7288,'central',{x1:4,y1:20,x2:78,y2:62});
+  if(c>=7289&&c<=7359) return norm(7289,7359,'central',{x1:60,y1:14,x2:96,y2:44});
+  if(c>=8000&&c<=8255) return norm(8000,8255,'central',{x1:5,y1:55,x2:92,y2:86});
+  if(c>=9000&&c<=9099) return norm(9000,9099,'south',{x1:5,y1:46,x2:40,y2:78});
+  if(c>=9100&&c<=9199) return norm(9100,9199,'south',{x1:35,y1:42,x2:66,y2:78});
+  if(c>=9200&&c<=9299) return norm(9200,9299,'south',{x1:50,y1:62,x2:80,y2:96});
+  if(c>=9300&&c<=9399) return norm(9300,9399,'south',{x1:80,y1:18,x2:98,y2:70});
+  if(c>=10000&&c<=10099) return norm(10000,10099,'harbor',{x1:4,y1:20,x2:72,y2:82});
+  if(c>=10100&&c<=10140) return norm(10100,10140,'harbor',{x1:72,y1:38,x2:98,y2:68});
+  return { region:'overview', box:{x1:10,y1:10,x2:90,y2:90}, rx:(c%100)/99, ry:((Math.floor(c/100))%10)/9 };
+}
+function overallFromRegionPlacement(p){
+  const world = {
+    county:{x1:8,y1:4,x2:78,y2:38}, east:{x1:60,y1:28,x2:96,y2:62}, desert:{x1:25,y1:35,x2:78,y2:66}, vinewood:{x1:28,y1:46,x2:66,y2:66}, central:{x1:36,y1:56,x2:78,y2:78}, south:{x1:52,y1:70,x2:88,y2:92}, harbor:{x1:56,y1:76,x2:96,y2:96}, airport:{x1:42,y1:76,x2:58,y2:94}, cayo:{x1:82,y1:72,x2:96,y2:92}, galapagos:{x1:2,y1:70,x2:22,y2:92}, overview:{x1:8,y1:8,x2:92,y2:92}
+  }[p.region] || {x1:8,y1:8,x2:92,y2:92};
+  return { x: world.x1 + (world.x2-world.x1)*(p.x/100), y: world.y1 + (world.y2-world.y1)*(p.y/100) };
+}
+function basePlacementForFamily(f){
+  const auto = autoPlacementForFamily(f);
+  const manual = f?.location && Number.isFinite(Number(f.location.x)) && Number.isFinite(Number(f.location.y)) && !f.location.generated;
+  return manual ? { region:f.location.region || auto.region, x:Number(f.location.x), y:Number(f.location.y), manual:true, generated:false } : auto;
+}
+function placementForFamily(f){
+  const base = basePlacementForFamily(f);
+  if(currentMapRegion==='overview'){
+    const world = overallFromRegionPlacement(base);
+    return { ...base, region:'overview', x:world.x, y:world.y, sourceRegion:base.region };
+  }
+  return base;
+}
+function buildMapPlacements(families){
+  const counts={};
+  return (families||[]).map(f=>{
+    const base = placementForFamily(f);
+    const key = `${base.region}:${cleanPlzLabel(f.plz)}:${Math.round(base.x/4)}:${Math.round(base.y/4)}`;
+    const idx = counts[key] || 0; counts[key] = idx + 1;
+    const radius = idx * 2.3;
+    const x = clamp(base.x + (idx?Math.cos(idx*1.2)*radius:0), 2, 98);
+    const y = clamp(base.y + (idx?Math.sin(idx*1.2)*radius:0), 4, 96);
+    return { family:f, map:{...base, x, y} };
+  });
+}
+
+load();
+
+// ===== Erweiterungen: Web kann Discord-Funktionen steuern =====
+const _oldAbgaben = abgaben;
+abgaben = function(){
+  const base = _oldAbgaben();
+  if(!DATA.config?.settings) return base;
+  const cfg = DATA.config.settings.abgabenConfig || {};
+  const en = DATA.config.settings.abgabenEnabled || {};
+  const keys = ['routen','patronen','schwarzpulver','meth'];
+  const settings = can('abgabenWrite') ? `<div class="panel"><h2>Abgaben-Einstellungen</h2>${simpleTable(['Art','Aktiv','Menge','Frist','Speichern'], keys.map(k=>[
+    k,
+    `<input id="abg_${k}_enabled" type="checkbox" ${en[k]!==false?'checked':''}>`,
+    `<input id="abg_${k}_amount" type="number" value="${esc(cfg[k]?.amount||0)}">`,
+    `<select id="abg_${k}_day">${[1,2,3,4,5,6,7].map(d=>`<option value="${d}" ${Number(cfg[k]?.deadlineDay||7)===d?'selected':''}>${['','Mo','Di','Mi','Do','Fr','Sa','So'][d]}</option>`).join('')}</select> <input id="abg_${k}_time" value="${String(cfg[k]?.deadlineHour??23).padStart(2,'0')}:${String(cfg[k]?.deadlineMinute??59).padStart(2,'0')}" style="width:80px">`,
+    `<button onclick="saveAbgabeConfig('${k}')">Speichern</button>`
+  ]))}</div>` : '';
+  return settings + base;
+};
+async function saveAbgabeConfig(k){
+  const time = document.getElementById(`abg_${k}_time`).value.split(':');
+  await api('/api/config/abgaben',{method:'POST',body:JSON.stringify({category:k,enabled:document.getElementById(`abg_${k}_enabled`).checked,amount:Number(document.getElementById(`abg_${k}_amount`).value),deadlineDay:Number(document.getElementById(`abg_${k}_day`).value),deadlineHour:Number(time[0]||23),deadlineMinute:Number(time[1]||59)})});
+  await refresh(true); toast('Abgaben-Einstellung gespeichert und Discord synchronisiert');
+}
+const _oldSanctions = sanctions;
+sanctions = function(){
+  const add = can('sanctionsWrite') ? '<button class="primary" onclick="openSanctionCreateModal()">+ Sanktion / Bloodout verteilen</button>' : '';
+  return `<div class="section-actions">${add}</div>` + _oldSanctions();
+};
+function openSanctionCreateModal(){
+  openModal(`<h2>Sanktion verteilen</h2><form id="sanCreate" class="form-grid"><label>User Discord ID<input name="userId" required></label><label>Katalog-Nr.<input name="catalogNo" value="WEB"></label><label>Typ<select name="penaltyType"><option>Geldstrafe</option><option>Bloodin</option><option>Bloodout</option></select></label><label>Betrag<input name="amount" type="number" value="0"></label><label class="full">Grund<input name="reason" value="Web-Sanktion"></label><button class="primary full">Verteilen</button></form>`);
+  document.getElementById('sanCreate').onsubmit = async e => { e.preventDefault(); const o=Object.fromEntries(new FormData(e.target)); await api('/api/sanctions',{method:'POST',body:JSON.stringify(o)}); closeModal(); await refresh(true); toast('Sanktion erstellt und Discord synchronisiert'); };
+}
+const _oldWache = wache;
+wache = function(){
+  const add = mod('wache') ? '<div class="section-actions"><button class="primary" onclick="openWacheSessionModal()">+ Wache-Session nachtragen</button></div>' : '';
+  return add + _oldWache();
+};
+function openWacheSessionModal(){
+  openModal(`<h2>Wache-Session nachtragen</h2><form id="wacheForm" class="form-grid"><label>Woche<input name="weekKey" placeholder="2026-W21"></label><label>Minuten<input name="minutes" type="number" value="60"></label><label class="full">Teilnehmer Discord IDs, kommagetrennt<input name="participants" value="${esc(DATA.me?.id||'')}"></label><button class="primary full">Speichern</button></form>`);
+  document.getElementById('wacheForm').onsubmit = async e => { e.preventDefault(); const fd=new FormData(e.target); await api('/api/wache/session',{method:'POST',body:JSON.stringify({weekKey:fd.get('weekKey')||undefined,minutes:Number(fd.get('minutes')),participants:String(fd.get('participants')).split(',').map(x=>x.trim()).filter(Boolean)})}); closeModal(); await refresh(true); toast('Wache gespeichert und Discord synchronisiert'); };
+}
+const _oldConfig = config;
+config = function(){
+  if(!DATA.config) return locked(); const set=DATA.config.settings||{};
+  const groups=[
+    ['Automatik',['smartPingEnabled','autoSanctionsEnabled','termRemindersEnabled','decisionHintsEnabled','leaderReminderDmEnabled']],
+    ['Abgaben & Wache',['dashboardEnabled','fridayMissingReportEnabled','mondayOverdueReportEnabled','routeAdminFridayReportEnabled','routeAdminMondayReportEnabled']],
+    ['Sicherheit & Tests',['dryRunEnabled','logSystemEnabled','spamProtectionEnabled']]
+  ];
+  const channels=Object.entries(DATA.config.channels||DATA.config.channelIds||{});
+  const rules=DATA.config.settings?.rules||DATA.config.rules||{};
+  return `<div class="grid config-grid"><div class="panel"><h2>Zentrale Verwaltung</h2><p class="muted">Hier steuerst du die wichtigsten Bot- und Dashboard-Automatiken. Die Namen sind bewusst ausgeschrieben; die technischen Script-Keys bleiben im Hintergrund.</p>${groups.map(g=>`<h2>${esc(g[0])}</h2><div class="settings-grid">${g[1].map(k=>niceSettingCard(k,set)).join('')}</div>`).join('')}<button class="primary" onclick="saveExpandedCentralSettings()">Einstellungen speichern</button></div><div class="panel"><h2>Schnellzugriff</h2><div class="section-actions"><button onclick="current='sanctions';buildNav();renderCurrent()">Sanktionen</button><button onclick="current='abgaben';buildNav();renderCurrent()">Abgaben</button><button onclick="current='inventory';buildNav();renderCurrent()">Lager</button><button onclick="current='blood';buildNav();renderCurrent()">Bloodin/out</button><button onclick="current='cashbox';buildNav();renderCurrent()">Kasse</button></div><h2>Kanäle</h2>${simpleTable(['Bereich','Discord Channel ID'], channels.slice(0,28).map(([k,v])=>[niceKey(k),v]))}<h2>Regeln</h2>${Object.keys(rules).length?simpleTable(['Regel','Wert'], Object.entries(rules).map(([k,v])=>[niceKey(k), typeof v==='object'?JSON.stringify(v):String(v)])):'<p class="muted">Keine separaten Regeln gefunden.</p>'}<h2>Audit</h2><div class="timeline">${(DATA.audit?.items||[]).slice(0,12).map(a=>`<div><b>${esc(niceKey(a.action))}</b><br><span class="muted">${dt(a.at)} • ${esc(a.by)}</span></div>`).join('')||'<p class="muted">Keine Einträge.</p>'}</div></div></div>`;
+};
+async function saveExpandedCentralSettings(){
+  const keys=['smartPingEnabled','autoSanctionsEnabled','termRemindersEnabled','decisionHintsEnabled','leaderReminderDmEnabled','dashboardEnabled','fridayMissingReportEnabled','mondayOverdueReportEnabled','routeAdminFridayReportEnabled','routeAdminMondayReportEnabled','dryRunEnabled','logSystemEnabled','spamProtectionEnabled'];
+  const body={}; keys.forEach(k=>{ const el=document.getElementById('set_'+k); if(el) body[k]=el.checked; });
+  await api('/api/config/settings',{method:'POST',body:JSON.stringify(body)}); await refresh(true); toast('Zentrale Verwaltung gespeichert');
+}
+
+
+// ===== Familienkarte: echtes Pan/Zoom mit kompletter Karte =====
+let familyMapView = { scale: 1, x: 0, y: 0 };
+const FAMILY_MAP_MIN_SCALE = 1;
+const FAMILY_MAP_MAX_SCALE = 4;
+const FAMILY_MAP_ASSET = '/maps/family-overview.png';
+
+mapAssetForRegion = function(region){
+  return ({overview:FAMILY_MAP_ASSET,county:'/maps/county.jpg',east:'/maps/east.jpg',desert:'/maps/desert.jpg',vinewood:'/maps/vinewood.jpg',central:'/maps/central.jpg',south:'/maps/south.jpg',harbor:'/maps/harbor.jpg',airport:'/maps/airport.jpg',cayo:'/maps/cayo.jpg',galapagos:'/maps/galapagos.jpg'})[region]||FAMILY_MAP_ASSET;
+};
+
+overallFromRegionPlacement = function(p){
+  const world = {
+    county:{x1:8,y1:4,x2:78,y2:38}, east:{x1:60,y1:28,x2:96,y2:62}, desert:{x1:25,y1:35,x2:78,y2:66},
+    vinewood:{x1:28,y1:46,x2:66,y2:66}, central:{x1:36,y1:56,x2:78,y2:78}, south:{x1:52,y1:70,x2:88,y2:92},
+    harbor:{x1:56,y1:76,x2:96,y2:96}, airport:{x1:42,y1:76,x2:58,y2:94}, cayo:{x1:82,y1:72,x2:96,y2:92},
+    galapagos:{x1:2,y1:70,x2:22,y2:92}, overview:{x1:0,y1:0,x2:100,y2:100}
+  }[p.region] || {x1:0,y1:0,x2:100,y2:100};
+  return { x: world.x1 + (world.x2-world.x1)*(Number(p.x||0)/100), y: world.y1 + (world.y2-world.y1)*(Number(p.y||0)/100) };
+};
+
+function familyMapViewport(){ return document.getElementById('mapViewport'); }
+function familyMapStage(){ return document.getElementById('mapStage'); }
+function familyMapZoomLabel(){ return document.getElementById('mapZoomLabel'); }
+function clampMapScale(v){ return Math.max(FAMILY_MAP_MIN_SCALE, Math.min(FAMILY_MAP_MAX_SCALE, Number(v)||1)); }
+
+function constrainFamilyMapView(){
+  const vp = familyMapViewport();
+  if(!vp) return;
+  const rect = vp.getBoundingClientRect();
+  const scaledW = rect.width * familyMapView.scale;
+  const scaledH = rect.height * familyMapView.scale;
+  if(familyMapView.scale <= 1){
+    familyMapView.x = 0;
+    familyMapView.y = 0;
+  } else {
+    const minX = rect.width - scaledW;
+    const minY = rect.height - scaledH;
+    familyMapView.x = clamp(familyMapView.x, minX, 0);
+    familyMapView.y = clamp(familyMapView.y, minY, 0);
+  }
+}
+
+function applyFamilyMapTransform(){
+  const stage = familyMapStage();
+  if(!stage) return;
+  constrainFamilyMapView();
+  stage.style.transform = `translate(${familyMapView.x}px, ${familyMapView.y}px) scale(${familyMapView.scale})`;
+  const lbl = familyMapZoomLabel();
+  if(lbl) lbl.textContent = Math.round(familyMapView.scale * 100) + '%';
+}
+
+function viewportPointToFamilyMapPercent(clientX, clientY){
+  const vp = familyMapViewport();
+  if(!vp) return {x:50, y:50};
+  const rect = vp.getBoundingClientRect();
+  const localX = (clientX - rect.left - familyMapView.x) / familyMapView.scale;
+  const localY = (clientY - rect.top - familyMapView.y) / familyMapView.scale;
+  return {
+    x: clamp((localX / rect.width) * 100, 0.3, 99.7),
+    y: clamp((localY / rect.height) * 100, 0.3, 99.7)
+  };
+}
+
+function setFamilyMapScale(nextScale, clientX, clientY){
+  const vp = familyMapViewport();
+  if(!vp) return;
+  const rect = vp.getBoundingClientRect();
+  const oldScale = familyMapView.scale;
+  const newScale = clampMapScale(nextScale);
+  if(newScale === oldScale) return;
+  const anchorX = (clientX ?? (rect.left + rect.width/2)) - rect.left;
+  const anchorY = (clientY ?? (rect.top + rect.height/2)) - rect.top;
+  const worldX = (anchorX - familyMapView.x) / oldScale;
+  const worldY = (anchorY - familyMapView.y) / oldScale;
+  familyMapView.scale = newScale;
+  familyMapView.x = anchorX - worldX * newScale;
+  familyMapView.y = anchorY - worldY * newScale;
+  applyFamilyMapTransform();
+}
+
+window.zoomFamilyMap = function(step){
+  const vp = familyMapViewport();
+  if(!vp) return;
+  const rect = vp.getBoundingClientRect();
+  setFamilyMapScale(familyMapView.scale + step, rect.left + rect.width/2, rect.top + rect.height/2);
+};
+
+window.resetFamilyMapView = function(centerSelected=false){
+  familyMapView.scale = 1;
+  familyMapView.x = 0;
+  familyMapView.y = 0;
+  applyFamilyMapTransform();
+  if(centerSelected && selectedFamily) setTimeout(() => centerFamilyOnMap(selectedFamily, 1.8), 0);
+};
+
+function centerFamilyOnMap(id, zoom=2){
+  const vp = familyMapViewport();
+  if(!vp || !id) return;
+  const fam = (DATA?.families||[]).find(f => f.id === id);
+  if(!fam) return;
+  const pos = placementForFamily(fam);
+  const rect = vp.getBoundingClientRect();
+  familyMapView.scale = clampMapScale(Math.max(familyMapView.scale, zoom));
+  familyMapView.x = rect.width / 2 - (pos.x / 100) * rect.width * familyMapView.scale;
+  familyMapView.y = rect.height / 2 - (pos.y / 100) * rect.height * familyMapView.scale;
+  applyFamilyMapTransform();
+  updateSelectedMapMarker();
+}
+
+function updateSelectedMapMarker(){
+  document.querySelectorAll('#mapStage .marker').forEach(m => {
+    m.classList.toggle('selected', !!selectedFamily && m.dataset.id === selectedFamily);
+  });
+}
+
+selectFamily = function(id){
+  selectedFamily = id;
+  const fam = (DATA?.families||[]).find(x => x.id === id);
+  const d = document.getElementById('mapDetail');
+  if(d) d.innerHTML = familyDetailMini(fam); else openFamilyDetail(id);
+  updateSelectedMapMarker();
+};
+
+focusFamilyOnMap = function(id){
+  selectedFamily = id;
+  currentMapRegion = 'overview';
+  renderCurrent();
+  requestAnimationFrame(() => centerFamilyOnMap(id, 2.2));
+};
+
+setMapRegion = function(){
+  currentMapRegion = 'overview';
+  renderCurrent();
+};
+
+enablePlzPicker = function(){
+  const vp = familyMapViewport();
+  if(!vp) return;
+  vp.addEventListener('click', async e => {
+    if(!mapPickMode) return;
+    if(e.target.closest('.marker') || e.target.closest('.map-controls')) return;
+    const pt = viewportPointToFamilyMapPercent(e.clientX, e.clientY);
+    const plz = prompt('Welche PLZ/Nummer liegt an dieser Stelle?');
+    if(!plz) return;
+    await api('/api/map/plz', {method:'POST', body:JSON.stringify({plz:plz.trim(), x:pt.x, y:pt.y, region:'overview'})});
+    toast('PLZ-Position gespeichert: ' + plz.trim());
+    mapPickMode = false;
+    await refresh(true);
+  });
+};
+
+function initInteractiveFamilyMap(){
+  const vp = familyMapViewport();
+  const stage = familyMapStage();
+  if(!vp || !stage || vp.dataset.ready === '1') { applyFamilyMapTransform(); return; }
+  vp.dataset.ready = '1';
+  applyFamilyMapTransform();
+
+  vp.addEventListener('wheel', e => {
+    e.preventDefault();
+    const factor = e.deltaY < 0 ? 1.16 : 0.86;
+    setFamilyMapScale(familyMapView.scale * factor, e.clientX, e.clientY);
+  }, { passive:false });
+
+  let pan = null;
+  const endPan = (e) => {
+    if(!pan || (e && pan.id !== e.pointerId)) return;
+    pan = null;
+    vp.classList.remove('panning');
+  };
+  vp.addEventListener('pointerdown', e => {
+    if(e.target.closest('.marker') || e.target.closest('.map-controls')) return;
+    pan = { id:e.pointerId, startX:e.clientX, startY:e.clientY, baseX:familyMapView.x, baseY:familyMapView.y };
+    vp.classList.add('panning');
+    vp.setPointerCapture(e.pointerId);
+  });
+  vp.addEventListener('pointermove', e => {
+    if(!pan || pan.id !== e.pointerId) return;
+    familyMapView.x = pan.baseX + (e.clientX - pan.startX);
+    familyMapView.y = pan.baseY + (e.clientY - pan.startY);
+    applyFamilyMapTransform();
+  });
+  vp.addEventListener('pointerup', endPan);
+  vp.addEventListener('pointercancel', endPan);
+  vp.addEventListener('pointerleave', e => { if(pan && pan.id === e.pointerId) endPan(e); });
+
+  stage.querySelectorAll('.marker').forEach(m => {
+    let drag = null;
+    m.addEventListener('pointerdown', e => {
+      e.stopPropagation();
+      drag = { id:e.pointerId, startX:e.clientX, startY:e.clientY, moved:false };
+      m.setPointerCapture(e.pointerId);
+      m.classList.add('dragging');
+    });
+    m.addEventListener('pointermove', e => {
+      if(!drag || drag.id !== e.pointerId) return;
+      const moved = Math.abs(e.clientX - drag.startX) > 3 || Math.abs(e.clientY - drag.startY) > 3;
+      drag.moved = drag.moved || moved;
+      if(!drag.moved || !can('familiesWrite')) return;
+      const pt = viewportPointToFamilyMapPercent(e.clientX, e.clientY);
+      m.style.left = pt.x + '%';
+      m.style.top = pt.y + '%';
+      e.stopPropagation();
+    });
+    const finishMarkerDrag = async (e) => {
+      if(!drag || drag.id !== e.pointerId) return;
+      e.stopPropagation();
+      const didMove = drag.moved;
+      drag = null;
+      m.classList.remove('dragging');
+      if(didMove && can('familiesWrite')){
+        const x = parseFloat(m.style.left);
+        const y = parseFloat(m.style.top);
+        await api('/api/families/' + m.dataset.id + '/location', {method:'POST', body:JSON.stringify({x, y, label:'', region:'overview'})});
+        toast('Kartenposition gespeichert');
+        await refresh(true);
+      } else {
+        selectFamily(m.dataset.id);
+      }
+    };
+    m.addEventListener('pointerup', finishMarkerDrag);
+    m.addEventListener('pointercancel', e => { if(drag && drag.id === e.pointerId){ drag = null; m.classList.remove('dragging'); } });
+  });
+
+  updateSelectedMapMarker();
+  if(selectedFamily) requestAnimationFrame(() => centerFamilyOnMap(selectedFamily, Math.max(1.6, familyMapView.scale)));
+}
+
+afterRender = function(){
+  if(current === 'map'){
+    requestAnimationFrame(() => {
+      initInteractiveFamilyMap();
+      if(can('familiesWrite')) enablePlzPicker();
+    });
+  }
+};
+
+toggleMapPick = function(){
+  mapPickMode = !mapPickMode;
+  renderCurrent();
+};
+
+map = function(){
+  currentMapRegion = 'overview';
+  const fams = filterRows(DATA.families||[], [x => `${x.familie} ${x.kuerzel} ${x.plz} ${x.category} ${JSON.stringify(x.contacts)}`]);
+  const cats = [...new Set((DATA.families||[]).map(f => f.category).filter(Boolean))];
+  const placements = buildMapPlacements(fams);
+  const selected = (DATA.families||[]).find(f => f.id === selectedFamily);
+  return `
+  <div class="toolbar compact-toolbar">
+    <span class="pill gold">${placements.length} Marker auf der Karte</span>
+    <span class="pill">${fams.length} Familien gesamt</span>
+    ${cats.map(c => `<button onclick="document.getElementById('globalSearch').value='${esc(c)}';renderCurrent()">${esc(c)}</button>`).join('')}
+    <button onclick="document.getElementById('globalSearch').value='';renderCurrent()">Alle</button>
+    ${can('familiesWrite') ? `<button class="${mapPickMode?'danger':'primary'}" onclick="toggleMapPick()">${mapPickMode?'PLZ-Klickmodus AUS':'PLZ-Position speichern'}</button>` : ''}
+  </div>
+  <div class="grid map-layout">
+    <div>
+      <div class="family-map family-map-viewport real-map" id="mapViewport">
+        <div class="map-controls">
+          <button class="map-control-btn" onclick="zoomFamilyMap(0.25)">+</button>
+          <button class="map-control-btn" onclick="zoomFamilyMap(-0.25)">−</button>
+          <button class="map-control-btn" onclick="resetFamilyMapView(${selected ? 'true' : 'false'})">Reset</button>
+          <span id="mapZoomLabel" class="pill gold">100%</span>
+        </div>
+        <div class="map-overlay"><b>Freie Familienkarte</b><span>Mit dem Mausrad zoomst du rein und raus. Halte die Maustaste auf freier Fläche gedrückt, um die Karte zu verschieben. Marker bleiben an ihrer Position und bewegen sich mit der Karte mit – nur wenn du einen Marker direkt ziehst, änderst du seine Position.</span></div>
+        <div class="map-stage" id="mapStage">
+          <img class="map-base" src="${FAMILY_MAP_ASSET}" alt="Familienkarte" draggable="false">
+          ${placements.map(marker).join('')}
+        </div>
+      </div>
+      <div class="map-footnote">Wenn du nach oben oder in andere Bereiche scrollst bzw. die Karte verschiebst, siehst du nur den gerade sichtbaren Ausschnitt. Familien in Los Santos bleiben also unten außerhalb des Sichtfelds, bis du wieder dorthin navigierst.</div>
+    </div>
+    <div class="panel">
+      <h2>Ausgewählte Familie</h2>
+      <div id="mapDetail">${selectedFamily ? familyDetailMini(selected) : '<p class="muted">Klicke auf einen Marker oder nutze die Schnellsuche.</p>'}</div>
+      <hr style="border-color:var(--line)">
+      <h2>PLZ-Positionen</h2>
+      ${plzCalibrationList()}
+      <h2>Schnellsuche</h2>
+      <div class="mini-list">${fams.slice(0, 40).map(f => { const p = basePlacementForFamily(f); return `<div class="mini-row" onclick="focusFamilyOnMap('${f.id}')"><span><b>${esc(f.familie)}</b><br><em class="muted">${esc(f.category)} • ${esc(f.plz||'—')} • ${esc(f.kuerzel||'-')}</em></span><span class="tag">${esc(regionLabel(p.region))}</span></div>`; }).join('')}</div>
+    </div>
+  </div>`;
+};
+
+
+// ===== UI-Neustrukturierung: Monitoring = Stats, Einstellungen separat, Namen statt IDs =====
+function displayNameForUser(id){
+  const s = String(id||'');
+  if(!s || s==='—') return '—';
+  const member = (DATA.members||[]).find(m => String(m.id)===s || String(m.userId)===s || String(m.discordId)===s);
+  if(member) return member.nickname || member.name || member.username || member.globalName || member.phone || s;
+  const numEntry = DATA.numbers?.members?.[s] || DATA.phonebook?.members?.[s];
+  if(numEntry) return numEntry.nickname || numEntry.name || numEntry.username || numEntry.phone || s;
+  const phoneHit = (DATA.members||[]).find(m => String(m.phone||'')===s);
+  if(phoneHit) return phoneHit.nickname || phoneHit.name || phoneHit.phone || s;
+  return s;
+}
+function userCell(id){
+  const name = displayNameForUser(id);
+  const raw = String(id||'');
+  return `<b>${esc(name)}</b>${name!==raw?`<br><em class="muted">${esc(raw)}</em>`:''}`;
+}
+function tsOf(v){ const n=Number(v); if(Number.isFinite(n) && n>1000000000) return n; const d=new Date(v||0).getTime(); return Number.isFinite(d)?d:0; }
+function startOfMonthTs(){ const d=new Date(); return new Date(d.getFullYear(), d.getMonth(), 1).getTime(); }
+function startOfWeekTs(){ const d=new Date(); const day=(d.getDay()+6)%7; d.setHours(0,0,0,0); d.setDate(d.getDate()-day); return d.getTime(); }
+function monthKeyNow(){ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; }
+function weekKeyNow(){ const d=new Date(); const onejan=new Date(d.getFullYear(),0,1); const week=Math.ceil((((d-onejan)/86400000)+onejan.getDay()+1)/7); return `${d.getFullYear()}-W${String(week).padStart(2,'0')}`; }
+function entriesInRange(items, range='month'){
+  const now=Date.now();
+  const start = range==='week' ? startOfWeekTs() : range==='3m' ? now-90*86400000 : startOfMonthTs();
+  return (items||[]).filter(x => {
+    const t = tsOf(x.at || x.ts || x.createdAt || x.date || x.updatedAt || x.from || x.startTs);
+    return !t || t >= start;
+  });
+}
+function currentRange(){
+  return localStorage.getItem('memberStatsRange') || 'month';
+}
+function setMemberRange(r){ localStorage.setItem('memberStatsRange', r); renderCurrent(); }
+
+function allAbgabeRows(){
+  const root = DATA.abgaben || {};
+  const rows = [];
+  for(const [weekKey, week] of Object.entries(root.weeks || root || {})){
+    if(!week || typeof week !== 'object') continue;
+    for(const [cat, catObj] of Object.entries(week.categories || week || {})){
+      if(!catObj || typeof catObj !== 'object') continue;
+      const members = catObj.members || catObj.users || catObj.entries || {};
+      for(const [uid, row] of Object.entries(members)){
+        if(!row || typeof row !== 'object') continue;
+        rows.push({weekKey, category:cat, userId:uid, ...row});
+      }
+    }
+  }
+  return rows;
+}
+function allInventoryRows(){
+  return Object.entries(DATA.inventory?.items || {}).map(([uid,row]) => ({userId:uid, ...(row||{})}));
+}
+function allAbsenceRows(){
+  const arr = Array.isArray(DATA.absences?.items) ? DATA.absences.items : Array.isArray(DATA.absences) ? DATA.absences : [];
+  return arr.map(a => ({...a, userId:a.userId||a.discordId||a.id}));
+}
+function allSanctionRows(){
+  const arr = Array.isArray(DATA.sanctions?.items) ? DATA.sanctions.items : Array.isArray(DATA.sanctions) ? DATA.sanctions : [];
+  return arr.map(a => ({...a, userId:a.userId||a.discordId||a.targetId||a.id}));
+}
+
+function monitoringStats(){
+  const abg=allAbgabeRows();
+  const abs=allAbsenceRows();
+  const sanc=allSanctionRows();
+  const inv=allInventoryRows();
+  const wk = weekKeyNow();
+  const weekRows = abg.filter(r => String(r.weekKey||'').includes(wk) || String(r.week||'').includes(wk));
+  const submitted = weekRows.filter(r => ['abgegeben','paid','done','erledigt'].includes(String(r.status||'').toLowerCase()) || r.done || r.submitted).length;
+  const open = Math.max(0, weekRows.length - submitted);
+  const activeAbs = abs.filter(a => String(a.status||'').toLowerCase() !== 'inaktiv' && String(a.status||'').toLowerCase() !== 'closed').length;
+  const openSanc = sanc.filter(s => !(s.paid || s.done || String(s.status||'').toLowerCase().includes('bezahlt'))).length;
+  const cash = DATA.stats?.cashBalance ?? DATA.cashbox?.balance ?? 0;
+  const cfg = DATA.config?.settings || {};
+  const abgabenCfg = cfg.abgabenConfig || {};
+  const abgabenEnabled = cfg.abgabenEnabled || {};
+  const enabledCats = Object.entries(abgabenEnabled).filter(([_,v])=>v!==false).map(([k])=>niceKey(k));
+  return `<div class="cards">${[
+    ['Aktuelle Woche', wk],
+    ['Abgaben diese Woche', `${submitted}/${weekRows.length || 0}`],
+    ['Offene Abgaben', open],
+    ['Aktive Abmeldungen', activeAbs],
+    ['Offene Sanktionen', openSanc],
+    ['Lager-User', inv.length],
+    ['Kassenstand', money(cash)],
+    ['Familien', (DATA.families||[]).length]
+  ].map(([k,v])=>`<div class="card"><div class="label">${esc(k)}</div><div class="value smallvalue">${esc(v)}</div></div>`).join('')}</div>
+  <div class="grid">
+    <div class="panel"><h2>Aktuelle Abgaben-Woche</h2>${weekRows.length?simpleTable(['Name','Art','Status','Betrag/Info'], weekRows.slice(0,80).map(r=>[userCell(r.userId), niceKey(r.category), r.status||'offen', r.amount||r.menge||r.note||'—'])):'<p class="muted">Für diese Woche wurden noch keine Abgaben-Einträge gefunden.</p>'}</div>
+    <div class="panel"><h2>Aktuelle Einstellungen</h2>
+      <div class="mini-list">
+        <div class="mini-row"><span>Aktive Abgabenarten</span><b>${esc(enabledCats.join(', ') || '—')}</b></div>
+        ${Object.entries(abgabenCfg).slice(0,8).map(([k,v])=>`<div class="mini-row"><span>${esc(niceKey(k))}</span><b>${esc(v?.amount||v?.menge||'—')} • Frist ${esc(v?.deadlineDay||'—')} ${esc(v?.deadlineHour??'')}:${esc(String(v?.deadlineMinute??'').padStart(2,'0'))}</b></div>`).join('')}
+        <div class="mini-row"><span>Auto-Sanktionen</span><b>${cfg.autoSanctionsEnabled?'AN':'AUS'}</b></div>
+        <div class="mini-row"><span>Termin-Erinnerungen</span><b>${cfg.termRemindersEnabled?'AN':'AUS'}</b></div>
+        <div class="mini-row"><span>Leader-DM</span><b>${cfg.leaderReminderDmEnabled?'AN':'AUS'}</b></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+config = function(){
+  if(!DATA.config) return locked();
+  return monitoringStats();
+};
+
+function memberSummaryFor(uid, range='month'){
+  const abg=entriesInRange(allAbgabeRows().filter(r=>String(r.userId)===String(uid)), range);
+  const abs=entriesInRange(allAbsenceRows().filter(r=>String(r.userId)===String(uid)), range);
+  const sanc=entriesInRange(allSanctionRows().filter(r=>String(r.userId)===String(uid)), range);
+  const inv=allInventoryRows().find(r=>String(r.userId)===String(uid)) || {};
+  const submitted = abg.filter(r => ['abgegeben','paid','done','erledigt'].includes(String(r.status||'').toLowerCase()) || r.done || r.submitted).length;
+  const open = Math.max(0, abg.length-submitted);
+  const weapons = Object.entries(inv.weapons||inv.waffen||{}).filter(([_,v])=>Number(v)).map(([k,v])=>`${k}: ${v}`).join('<br>') || inv.weaponText || '—';
+  return {abg,abs,sanc,inv,submitted,open,weapons};
+}
+function openMemberDetailStats(uid){
+  const range=currentRange();
+  const sum=memberSummaryFor(uid, range);
+  const label = range==='week'?'diese Woche':range==='3m'?'letzte 3 Monate':'aktueller Monat';
+  openModal(`<h2>${esc(displayNameForUser(uid))}</h2><p class="muted">${esc(uid)} • Zeitraum: ${esc(label)}</p>
+  <div class="toolbar">
+    <button onclick="setMemberRange('month'); closeModal(); openMemberDetailStats('${esc(uid)}')">Aktueller Monat</button>
+    <button onclick="setMemberRange('week'); closeModal(); openMemberDetailStats('${esc(uid)}')">Diese Woche</button>
+    <button onclick="setMemberRange('3m'); closeModal(); openMemberDetailStats('${esc(uid)}')">3 Monate</button>
+  </div>
+  ${cards({'Abgaben erledigt':sum.submitted,'Abgaben offen':sum.open,'Abmeldungen':sum.abs.length,'Sanktionen':sum.sanc.length})}
+  <div class="grid">
+    <div class="panel"><h2>Abgaben-Verlauf</h2>${sum.abg.length?simpleTable(['Woche','Art','Status','Info'], sum.abg.slice(0,80).map(r=>[r.weekKey||r.week||'—',niceKey(r.category),r.status||'offen',r.amount||r.note||'—'])):'<p class="muted">Keine Abgaben in diesem Zeitraum.</p>'}</div>
+    <div class="panel"><h2>Lager aktuell</h2><p><b>Waffen</b><br>${sum.weapons}</p><p><b>Westen</b><br>Leicht: ${esc(sum.inv.leichteWesten||0)}<br>Schwer: ${esc(sum.inv.schwereWesten||sum.inv.westen||0)}</p><p><b>Munition</b><br>${esc(sum.inv.munition||0)}</p></div>
+    <div class="panel"><h2>Abmeldungen</h2>${sum.abs.length?simpleTable(['Von','Bis','Status','Grund'], sum.abs.slice(0,50).map(a=>[dt(a.from||a.startTs),dt(a.to||a.until||a.endTs),a.status||'—',a.reason||a.grund||'—'])):'<p class="muted">Keine Abmeldungen in diesem Zeitraum.</p>'}</div>
+    <div class="panel"><h2>Sanktionen</h2>${sum.sanc.length?simpleTable(['Datum','Typ','Status','Grund'], sum.sanc.slice(0,50).map(s=>[dt(s.at||s.createdAt),s.penaltyType||s.type||'—',s.status||'—',s.reason||'—'])):'<p class="muted">Keine Sanktionen in diesem Zeitraum.</p>'}</div>
+  </div>`);
+}
+
+const _membersBaseStats = members;
+members = function(){
+  const range=currentRange();
+  const label=range==='week'?'Diese Woche':range==='3m'?'Letzte 3 Monate':'Aktueller Monat';
+  const rows=(DATA.members||[]).map(m=>{
+    const uid=m.id||m.userId||m.discordId;
+    const sum=memberSummaryFor(uid,range);
+    return [userCell(uid), m.phone||'—', `${sum.submitted}/${sum.abg.length||0}`, sum.abs.length, sum.sanc.length, `<button onclick="openMemberDetailStats('${esc(uid)}')">Ansehen</button>`];
+  });
+  return `<div class="toolbar"><span class="pill gold">Standard: aktueller Monat</span><button class="${range==='month'?'primary':''}" onclick="setMemberRange('month')">Aktueller Monat</button><button class="${range==='week'?'primary':''}" onclick="setMemberRange('week')">Diese Woche</button><button class="${range==='3m'?'primary':''}" onclick="setMemberRange('3m')">3 Monate</button><span class="pill">${esc(label)}</span></div>
+  <div class="panel"><h2>Mitgliederübersicht</h2>${simpleTable(['Name','Telefon','Abgaben','Abmeldungen','Sanktionen','Details'], rows)}</div>`;
+};
+
+inventory = function(){
+  const rows=allInventoryRows().map(r=>{
+    const weapons=Object.entries(r.weapons||r.waffen||{}).filter(([_,v])=>Number(v)).map(([k,v])=>`${k}: ${v}`).join('<br>') || r.weaponText || '—';
+    return [userCell(r.userId), weapons, `Leicht: ${r.leichteWesten||0}<br>Schwer: ${r.schwereWesten||r.westen||0}`, r.munition||0, dt(r.updatedAt||r.lastUpdate||r.at), `<button onclick="openMemberDetailStats('${esc(r.userId)}')">Person</button>`];
+  });
+  return `<div class="panel"><h2>Lager</h2>${simpleTable(['Name','Waffen','Westen','Munition','Update','Details'], rows)}</div>`;
+};
+
+absences = function(){
+  const arr=allAbsenceRows();
+  const rows=filterRows(arr,[x=>`${displayNameForUser(x.userId)} ${x.reason||x.grund||''} ${x.status||''}`]).map(a=>[userCell(a.userId), dt(a.from||a.startTs), dt(a.to||a.until||a.endTs), a.days||a.tage||'—', a.status||'—', a.reason||a.grund||'—']);
+  const add=can('absencesCreate')?'<button class="primary" onclick="openAbsenceModal()">+ Abmeldung</button>':'';
+  return `<div class="toolbar"><span class="pill gold">${rows.length} Abmeldungen</span>${add}</div><div class="panel">${simpleTable(['Name','Von','Bis','Tage','Status','Grund'], rows)}</div>`;
+};
+
+function settingInput(k,set){ const [title,desc]=settingLabels[k]||[niceKey(k),'']; return `<label class="card setting-card"><div><div class="label">${esc(title)}</div><p>${esc(desc)}</p></div><input id="set_${k}" type="checkbox" ${set[k]?'checked':''}></label>`; }
+function settings(){
+  if(!DATA.config) return locked();
+  const set=DATA.config.settings||{};
+  const cfg=set.abgabenConfig||{};
+  const en=set.abgabenEnabled||{};
+  const channels=DATA.config.channels||DATA.config.channelIds||{};
+  const abgKeys=['routen','patronen','schwarzpulver','meth'];
+  return `<div class="grid config-grid">
+    <div class="panel"><h2>Abgaben einstellen</h2><p class="muted">Hier stellst du ein, welche Abgaben aktiv sind, welche Menge Pflicht ist und wann die Frist endet.</p>${simpleTable(['Art','Aktiv','Pflicht/Menge','Frist-Tag','Uhrzeit'], abgKeys.map(k=>[
+      niceKey(k),
+      `<input id="abg_${k}_enabled" type="checkbox" ${en[k]!==false?'checked':''}>`,
+      `<input id="abg_${k}_amount" type="number" value="${esc(cfg[k]?.amount||0)}">`,
+      `<select id="abg_${k}_day">${[1,2,3,4,5,6,7].map(d=>`<option value="${d}" ${Number(cfg[k]?.deadlineDay||7)===d?'selected':''}>${['','Mo','Di','Mi','Do','Fr','Sa','So'][d]}</option>`).join('')}</select>`,
+      `<input id="abg_${k}_time" value="${String(cfg[k]?.deadlineHour??23).padStart(2,'0')}:${String(cfg[k]?.deadlineMinute??59).padStart(2,'0')}" style="width:90px">`
+    ]))}<button class="primary" onclick="saveAllAbgabeSettings()">Abgaben speichern</button></div>
+    <div class="panel"><h2>Automatik & DMs</h2><div class="settings-grid">${['autoSanctionsEnabled','termRemindersEnabled','leaderReminderDmEnabled','smartPingEnabled','decisionHintsEnabled','dryRunEnabled','logSystemEnabled','spamProtectionEnabled'].map(k=>settingInput(k,set)).join('')}</div><button class="primary" onclick="saveExpandedCentralSettings()">Automatik speichern</button></div>
+    <div class="panel"><h2>Wache & Abmeldungen</h2><p class="muted">Hier kommen die Wache-/Pflicht-/Entschuldigt-Regeln rein. Nicht vorhandene Werte bleiben leer, bis sie einmal gespeichert werden.</p><div class="form-grid">
+      <label>Pflicht-Minuten pro Woche<input id="rule_wacheMinutes" type="number" value="${esc(set.wacheRequiredMinutes||set.routeRequiredMinutes||0)}"></label>
+      <label>Ab wie vielen Tagen entschuldigt?<input id="rule_absenceExcusedDays" type="number" value="${esc(set.absenceExcusedDays||set.excusedAfterDays||0)}"></label>
+      <label>Wache aktiv<select id="rule_wacheEnabled"><option value="true" ${set.wacheEnabled!==false?'selected':''}>AN</option><option value="false" ${set.wacheEnabled===false?'selected':''}>AUS</option></select></label>
+      <label>Auto-Reports aktiv<select id="rule_reportsEnabled"><option value="true" ${set.reportsEnabled!==false?'selected':''}>AN</option><option value="false" ${set.reportsEnabled===false?'selected':''}>AUS</option></select></label>
+    </div><button class="primary" onclick="saveRuleSettings()">Wache/Abmeldungen speichern</button></div>
+    <div class="panel"><h2>Kanäle</h2>${simpleTable(['Bereich','Discord Channel ID'], Object.entries(channels).map(([k,v])=>[niceKey(k),`<input id="ch_${esc(k)}" value="${esc(v)}">`]))}<button class="primary" onclick="toast('Kanäle werden aktuell über /set kanal im Discord gesetzt. Web-Speichern kann ich als nächsten Schritt anbauen.')">Hinweis anzeigen</button></div>
+  </div>`;
+}
+async function saveAllAbgabeSettings(){
+  for(const k of ['routen','patronen','schwarzpulver','meth']){
+    const time=String(document.getElementById(`abg_${k}_time`)?.value||'23:59').split(':');
+    await api('/api/config/abgaben',{method:'POST',body:JSON.stringify({category:k,enabled:document.getElementById(`abg_${k}_enabled`)?.checked,amount:Number(document.getElementById(`abg_${k}_amount`)?.value||0),deadlineDay:Number(document.getElementById(`abg_${k}_day`)?.value||7),deadlineHour:Number(time[0]||23),deadlineMinute:Number(time[1]||59)})});
+  }
+  await refresh(true); toast('Abgaben-Einstellungen gespeichert');
+}
+async function saveRuleSettings(){
+  const body={
+    wacheRequiredMinutes:Number(document.getElementById('rule_wacheMinutes')?.value||0),
+    routeRequiredMinutes:Number(document.getElementById('rule_wacheMinutes')?.value||0),
+    absenceExcusedDays:Number(document.getElementById('rule_absenceExcusedDays')?.value||0),
+    excusedAfterDays:Number(document.getElementById('rule_absenceExcusedDays')?.value||0),
+    wacheEnabled:document.getElementById('rule_wacheEnabled')?.value==='true',
+    reportsEnabled:document.getElementById('rule_reportsEnabled')?.value==='true'
+  };
+  await api('/api/config/settings',{method:'POST',body:JSON.stringify(body)}); await refresh(true); toast('Wache/Abmeldungs-Regeln gespeichert');
+}
+
+
+// ===== Zeitraumfilter: Monitoring & Mitgliederliste =====
+function periodStateKey(scope){ return `dashboardPeriod_${scope||'global'}`; }
+function getPeriod(scope='global'){
+  const raw = localStorage.getItem(periodStateKey(scope));
+  if(raw){
+    try { return JSON.parse(raw); } catch(_) {}
+  }
+  return { mode:'month', from:'', to:'' };
+}
+function setPeriod(scope, mode){
+  const old = getPeriod(scope);
+  const next = { ...old, mode };
+  localStorage.setItem(periodStateKey(scope), JSON.stringify(next));
+  renderCurrent();
+}
+function setCustomPeriod(scope){
+  const old = getPeriod(scope);
+  const from = document.getElementById(`${scope}_from`)?.value || old.from || '';
+  const to = document.getElementById(`${scope}_to`)?.value || old.to || '';
+  localStorage.setItem(periodStateKey(scope), JSON.stringify({ mode:'custom', from, to }));
+  renderCurrent();
+}
+function dateOnly(d){
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function periodBounds(scope='global'){
+  const p = getPeriod(scope);
+  const now = new Date();
+  let start = new Date(now);
+  let end = new Date(now);
+  start.setHours(0,0,0,0);
+  end.setHours(23,59,59,999);
+
+  if(p.mode === 'week'){
+    const day = (now.getDay()+6)%7;
+    start = new Date(now); start.setHours(0,0,0,0); start.setDate(start.getDate()-day);
+  } else if(p.mode === 'lastWeek'){
+    const day = (now.getDay()+6)%7;
+    end = new Date(now); end.setHours(23,59,59,999); end.setDate(end.getDate()-day-1);
+    start = new Date(end); start.setHours(0,0,0,0); start.setDate(start.getDate()-6);
+  } else if(p.mode === 'month'){
+    start = new Date(now.getFullYear(), now.getMonth(), 1);
+    end = new Date(now.getFullYear(), now.getMonth()+1, 0, 23,59,59,999);
+  } else if(p.mode === 'lastMonth'){
+    start = new Date(now.getFullYear(), now.getMonth()-1, 1);
+    end = new Date(now.getFullYear(), now.getMonth(), 0, 23,59,59,999);
+  } else if(p.mode === '3m'){
+    start = new Date(now); start.setHours(0,0,0,0); start.setMonth(start.getMonth()-3);
+  } else if(p.mode === '6m'){
+    start = new Date(now); start.setHours(0,0,0,0); start.setMonth(start.getMonth()-6);
+  } else if(p.mode === '12m'){
+    start = new Date(now); start.setHours(0,0,0,0); start.setFullYear(start.getFullYear()-1);
+  } else if(p.mode === 'all'){
+    start = new Date(0);
+    end = new Date(8640000000000000);
+  } else if(p.mode === 'custom'){
+    start = p.from ? new Date(p.from + 'T00:00:00') : new Date(0);
+    end = p.to ? new Date(p.to + 'T23:59:59') : new Date(8640000000000000);
+  }
+  return { start:start.getTime(), end:end.getTime(), mode:p.mode, from:p.from||'', to:p.to||'' };
+}
+function periodLabel(scope='global'){
+  const b = periodBounds(scope);
+  const labels = {
+    week:'Diese Woche',
+    lastWeek:'Letzte Woche',
+    month:'Aktueller Monat',
+    lastMonth:'Letzter Monat',
+    '3m':'Letzte 3 Monate',
+    '6m':'Letzte 6 Monate',
+    '12m':'Letztes Jahr',
+    all:'Alles',
+    custom:'Benutzerdefiniert'
+  };
+  if(b.mode === 'custom') return `Benutzerdefiniert: ${b.from || 'Start'} bis ${b.to || 'Ende'}`;
+  return labels[b.mode] || 'Aktueller Monat';
+}
+function periodToolbar(scope='global'){
+  const p = getPeriod(scope);
+  const modes = [
+    ['week','Diese Woche'],
+    ['lastWeek','Letzte Woche'],
+    ['month','Aktueller Monat'],
+    ['lastMonth','Letzter Monat'],
+    ['3m','3 Monate'],
+    ['6m','6 Monate'],
+    ['12m','1 Jahr'],
+    ['all','Alles']
+  ];
+  return `<div class="period-toolbar toolbar">
+    <span class="pill gold">Zeitraum: ${esc(periodLabel(scope))}</span>
+    ${modes.map(([m,l])=>`<button class="${p.mode===m?'primary':''}" onclick="setPeriod('${scope}','${m}')">${esc(l)}</button>`).join('')}
+    <div class="custom-period">
+      <input id="${scope}_from" type="date" value="${esc(p.from||'')}">
+      <span class="muted">bis</span>
+      <input id="${scope}_to" type="date" value="${esc(p.to||'')}">
+      <button class="${p.mode==='custom'?'primary':''}" onclick="setCustomPeriod('${scope}')">Benutzerdefiniert</button>
+    </div>
+  </div>`;
+}
+function itemTimestamp(x){
+  return tsOf(x?.at || x?.ts || x?.createdAt || x?.date || x?.updatedAt || x?.from || x?.startTs || x?.weekStart || x?.weekKey || x?.week);
+}
+function inPeriodItem(x, scope='global'){
+  const b = periodBounds(scope);
+  const t = itemTimestamp(x);
+  if(!t || t < 1000) {
+    // Ohne Datum lieber sichtbar lassen, damit Daten nicht verschwinden.
+    return true;
+  }
+  return t >= b.start && t <= b.end;
+}
+function entriesInSelectedPeriod(items, scope='global'){
+  return (items||[]).filter(x => inPeriodItem(x, scope));
+}
+
+// vorhandene alte Range-Funktion überschreiben: Mitgliederliste nutzt jetzt denselben Zeitraumfilter
+function currentRange(){ return getPeriod('members').mode || 'month'; }
+function setMemberRange(mode){ setPeriod('members', mode); }
+entriesInRange = function(items, rangeOrScope='members'){
+  const scope = ['global','monitoring','members'].includes(rangeOrScope) ? rangeOrScope : 'members';
+  return entriesInSelectedPeriod(items, scope);
+};
+
+monitoringStats = function(){
+  const abgAll = allAbgabeRows();
+  const absAll = allAbsenceRows();
+  const sancAll = allSanctionRows();
+  const inv = allInventoryRows();
+
+  const abg = entriesInSelectedPeriod(abgAll, 'monitoring');
+  const abs = entriesInSelectedPeriod(absAll, 'monitoring');
+  const sanc = entriesInSelectedPeriod(sancAll, 'monitoring');
+
+  const submitted = abg.filter(r => ['abgegeben','paid','done','erledigt'].includes(String(r.status||'').toLowerCase()) || r.done || r.submitted).length;
+  const open = Math.max(0, abg.length - submitted);
+  const activeAbs = abs.filter(a => String(a.status||'').toLowerCase() !== 'inaktiv' && String(a.status||'').toLowerCase() !== 'closed').length;
+  const openSanc = sanc.filter(s => !(s.paid || s.done || String(s.status||'').toLowerCase().includes('bezahlt'))).length;
+  const cash = DATA.stats?.cashBalance ?? DATA.cashbox?.balance ?? 0;
+  const cfg = DATA.config?.settings || {};
+  const abgabenCfg = cfg.abgabenConfig || {};
+  const abgabenEnabled = cfg.abgabenEnabled || {};
+  const enabledCats = Object.entries(abgabenEnabled).filter(([_,v])=>v!==false).map(([k])=>niceKey(k));
+
+  const byCat = {};
+  abg.forEach(r => { const k = niceKey(r.category || 'Unbekannt'); byCat[k] ||= {total:0, done:0}; byCat[k].total++; if(['abgegeben','paid','done','erledigt'].includes(String(r.status||'').toLowerCase()) || r.done || r.submitted) byCat[k].done++; });
+
+  return `${periodToolbar('monitoring')}
+  <div class="cards">${[
+    ['Zeitraum', periodLabel('monitoring')],
+    ['Abgaben erledigt', `${submitted}/${abg.length || 0}`],
+    ['Offene Abgaben', open],
+    ['Aktive Abmeldungen', activeAbs],
+    ['Offene Sanktionen', openSanc],
+    ['Lager-User', inv.length],
+    ['Kassenstand', money(cash)],
+    ['Familien', (DATA.families||[]).length]
+  ].map(([k,v])=>`<div class="card"><div class="label">${esc(k)}</div><div class="value smallvalue">${esc(v)}</div></div>`).join('')}</div>
+  <div class="grid">
+    <div class="panel"><h2>Abgaben zusammengefasst</h2>${Object.keys(byCat).length?simpleTable(['Art','Erledigt','Gesamt','Offen'], Object.entries(byCat).map(([k,v])=>[k,v.done,v.total,Math.max(0,v.total-v.done)])):'<p class="muted">Keine Abgaben im gewählten Zeitraum.</p>'}</div>
+    <div class="panel"><h2>Aktuelle Einstellungen</h2>
+      <div class="mini-list">
+        <div class="mini-row"><span>Aktive Abgabenarten</span><b>${esc(enabledCats.join(', ') || '—')}</b></div>
+        ${Object.entries(abgabenCfg).slice(0,8).map(([k,v])=>`<div class="mini-row"><span>${esc(niceKey(k))}</span><b>${esc(v?.amount||v?.menge||'—')} • Frist ${esc(v?.deadlineDay||'—')} ${esc(v?.deadlineHour??'')}:${esc(String(v?.deadlineMinute??'').padStart(2,'0'))}</b></div>`).join('')}
+        <div class="mini-row"><span>Auto-Sanktionen</span><b>${cfg.autoSanctionsEnabled?'AN':'AUS'}</b></div>
+        <div class="mini-row"><span>Termin-Erinnerungen</span><b>${cfg.termRemindersEnabled?'AN':'AUS'}</b></div>
+        <div class="mini-row"><span>Leader-DM</span><b>${cfg.leaderReminderDmEnabled?'AN':'AUS'}</b></div>
+      </div>
+    </div>
+    <div class="panel"><h2>Abgaben im Zeitraum</h2>${abg.length?simpleTable(['Name','Woche','Art','Status','Info'], abg.slice(0,120).map(r=>[userCell(r.userId), r.weekKey||r.week||'—', niceKey(r.category), r.status||'offen', r.amount||r.menge||r.note||'—'])):'<p class="muted">Keine Einträge im gewählten Zeitraum.</p>'}</div>
+    <div class="panel"><h2>Abmeldungen & Sanktionen</h2>
+      <h2>Abmeldungen</h2>${abs.length?simpleTable(['Name','Von','Bis','Status'], abs.slice(0,40).map(a=>[userCell(a.userId),dt(a.from||a.startTs),dt(a.to||a.until||a.endTs),a.status||'—'])):'<p class="muted">Keine Abmeldungen.</p>'}
+      <h2>Sanktionen</h2>${sanc.length?simpleTable(['Name','Typ','Status','Grund'], sanc.slice(0,40).map(s=>[userCell(s.userId),s.penaltyType||s.type||'—',s.status||'—',s.reason||'—'])):'<p class="muted">Keine Sanktionen.</p>'}
+    </div>
+  </div>`;
+};
+
+config = function(){
+  if(!DATA.config) return locked();
+  return monitoringStats();
+};
+
+memberSummaryFor = function(uid, scope='members'){
+  const abg=entriesInSelectedPeriod(allAbgabeRows().filter(r=>String(r.userId)===String(uid)), scope);
+  const abs=entriesInSelectedPeriod(allAbsenceRows().filter(r=>String(r.userId)===String(uid)), scope);
+  const sanc=entriesInSelectedPeriod(allSanctionRows().filter(r=>String(r.userId)===String(uid)), scope);
+  const inv=allInventoryRows().find(r=>String(r.userId)===String(uid)) || {};
+  const submitted = abg.filter(r => ['abgegeben','paid','done','erledigt'].includes(String(r.status||'').toLowerCase()) || r.done || r.submitted).length;
+  const open = Math.max(0, abg.length-submitted);
+  const weapons = Object.entries(inv.weapons||inv.waffen||{}).filter(([_,v])=>Number(v)).map(([k,v])=>`${k}: ${v}`).join('<br>') || inv.weaponText || '—';
+  return {abg,abs,sanc,inv,submitted,open,weapons};
+};
+
+openMemberDetailStats = function(uid){
+  const sum=memberSummaryFor(uid, 'members');
+  openModal(`<h2>${esc(displayNameForUser(uid))}</h2><p class="muted">${esc(uid)} • Zeitraum: ${esc(periodLabel('members'))}</p>
+  ${periodToolbar('members')}
+  ${cards({'Abgaben erledigt':sum.submitted,'Abgaben offen':sum.open,'Abmeldungen':sum.abs.length,'Sanktionen':sum.sanc.length})}
+  <div class="grid">
+    <div class="panel"><h2>Abgaben-Verlauf</h2>${sum.abg.length?simpleTable(['Woche','Art','Status','Info'], sum.abg.slice(0,100).map(r=>[r.weekKey||r.week||'—',niceKey(r.category),r.status||'offen',r.amount||r.note||'—'])):'<p class="muted">Keine Abgaben in diesem Zeitraum.</p>'}</div>
+    <div class="panel"><h2>Lager aktuell</h2><p><b>Waffen</b><br>${sum.weapons}</p><p><b>Westen</b><br>Leicht: ${esc(sum.inv.leichteWesten||0)}<br>Schwer: ${esc(sum.inv.schwereWesten||sum.inv.westen||0)}</p><p><b>Munition</b><br>${esc(sum.inv.munition||0)}</p></div>
+    <div class="panel"><h2>Abmeldungen</h2>${sum.abs.length?simpleTable(['Von','Bis','Status','Grund'], sum.abs.slice(0,80).map(a=>[dt(a.from||a.startTs),dt(a.to||a.until||a.endTs),a.status||'—',a.reason||a.grund||'—'])):'<p class="muted">Keine Abmeldungen in diesem Zeitraum.</p>'}</div>
+    <div class="panel"><h2>Sanktionen</h2>${sum.sanc.length?simpleTable(['Datum','Typ','Status','Grund'], sum.sanc.slice(0,80).map(s=>[dt(s.at||s.createdAt),s.penaltyType||s.type||'—',s.status||'—',s.reason||'—'])):'<p class="muted">Keine Sanktionen in diesem Zeitraum.</p>'}</div>
+  </div>`);
+};
+
+members = function(){
+  const rows=(DATA.members||[]).map(m=>{
+    const uid=m.id||m.userId||m.discordId;
+    const sum=memberSummaryFor(uid,'members');
+    return [userCell(uid), m.phone||'—', `${sum.submitted}/${sum.abg.length||0}`, sum.abs.length, sum.sanc.length, `<button onclick="openMemberDetailStats('${esc(uid)}')">Ansehen</button>`];
+  });
+  return `${periodToolbar('members')}
+  <div class="panel"><h2>Mitgliederübersicht</h2><p class="muted">Standard ist aktueller Monat. Oben kannst du Woche, Monat, 3/6/12 Monate, alles oder einen eigenen Zeitraum wählen.</p>${simpleTable(['Name','Telefon','Abgaben','Abmeldungen','Sanktionen','Details'], rows)}</div>`;
+};
+
+// Branding: Redirect-Hinweis auf Loginseite ausblenden
+function hidePublicRedirectBox(){ const el=document.getElementById('publicAuthInfo'); if(el){ el.classList.add('hidden'); el.style.display='none'; } }
+setInterval(hidePublicRedirectBox, 1000);
+
+
+// ===== Final UI Fix: saubere Tabellen, Namen, Einstellungen/Kanäle =====
+function stripHtmlBreaks(v){
+  return String(v ?? '')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/&lt;br\s*\/?&gt;/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/\\n/g, '\n')
+    .trim();
+}
+function nl(v){ return esc(stripHtmlBreaks(v)).replace(/\n/g,'<br>'); }
+function shortId(id){
+  const s=String(id||'');
+  return s.length>14 ? `${s.slice(0,6)}…${s.slice(-4)}` : s;
+}
+function lookupNameDeep(obj, id){
+  if(!obj || typeof obj !== 'object') return null;
+  const sid=String(id||'');
+  if(obj[sid]){
+    const x=obj[sid];
+    if(typeof x === 'string') return x;
+    return x.nickname || x.name || x.username || x.globalName || x.displayName || x.phone || null;
+  }
+  if(Array.isArray(obj)){
+    for(const x of obj){
+      if(!x || typeof x !== 'object') continue;
+      if([x.id,x.userId,x.discordId,x.discord_id,x.memberId,x.phone,x.nummer].map(String).includes(sid)){
+        return x.nickname || x.name || x.username || x.globalName || x.displayName || x.phone || x.nummer || null;
+      }
+    }
+  } else {
+    for(const x of Object.values(obj)){
+      if(!x || typeof x !== 'object') continue;
+      if([x.id,x.userId,x.discordId,x.discord_id,x.memberId,x.phone,x.nummer].map(String).includes(sid)){
+        return x.nickname || x.name || x.username || x.globalName || x.displayName || x.phone || x.nummer || null;
+      }
+      for(const c of Object.values(x.contacts||{})){
+        if(c && [c.id,c.userId,c.discordId,c.nummer,c.phone].map(String).includes(sid)){
+          return c.name || c.nickname || c.nummer || c.phone || null;
+        }
+      }
+    }
+  }
+  return null;
+}
+displayNameForUser = function(id){
+  const raw=String(id||'').replace(/[<@!>]/g,'').trim();
+  if(!raw) return '—';
+  const sources=[DATA?.members, DATA?.numbers?.members, DATA?.numbers, DATA?.phonebook?.members, DATA?.phonebook, DATA?.families, DATA?.familiesBoard, DATA?.families_board];
+  for(const src of sources){
+    const found=lookupNameDeep(src, raw);
+    if(found) return String(found);
+  }
+  return raw;
+};
+userCell = function(id){
+  const raw=String(id||'').replace(/[<@!>]/g,'').trim();
+  const name=displayNameForUser(raw);
+  if(!raw) return '—';
+  return `<div class="person-cell"><b>${esc(name)}</b>${name!==raw?`<em>${esc(shortId(raw))}</em>`:''}</div>`;
+};
+function moneyFull(n){ return n === null || n === undefined ? '—' : new Intl.NumberFormat('de-DE').format(Number(n||0)) + ' $'; }
+
+// Abgaben: keine Einstellungsbox mehr hier, nur Daten
+abgaben = function(){
+  const root=DATA.abgaben||{};
+  const rows=allAbgabeRows ? allAbgabeRows() : [];
+  const filtered=filterRows(rows,[r=>`${displayNameForUser(r.userId)} ${r.weekKey||''} ${r.category||''} ${r.status||''}`]);
+  const byWeek=[...new Set(filtered.map(r=>r.weekKey||r.week).filter(Boolean))].slice(0,12);
+  return `<div class="toolbar"><span class="pill gold">${filtered.length} Einträge</span>${byWeek.map(w=>`<button onclick="document.getElementById('globalSearch').value='${esc(w)}';renderCurrent()">${esc(w)}</button>`).join('')}<button onclick="goModule('leader_all');openCentralSection('system','abgaben')">Abgaben einstellen</button></div>
+  <div class="panel"><h2>Abgaben</h2>${filtered.length?simpleTable(['Name','Woche','Art','Status','Betrag / Info'], filtered.slice(0,250).map(r=>[
+    userCell(r.userId),
+    r.weekKey||r.week||'—',
+    niceKey(r.category||'—'),
+    r.status||'offen',
+    r.amount||r.menge||r.note||'—'
+  ])):'<p class="muted">Keine Abgaben gefunden.</p>'}</div>`;
+};
+
+// Lager: echte Zeilen statt <br>-Text
+inventory = function(){
+  const rows=allInventoryRows().map(r=>{
+    const weapons = Object.entries(r.weapons||r.waffen||{}).filter(([_,v])=>Number(v)).map(([k,v])=>`${k}: ${v}`).join('\n') || stripHtmlBreaks(r.weaponText||r.weaponsText||'—');
+    return [userCell(r.userId), nl(weapons), `Leicht: ${esc(r.leichteWesten||0)}<br>Schwer: ${esc(r.schwereWesten||r.westen||0)}`, r.munition||0, dt(r.updatedAt||r.lastUpdate||r.at), `<button onclick="openMemberDetailStats('${esc(r.userId)}')">Person</button>`];
+  });
+  return `<div class="panel"><h2>Lager</h2>${simpleTable(['Name','Waffen','Westen','Munition','Update','Details'], rows)}</div>`;
+};
+
+// Abmeldungen: breitere Namen/Datumsfelder
+absences = function(){
+  const arr=allAbsenceRows();
+  const rows=filterRows(arr,[x=>`${displayNameForUser(x.userId)} ${x.reason||x.grund||''} ${x.status||''}`]).map(a=>[
+    userCell(a.userId),
+    dt(a.from||a.startTs||a.createdAt),
+    dt(a.to||a.until||a.untilTs||a.endTs),
+    a.days||a.tage||'—',
+    a.status||((a.active===false)?'inaktiv':'aktiv'),
+    a.reason||a.grund||'—'
+  ]);
+  const add=can('absencesCreate')?'<button class="primary" onclick="openAbsenceModal()">+ Abmeldung</button>':'';
+  return `<div class="toolbar"><span class="pill gold">${rows.length} Abmeldungen</span>${add}</div><div class="panel">${simpleTable(['Name','Von','Bis','Tage','Status','Grund'], rows)}</div>`;
+};
+
+// Kasse: Namen und Betrag sauber
+cashbox = function(){
+  const tx=DATA.cashbox?.transactions||[];
+  const balance=DATA.cashbox?.balance ?? DATA.stats?.cashBalance ?? 0;
+  const rows=filterRows(tx,[t=>`${t.type||''} ${t.category||''} ${t.customReason||''} ${t.note||''} ${displayNameForUser(t.createdBy||t.by||t.userId)}`]).slice(0,250).map(t=>[
+    dt(t.createdAt||t.at),
+    t.type==='expense'?'Ausgabe':'Einnahme',
+    t.category||'—',
+    moneyFull(t.amount||0),
+    nl(`${t.customReason||''}${t.note?'\n'+t.note:''}`),
+    userCell(t.createdBy||t.by||t.userId||'')
+  ]);
+  return `${cards({'Kassenstand':moneyFull(balance),'Transaktionen':tx.length})}<div class="section-actions">${can('cashboxWrite')?'<button class="primary" onclick="openCashModal()">+ Transaktion</button>':''}</div><div class="panel">${simpleTable(['Datum','Typ','Kategorie','Betrag','Grund / Notiz','Von'], rows)}</div>`;
+};
+
+// Einstellungen: Kanäle wirklich speichern
+settings = function(){
+  if(!DATA.config) return locked();
+  const set=DATA.config.settings||{};
+  const cfg=set.abgabenConfig||{};
+  const en=set.abgabenEnabled||{};
+  const channels=DATA.config.channels||DATA.config.channelIds||{};
+  const abgKeys=['routen','patronen','schwarzpulver','meth'];
+  const knownChannels=['routen','patronen','schwarzpulver','meth','termine','sanktionen','ausgeteilte','abmeldungen','familien','cashbox','inventory','wache','statistik','logs','public_link'];
+  const channelKeys=[...new Set([...knownChannels,...Object.keys(channels)])];
+  return `<div class="settings-page">
+    <div class="panel"><h2>Abgaben einstellen</h2><p class="muted">Hier stellst du ein, welche Abgaben aktiv sind, welche Menge Pflicht ist und wann die Frist endet.</p>${simpleTable(['Art','Aktiv','Pflicht / Menge','Frist-Tag','Uhrzeit'], abgKeys.map(k=>[
+      niceKey(k),
+      `<input id="abg_${k}_enabled" type="checkbox" ${en[k]!==false?'checked':''}>`,
+      `<input id="abg_${k}_amount" type="number" value="${esc(cfg[k]?.amount||0)}">`,
+      `<select id="abg_${k}_day">${[1,2,3,4,5,6,7].map(d=>`<option value="${d}" ${Number(cfg[k]?.deadlineDay||7)===d?'selected':''}>${['','Mo','Di','Mi','Do','Fr','Sa','So'][d]}</option>`).join('')}</select>`,
+      `<input id="abg_${k}_time" value="${String(cfg[k]?.deadlineHour??23).padStart(2,'0')}:${String(cfg[k]?.deadlineMinute??59).padStart(2,'0')}" style="width:95px">`
+    ]))}<button class="primary" onclick="saveAllAbgabeSettings()">Abgaben speichern</button></div>
+    <div class="panel"><h2>Automatik & DMs</h2><div class="settings-grid">${['autoSanctionsEnabled','termRemindersEnabled','leaderReminderDmEnabled','smartPingEnabled','decisionHintsEnabled','dryRunEnabled','logSystemEnabled','spamProtectionEnabled'].map(k=>settingInput(k,set)).join('')}</div><button class="primary" onclick="saveExpandedCentralSettings()">Automatik speichern</button></div>
+    <div class="panel"><h2>Wache & Abmeldungen</h2><div class="form-grid"><label>Pflicht-Minuten pro Woche<input id="rule_wacheMinutes" type="number" value="${esc(set.wacheRequiredMinutes||set.routeRequiredMinutes||0)}"></label><label>Ab wie vielen Tagen entschuldigt?<input id="rule_absenceExcusedDays" type="number" value="${esc(set.absenceExcusedDays||set.excusedAfterDays||0)}"></label><label>Wache aktiv<select id="rule_wacheEnabled"><option value="true" ${set.wacheEnabled!==false?'selected':''}>AN</option><option value="false" ${set.wacheEnabled===false?'selected':''}>AUS</option></select></label><label>Auto-Reports aktiv<select id="rule_reportsEnabled"><option value="true" ${set.reportsEnabled!==false?'selected':''}>AN</option><option value="false" ${set.reportsEnabled===false?'selected':''}>AUS</option></select></label></div><button class="primary" onclick="saveRuleSettings()">Wache/Abmeldungen speichern</button></div>
+    <div class="panel"><h2>Kanäle setzen</h2><p class="muted">Discord Channel-ID eintragen. Leer lassen löscht die Zuordnung.</p>${simpleTable(['Bereich','Discord Channel ID'], channelKeys.map(k=>[niceKey(k),`<input id="ch_${esc(k)}" data-channel-key="${esc(k)}" value="${esc(channels[k]||'')}">`]))}<button class="primary" onclick="saveChannelSettings()">Kanäle speichern</button></div>
+  </div>`;
+};
+async function saveChannelSettings(){
+  const channels={};
+  document.querySelectorAll('[data-channel-key]').forEach(el=>channels[el.dataset.channelKey]=el.value.trim());
+  await api('/api/config/channels',{method:'POST',body:JSON.stringify({channels})});
+  await refresh(true);
+  toast('Kanäle gespeichert');
+}
+
+
+// ===== Rollen & Web-Berechtigungen in Einstellungen =====
+const rolePermissionLabels = {
+  admin:'Admin / alles',
+  sanction_manage:'Sanktionen verwalten',
+  sanction_approve:'Sanktionen freigeben',
+  absence_manage:'Abmeldungen verwalten',
+  attendance_manage:'Anwesenheit/Wache verwalten',
+  config_manage:'Einstellungen bearbeiten',
+  dashboard_view:'Dashboard ansehen',
+  rollback_manage:'Rollback/Rückgängig'
+};
+const webModuleLabels = {
+  overview:'Übersicht',
+  map:'Familienkarte',
+  families:'Familien',
+  phonebook:'Telefonbuch',
+  members:'Mitglieder',
+  abgaben:'Abgaben',
+  abgabenStats:'Abgabenstatistik',
+  sanctions:'Sanktionen',
+  blood:'Bloodin/out',
+  cashbox:'Familienkasse',
+  inventory:'Lager',
+  terms:'Termine',
+  wache:'Routenwache',
+  absences:'Abmeldungen',
+  config:'Monitoring/Einstellungen'
+};
+function idsToText(v){ return Array.isArray(v) ? v.join('\n') : String(v || ''); }
+function splitRoleIdsText(v){ return String(v||'').split(/[,\n ]+/).map(x=>x.trim()).filter(Boolean); }
+function rolePermissionPanel(){
+  const roles = DATA.config?.roles || {};
+  const perms = roles.permissions || {};
+  const permKeys = ['admin','dashboard_view','config_manage','sanction_manage','sanction_approve','absence_manage','attendance_manage','rollback_manage'];
+  return `<div class="panel full-panel"><h2>Rollen & Web-Berechtigungen</h2>
+    <p class="muted">Hier kannst du Discord-Rollen-IDs eintragen. Mehrere IDs gehen mit Komma, Leerzeichen oder je eine pro Zeile. Änderungen gelten nach dem Speichern und Aktualisieren/Neu-Login.</p>
+    <div class="roles-grid">
+      <label>Admin-User-IDs<textarea id="role_adminUserIds" placeholder="Discord User IDs">${esc(idsToText(roles.adminUserIds || ['447008003170762753']))}</textarea></label>
+      <label>Leadership-Rollen<textarea id="role_leadership" placeholder="Rollen-IDs">${esc(idsToText(roles.leadership))}</textarea></label>
+      <label>Routenverwaltung-Rollen<textarea id="role_routenverwaltung" placeholder="Rollen-IDs">${esc(idsToText(roles.routenverwaltung))}</textarea></label>
+    </div>
+    <h2>Aktionen im Web</h2>
+    <div class="roles-grid">${permKeys.map(k=>`<label>${esc(rolePermissionLabels[k]||k)}<textarea id="perm_${esc(k)}" placeholder="Rollen-IDs">${esc(idsToText(perms[k]))}</textarea></label>`).join('')}</div>
+    <h2>Hinweis zu Bereichen</h2>
+    <p class="muted">Die Bereichsanzeige nutzt aktuell deine Rollenlogik aus dem Bot/Dashboard. Für feineres Modul-pro-Rolle-System kann ich als nächsten Schritt noch eine eigene Matrix bauen, z. B. Rolle X darf Lager, aber keine Kasse.</p>
+    <button class="primary" onclick="saveRolesPermissions()">Rollen & Berechtigungen speichern</button>
+  </div>`;
+}
+async function saveRolesPermissions(){
+  const permKeys=['admin','dashboard_view','config_manage','sanction_manage','sanction_approve','absence_manage','attendance_manage','rollback_manage'];
+  const body={
+    roles:{
+      leadership:splitRoleIdsText(document.getElementById('role_leadership')?.value),
+      routenverwaltung:splitRoleIdsText(document.getElementById('role_routenverwaltung')?.value)
+    },
+    permissions:{}
+  };
+  permKeys.forEach(k=>body.permissions[k]=splitRoleIdsText(document.getElementById('perm_'+k)?.value));
+  await api('/api/config/roles-permissions',{method:'POST',body:JSON.stringify(body)});
+  await refresh(true);
+  toast('Rollen & Web-Berechtigungen gespeichert');
+}
+
+// settings() erweitern, ohne den Rest zu entfernen
+const _settingsWithChannels = settings;
+settings = function(){
+  const base = _settingsWithChannels();
+  if(!DATA.config) return base;
+  return base.replace('</div>', rolePermissionPanel() + '</div>');
+};
+
+
+// ===== CLEAN SETTINGS + FORMAT FIX v2 =====
+function cleanLiteralBreaks(v){
+  return String(v ?? '')
+    .replace(/&lt;br\s*\/?&gt;/gi, '\n')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/\\n/g, '\n')
+    .replace(/\s*\n\s*/g, '\n')
+    .trim();
+}
+function cleanText(v){
+  return cleanLiteralBreaks(v).replace(/<[^>]+>/g,'').trim();
+}
+function htmlLines(v){
+  return esc(cleanText(v)).replace(/\n/g,'<br>');
+}
+function shortDiscordId(id){
+  const s=String(id||'').replace(/[<@!>]/g,'').trim();
+  if(!s) return '';
+  return s.length > 12 ? `${s.slice(0,4)}…${s.slice(-4)}` : s;
+}
+function normalizeLookupId(id){
+  return String(id||'').replace(/[<@!>]/g,'').trim();
+}
+function findNameInAnyData(id){
+  const sid=normalizeLookupId(id);
+  if(!sid) return null;
+
+  const checkObj=(obj)=>{
+    if(!obj) return null;
+    if(typeof obj==='string') return null;
+    if(obj[sid]){
+      const x=obj[sid];
+      if(typeof x==='string') return x;
+      return x.nickname||x.displayName||x.globalName||x.name||x.username||x.rpName||x.charName||x.phone||x.nummer||null;
+    }
+    return null;
+  };
+
+  const directSources=[DATA?.numbers?.members, DATA?.numbers, DATA?.phonebook?.members, DATA?.phonebook, DATA?.membersById, DATA?.users];
+  for(const src of directSources){
+    const found=checkObj(src);
+    if(found) return found;
+  }
+
+  const arrays=[
+    ...(Array.isArray(DATA?.members)?DATA.members:[]),
+    ...(Array.isArray(DATA?.phonebook?.items)?DATA.phonebook.items:[]),
+    ...(Array.isArray(DATA?.phonebook)?DATA.phonebook:[]),
+    ...(Array.isArray(DATA?.families)?DATA.families:[]),
+    ...(Array.isArray(DATA?.familiesBoard?.families)?DATA.familiesBoard.families:[]),
+    ...(Array.isArray(DATA?.families_board?.families)?DATA.families_board.families:[])
+  ];
+
+  for(const x of arrays){
+    if(!x || typeof x!=='object') continue;
+    const ids=[x.id,x.userId,x.discordId,x.discord_id,x.memberId,x.phone,x.nummer,x.number].map(v=>String(v||''));
+    if(ids.includes(sid)) return x.nickname||x.displayName||x.globalName||x.name||x.username||x.rpName||x.charName||x.phone||x.nummer||null;
+    const contacts=x.contacts||x.members||x.member||{};
+    if(Array.isArray(contacts)){
+      for(const c of contacts){
+        if(!c || typeof c!=='object') continue;
+        const cids=[c.id,c.userId,c.discordId,c.discord_id,c.memberId,c.phone,c.nummer,c.number].map(v=>String(v||''));
+        if(cids.includes(sid)) return c.nickname||c.displayName||c.globalName||c.name||c.username||c.rpName||c.charName||c.phone||c.nummer||null;
+      }
+    } else if(typeof contacts==='object'){
+      for(const c of Object.values(contacts)){
+        if(!c || typeof c!=='object') continue;
+        const cids=[c.id,c.userId,c.discordId,c.discord_id,c.memberId,c.phone,c.nummer,c.number].map(v=>String(v||''));
+        if(cids.includes(sid)) return c.nickname||c.displayName||c.globalName||c.name||c.username||c.rpName||c.charName||c.phone||c.nummer||null;
+      }
+    }
+  }
+
+  return null;
+}
+displayNameForUser = function(id){
+  const sid=normalizeLookupId(id);
+  if(!sid) return '—';
+  const name=findNameInAnyData(sid);
+  if(name) return String(name);
+  return `Unbekannter User`;
+};
+userCell = function(id){
+  const sid=normalizeLookupId(id);
+  const name=displayNameForUser(sid);
+  if(!sid) return '—';
+  return `<div class="person-cell"><b>${esc(name)}</b><em>${esc(shortDiscordId(sid))}</em></div>`;
+};
+
+// robust simple table override: no weird script text, no wrong escaping for trusted cells
+simpleTable = function(headers, rows){
+  return `<div class="table-wrap"><table><thead><tr>${headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${(rows||[]).map(r=>`<tr>${r.map(c=>`<td>${String(c ?? '—')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+};
+
+function cleanWeaponText(raw){
+  const s=cleanText(raw);
+  return s || '—';
+}
+
+// Abgaben page = only operational list, no settings
+abgaben = function(){
+  const rows=(typeof allAbgabeRows==='function'?allAbgabeRows():[]);
+  const filtered=filterRows(rows,[r=>`${displayNameForUser(r.userId)} ${r.weekKey||''} ${r.category||''} ${r.status||''}`]);
+  return `<div class="toolbar"><span class="pill gold">${filtered.length} Einträge</span><button onclick="goModule('leader_all');openCentralSection('system','abgaben')">Abgaben einstellen</button></div>
+  <div class="panel"><h2>Abgaben</h2>${filtered.length?simpleTable(['Name','Woche','Art','Status','Betrag / Info'], filtered.slice(0,300).map(r=>[
+    userCell(r.userId),
+    esc(r.weekKey||r.week||'—'),
+    esc(niceKey(r.category||'—')),
+    esc(niceKey(r.status||'offen')),
+    esc(r.amount||r.menge||r.note||'—')
+  ])):'<p class="muted">Keine Abgaben gefunden.</p>'}</div>`;
+};
+
+// Lager fix for visible <br> and IDs
+inventory = function(){
+  const rows=(typeof allInventoryRows==='function'?allInventoryRows():[]).map(r=>{
+    const weapons=Object.entries(r.weapons||r.waffen||{}).filter(([_,v])=>Number(v)).map(([k,v])=>`${k}: ${v}`).join('\n') || cleanWeaponText(r.weaponText||r.weaponsText||r.waffenText||'—');
+    return [
+      userCell(r.userId),
+      htmlLines(weapons),
+      `Leicht: ${esc(r.leichteWesten||0)}<br>Schwer: ${esc(r.schwereWesten||r.schwer||r.westen||0)}`,
+      esc(r.munition||0),
+      esc(dt(r.updatedAt||r.lastUpdate||r.at)),
+      `<button onclick="openMemberDetailStats('${esc(r.userId)}')">Person</button>`
+    ];
+  });
+  return `<div class="panel"><h2>Lager</h2>${simpleTable(['Name','Waffen','Westen','Munition','Update','Details'], rows)}</div>`;
+};
+
+// Kasse fix
+cashbox = function(){
+  const tx=DATA.cashbox?.transactions||[];
+  const balance=DATA.cashbox?.balance ?? DATA.stats?.cashBalance ?? 0;
+  const rows=filterRows(tx,[t=>`${t.type||''} ${t.category||''} ${t.customReason||''} ${t.note||''} ${displayNameForUser(t.createdBy||t.by||t.userId)}`]).slice(0,250).map(t=>[
+    esc(dt(t.createdAt||t.at)),
+    esc(t.type==='expense'?'Ausgabe':'Einnahme'),
+    esc(niceKey(t.category||'—')),
+    esc(typeof moneyFull==='function'?moneyFull(t.amount||0):money(t.amount||0)),
+    htmlLines(`${t.customReason||''}${t.note?'\n'+t.note:''}`),
+    userCell(t.createdBy||t.by||t.userId||'')
+  ]);
+  return `${cards({'Kassenstand':typeof moneyFull==='function'?moneyFull(balance):money(balance),'Transaktionen':tx.length})}<div class="section-actions">${can('cashboxWrite')?'<button class="primary" onclick="openCashModal()">+ Transaktion</button>':''}</div><div class="panel">${simpleTable(['Datum','Typ','Kategorie','Betrag','Grund / Notiz','Von'], rows)}</div>`;
+};
+
+// Abmeldungen fix
+absences = function(){
+  const arr=typeof allAbsenceRows==='function'?allAbsenceRows():[];
+  const rows=filterRows(arr,[x=>`${displayNameForUser(x.userId)} ${x.reason||x.grund||''} ${x.status||''}`]).map(a=>[
+    userCell(a.userId),
+    esc(dt(a.from||a.startTs||a.createdAt)),
+    esc(dt(a.to||a.until||a.untilTs||a.endTs)),
+    esc(a.days||a.tage||'—'),
+    esc(niceKey(a.status||((a.active===false)?'inaktiv':'aktiv'))),
+    esc(a.reason||a.grund||'—')
+  ]);
+  const add=can('absencesCreate')?'<button class="primary" onclick="openAbsenceModal()">+ Abmeldung</button>':'';
+  return `<div class="toolbar"><span class="pill gold">${rows.length} Abmeldungen</span>${add}</div><div class="panel">${simpleTable(['Name','Von','Bis','Tage','Status','Grund'], rows)}</div>`;
+};
+
+function idsToText(v){ return Array.isArray(v)?v.join('\n'):String(v||''); }
+function splitRoleIdsText(v){ return String(v||'').split(/[,\n ]+/).map(x=>x.trim()).filter(Boolean); }
+const rolePermissionLabelsClean = {
+  admin:'Admin / alles',
+  dashboard_view:'Dashboard ansehen',
+  config_manage:'Einstellungen bearbeiten',
+  sanction_manage:'Sanktionen verwalten',
+  sanction_approve:'Sanktionen freigeben',
+  absence_manage:'Abmeldungen verwalten',
+  attendance_manage:'Wache/Anwesenheit verwalten',
+  rollback_manage:'Rollback / Rückgängig'
+};
+function rolePermissionPanelClean(){
+  const roles=DATA.config?.roles||{};
+  const perms=roles.permissions||{};
+  const keys=['admin','dashboard_view','config_manage','sanction_manage','sanction_approve','absence_manage','attendance_manage','rollback_manage'];
+  return `<div class="panel settings-section full-panel"><h2>Rollen & Web-Berechtigungen</h2><p class="muted">Discord-Rollen-IDs eintragen. Mehrere IDs gehen mit Komma, Leerzeichen oder je eine pro Zeile.</p>
+    <div class="roles-grid">
+      <label>Admin-User-IDs<textarea id="role_adminUserIds" placeholder="Discord User IDs">${esc(idsToText(roles.adminUserIds || ['447008003170762753']))}</textarea></label>
+      <label>Leadership-Rollen<textarea id="role_leadership" placeholder="Rollen-IDs">${esc(idsToText(roles.leadership))}</textarea></label>
+      <label>Routenverwaltung-Rollen<textarea id="role_routenverwaltung" placeholder="Rollen-IDs">${esc(idsToText(roles.routenverwaltung))}</textarea></label>
+      ${keys.map(k=>`<label>${esc(rolePermissionLabelsClean[k])}<textarea id="perm_${esc(k)}" placeholder="Rollen-IDs">${esc(idsToText(perms[k]))}</textarea></label>`).join('')}
+    </div>
+    <button class="primary" onclick="saveRolesPermissions()">Rollen & Berechtigungen speichern</button>
+  </div>`;
+}
+async function saveRolesPermissions(){
+  const keys=['admin','dashboard_view','config_manage','sanction_manage','sanction_approve','absence_manage','attendance_manage','rollback_manage'];
+  const body={roles:{adminUserIds:splitRoleIdsText(document.getElementById('role_adminUserIds')?.value),leadership:splitRoleIdsText(document.getElementById('role_leadership')?.value),routenverwaltung:splitRoleIdsText(document.getElementById('role_routenverwaltung')?.value)},permissions:{}};
+  keys.forEach(k=>body.permissions[k]=splitRoleIdsText(document.getElementById('perm_'+k)?.value));
+  await api('/api/config/roles-permissions',{method:'POST',body:JSON.stringify(body)});
+  await refresh(true);
+  toast('Rollen & Berechtigungen gespeichert');
+}
+async function saveChannelSettings(){
+  const channels={};
+  document.querySelectorAll('[data-channel-key]').forEach(el=>channels[el.dataset.channelKey]=el.value.trim());
+  await api('/api/config/channels',{method:'POST',body:JSON.stringify({channels})});
+  await refresh(true);
+  toast('Kanäle gespeichert');
+}
+async function saveRuleSettingsClean(){
+  const body={
+    abgabeExcusedAfterDays:Number(document.getElementById('rule_abgabeExcusedAfterDays')?.value||0),
+    absenceExcusedDays:Number(document.getElementById('rule_absenceExcusedDays')?.value||0),
+    excusedAfterDays:Number(document.getElementById('rule_absenceExcusedDays')?.value||0),
+    abgabeShiftDays:Number(document.getElementById('rule_abgabeShiftDays')?.value||0),
+    statistikShiftDays:Number(document.getElementById('rule_statistikShiftDays')?.value||0),
+    reportShiftDays:Number(document.getElementById('rule_statistikShiftDays')?.value||0),
+    wacheRequiredMinutes:Number(document.getElementById('rule_wacheMinutes')?.value||0),
+    routeRequiredMinutes:Number(document.getElementById('rule_wacheMinutes')?.value||0),
+    wacheEnabled:document.getElementById('rule_wacheEnabled')?.value==='true',
+    reportsEnabled:document.getElementById('rule_reportsEnabled')?.value==='true'
+  };
+  await api('/api/config/rules',{method:'POST',body:JSON.stringify(body)});
+  await refresh(true);
+  toast('Regeln gespeichert');
+}
+
+// FULL settings rewrite so blocks cannot overlap anymore
+settings = function(){
+  if(!DATA.config) return locked();
+  const set=DATA.config.settings||{};
+  const cfg=set.abgabenConfig||{};
+  const en=set.abgabenEnabled||{};
+  const channels=DATA.config.channels||DATA.config.channelIds||{};
+  const abgKeys=['routen','patronen','schwarzpulver','meth'];
+  const knownChannels=['routen','patronen','schwarzpulver','meth','termine','sanktionen','ausgeteilte','abmeldungen','familien','cashbox','inventory','wache','statistik','logs','public_link'];
+  const channelKeys=[...new Set([...knownChannels,...Object.keys(channels)])];
+
+  return `<div class="settings-page-clean">
+    <div class="panel settings-section"><h2>Abgaben einstellen</h2><p class="muted">Aktive Abgaben, Pflichtmenge und Frist.</p>
+      ${simpleTable(['Art','Aktiv','Pflicht / Menge','Frist-Tag','Uhrzeit'], abgKeys.map(k=>[
+        esc(niceKey(k)),
+        `<input id="abg_${k}_enabled" type="checkbox" ${en[k]!==false?'checked':''}>`,
+        `<input id="abg_${k}_amount" type="number" value="${esc(cfg[k]?.amount||0)}">`,
+        `<select id="abg_${k}_day">${[1,2,3,4,5,6,7].map(d=>`<option value="${d}" ${Number(cfg[k]?.deadlineDay||7)===d?'selected':''}>${['','Mo','Di','Mi','Do','Fr','Sa','So'][d]}</option>`).join('')}</select>`,
+        `<input id="abg_${k}_time" value="${String(cfg[k]?.deadlineHour??23).padStart(2,'0')}:${String(cfg[k]?.deadlineMinute??59).padStart(2,'0')}">`
+      ]))}
+      <button class="primary" onclick="saveAllAbgabeSettings()">Abgaben speichern</button>
+    </div>
+
+    <div class="panel settings-section"><h2>Abmelde-/Statistik-Regeln</h2><p class="muted">Hier stellst du ein, ab wann jemand für Abgaben frei/entschuldigt ist und ob Statistiken/Abgaben verschoben werden.</p>
+      <div class="form-grid">
+        <label>Ab wie vielen Abmeldetagen frei für Abgaben?<input id="rule_abgabeExcusedAfterDays" type="number" value="${esc(set.abgabeExcusedAfterDays ?? set.absenceExcusedDays ?? set.excusedAfterDays ?? 0)}"></label>
+        <label>Allgemein entschuldigt ab Tagen<input id="rule_absenceExcusedDays" type="number" value="${esc(set.absenceExcusedDays ?? set.excusedAfterDays ?? 0)}"></label>
+        <label>Abgaben-Verschiebung in Tagen<input id="rule_abgabeShiftDays" type="number" value="${esc(set.abgabeShiftDays ?? 0)}"></label>
+        <label>Statistik-/Report-Verschiebung in Tagen<input id="rule_statistikShiftDays" type="number" value="${esc(set.statistikShiftDays ?? set.reportShiftDays ?? 0)}"></label>
+      </div>
+      <button class="primary" onclick="saveRuleSettingsClean()">Regeln speichern</button>
+    </div>
+
+    <div class="panel settings-section"><h2>Wache</h2>
+      <div class="form-grid">
+        <label>Pflicht-Minuten pro Woche<input id="rule_wacheMinutes" type="number" value="${esc(set.wacheRequiredMinutes||set.routeRequiredMinutes||0)}"></label>
+        <label>Wache aktiv<select id="rule_wacheEnabled"><option value="true" ${set.wacheEnabled!==false?'selected':''}>AN</option><option value="false" ${set.wacheEnabled===false?'selected':''}>AUS</option></select></label>
+        <label>Auto-Reports aktiv<select id="rule_reportsEnabled"><option value="true" ${set.reportsEnabled!==false?'selected':''}>AN</option><option value="false" ${set.reportsEnabled===false?'selected':''}>AUS</option></select></label>
+      </div>
+      <button class="primary" onclick="saveRuleSettingsClean()">Wache speichern</button>
+    </div>
+
+    <div class="panel settings-section"><h2>Automatik & DMs</h2>
+      <div class="settings-grid">${['autoSanctionsEnabled','termRemindersEnabled','leaderReminderDmEnabled','smartPingEnabled','decisionHintsEnabled','dryRunEnabled','logSystemEnabled','spamProtectionEnabled'].map(k=>settingInput(k,set)).join('')}</div>
+      <button class="primary" onclick="saveExpandedCentralSettings()">Automatik speichern</button>
+    </div>
+
+    <div class="panel settings-section full-panel"><h2>Kanäle setzen</h2><p class="muted">Discord Channel-ID eintragen. Leer lassen löscht die Zuordnung.</p>
+      ${simpleTable(['Bereich','Discord Channel ID'], channelKeys.map(k=>[esc(niceKey(k)),`<input id="ch_${esc(k)}" data-channel-key="${esc(k)}" value="${esc(channels[k]||'')}">`]))}
+      <button class="primary" onclick="saveChannelSettings()">Kanäle speichern</button>
+    </div>
+
+    ${rolePermissionPanelClean()}
+  </div>`;
+};
+
+
+// ===== Abgaben-Verschiebung pro Abgabe + Statistik wartet auf späteste Abgabe =====
+settings = function(){
+  if(!DATA.config) return locked();
+  const set=DATA.config.settings||{};
+  const cfg=set.abgabenConfig||{};
+  const en=set.abgabenEnabled||{};
+  const channels=DATA.config.channels||DATA.config.channelIds||{};
+  const abgKeys=['routen','patronen','schwarzpulver','meth'];
+  const knownChannels=['routen','patronen','schwarzpulver','meth','termine','sanktionen','ausgeteilte','abmeldungen','familien','cashbox','inventory','wache','statistik','logs','public_link'];
+  const channelKeys=[...new Set([...knownChannels,...Object.keys(channels)])];
+
+  return `<div class="settings-page-clean">
+    <div class="panel settings-section full-panel"><h2>Abgaben einstellen</h2><p class="muted">Jede Abgabe kann einzeln aktiv sein, eigene Pflichtmenge, eigene Frist und eigene Verschiebung haben. Die Statistik wartet automatisch auf die späteste aktive Abgabe-Frist.</p>
+      ${simpleTable(['Art','Aktiv','Pflicht / Menge','Frist-Tag','Uhrzeit','Verschieben um Tage'], abgKeys.map(k=>[
+        esc(niceKey(k)),
+        `<input id="abg_${k}_enabled" type="checkbox" ${en[k]!==false?'checked':''}>`,
+        `<input id="abg_${k}_amount" type="number" value="${esc(cfg[k]?.amount||0)}">`,
+        `<select id="abg_${k}_day">${[1,2,3,4,5,6,7].map(d=>`<option value="${d}" ${Number(cfg[k]?.deadlineDay||7)===d?'selected':''}>${['','Mo','Di','Mi','Do','Fr','Sa','So'][d]}</option>`).join('')}</select>`,
+        `<input id="abg_${k}_time" value="${String(cfg[k]?.deadlineHour??23).padStart(2,'0')}:${String(cfg[k]?.deadlineMinute??59).padStart(2,'0')}">`,
+        `<input id="abg_${k}_shift" type="number" min="0" value="${esc(cfg[k]?.shiftDays ?? cfg[k]?.moveDays ?? 0)}">`
+      ]))}
+      <button class="primary" onclick="saveAllAbgabeSettings()">Abgaben speichern</button>
+    </div>
+
+    <div class="panel settings-section"><h2>Abmelde-Regeln</h2><p class="muted">Hier stellst du ein, ab wann jemand wegen Abmeldung für Abgaben frei/entschuldigt ist.</p>
+      <div class="form-grid">
+        <label>Ab wie vielen Abmeldetagen frei für Abgaben?<input id="rule_abgabeExcusedAfterDays" type="number" value="${esc(set.abgabeExcusedAfterDays ?? set.absenceExcusedDays ?? set.excusedAfterDays ?? 0)}"></label>
+        <label>Allgemein entschuldigt ab Tagen<input id="rule_absenceExcusedDays" type="number" value="${esc(set.absenceExcusedDays ?? set.excusedAfterDays ?? 0)}"></label>
+      </div>
+      <button class="primary" onclick="saveRuleSettingsClean()">Abmelde-Regeln speichern</button>
+    </div>
+
+    <div class="panel settings-section"><h2>Statistik</h2><p class="muted">Keine manuelle Verschiebung nötig: Die Statistik wird automatisch erst nach der spätesten aktiven Abgabe-Frist ausgewertet. Wenn du z. B. Patronen um 1 Tag verschiebst, wartet die Statistik automatisch darauf.</p>
+      <div class="mini-list">
+        ${abgKeys.filter(k=>en[k]!==false).map(k=>`<div class="mini-row"><span>${esc(niceKey(k))}</span><b>${esc(['','Mo','Di','Mi','Do','Fr','Sa','So'][Number(cfg[k]?.deadlineDay||7)])} ${esc(String(cfg[k]?.deadlineHour??23).padStart(2,'0'))}:${esc(String(cfg[k]?.deadlineMinute??59).padStart(2,'0'))} ${Number(cfg[k]?.shiftDays||cfg[k]?.moveDays||0)>0?`+ ${esc(cfg[k]?.shiftDays||cfg[k]?.moveDays)} Tag(e)`:''}</b></div>`).join('')}
+      </div>
+    </div>
+
+    <div class="panel settings-section"><h2>Wache</h2>
+      <div class="form-grid">
+        <label>Pflicht-Minuten pro Woche<input id="rule_wacheMinutes" type="number" value="${esc(set.wacheRequiredMinutes||set.routeRequiredMinutes||0)}"></label>
+        <label>Wache aktiv<select id="rule_wacheEnabled"><option value="true" ${set.wacheEnabled!==false?'selected':''}>AN</option><option value="false" ${set.wacheEnabled===false?'selected':''}>AUS</option></select></label>
+        <label>Auto-Reports aktiv<select id="rule_reportsEnabled"><option value="true" ${set.reportsEnabled!==false?'selected':''}>AN</option><option value="false" ${set.reportsEnabled===false?'selected':''}>AUS</option></select></label>
+      </div>
+      <button class="primary" onclick="saveRuleSettingsClean()">Wache speichern</button>
+    </div>
+
+    <div class="panel settings-section"><h2>Automatik & DMs</h2>
+      <div class="settings-grid">${['autoSanctionsEnabled','termRemindersEnabled','leaderReminderDmEnabled','smartPingEnabled','decisionHintsEnabled','dryRunEnabled','logSystemEnabled','spamProtectionEnabled'].map(k=>settingInput(k,set)).join('')}</div>
+      <button class="primary" onclick="saveExpandedCentralSettings()">Automatik speichern</button>
+    </div>
+
+    <div class="panel settings-section full-panel"><h2>Kanäle setzen</h2><p class="muted">Discord Channel-ID eintragen. Leer lassen löscht die Zuordnung.</p>
+      ${simpleTable(['Bereich','Discord Channel ID'], channelKeys.map(k=>[esc(niceKey(k)),`<input id="ch_${esc(k)}" data-channel-key="${esc(k)}" value="${esc(channels[k]||'')}">`]))}
+      <button class="primary" onclick="saveChannelSettings()">Kanäle speichern</button>
+    </div>
+
+    ${rolePermissionPanelClean ? rolePermissionPanelClean() : ''}
+  </div>`;
+};
+
+saveAllAbgabeSettings = async function(){
+  for(const k of ['routen','patronen','schwarzpulver','meth']){
+    const time=String(document.getElementById(`abg_${k}_time`)?.value||'23:59').split(':');
+    await api('/api/config/abgaben',{method:'POST',body:JSON.stringify({
+      category:k,
+      enabled:document.getElementById(`abg_${k}_enabled`)?.checked,
+      amount:Number(document.getElementById(`abg_${k}_amount`)?.value||0),
+      deadlineDay:Number(document.getElementById(`abg_${k}_day`)?.value||7),
+      deadlineHour:Number(time[0]||23),
+      deadlineMinute:Number(time[1]||59),
+      shiftDays:Number(document.getElementById(`abg_${k}_shift`)?.value||0)
+    })});
+  }
+  await refresh(true);
+  toast('Abgaben-Einstellungen gespeichert');
+};
+
+saveRuleSettingsClean = async function(){
+  const body={
+    abgabeExcusedAfterDays:Number(document.getElementById('rule_abgabeExcusedAfterDays')?.value||0),
+    absenceExcusedDays:Number(document.getElementById('rule_absenceExcusedDays')?.value||0),
+    excusedAfterDays:Number(document.getElementById('rule_absenceExcusedDays')?.value||0),
+    wacheRequiredMinutes:Number(document.getElementById('rule_wacheMinutes')?.value||0),
+    routeRequiredMinutes:Number(document.getElementById('rule_wacheMinutes')?.value||0),
+    wacheEnabled:document.getElementById('rule_wacheEnabled')?.value==='true',
+    reportsEnabled:document.getElementById('rule_reportsEnabled')?.value==='true'
+  };
+  await api('/api/config/rules',{method:'POST',body:JSON.stringify(body)});
+  await refresh(true);
+  toast('Regeln gespeichert');
+};
+
+
+// ===== Wochen-Detailansichten für Wache + Abgaben =====
+let SELECTED_WACHE_WEEK = null;
+let SELECTED_ABGABE_WEEK = null;
+
+function isoWeekKeyFromDateLike(v){
+  const s=String(v||'').trim();
+  if(!s) return '';
+  const direct=s.match(/(\d{4})-?W(\d{1,2})/i);
+  if(direct) return `${direct[1]}-W${String(direct[2]).padStart(2,'0')}`;
+  const d=new Date(s);
+  if(isNaN(d)) return '';
+  const date=new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const dayNum=date.getUTCDay()||7;
+  date.setUTCDate(date.getUTCDate()+4-dayNum);
+  const yearStart=new Date(Date.UTC(date.getUTCFullYear(),0,1));
+  const weekNo=Math.ceil((((date-yearStart)/86400000)+1)/7);
+  return `${date.getUTCFullYear()}-W${String(weekNo).padStart(2,'0')}`;
+}
+function weekMonday(weekKey){
+  const m=String(weekKey||'').match(/^(\d{4})-W(\d{2})$/);
+  if(!m) return null;
+  const year=Number(m[1]), week=Number(m[2]);
+  const jan4=new Date(Date.UTC(year,0,4));
+  const day=jan4.getUTCDay()||7;
+  const monday=new Date(jan4);
+  monday.setUTCDate(jan4.getUTCDate()-day+1+(week-1)*7);
+  return monday;
+}
+function dateKey(d){
+  if(!d || isNaN(d)) return '';
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`;
+}
+function dayLabelFromIndex(i){
+  return ['Mo','Di','Mi','Do','Fr','Sa','So'][i] || '';
+}
+function timeRangeForEntry(e){
+  const start=e.start || e.from || e.startAt || e.startTs || e.createdAt || e.at || '';
+  const end=e.end || e.to || e.endAt || e.endTs || e.until || '';
+  const fmt=(x)=>{
+    if(!x) return '';
+    const d=new Date(x);
+    if(!isNaN(d)) return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+    const m=String(x).match(/(\d{1,2})[:.](\d{2})/);
+    return m?`${String(m[1]).padStart(2,'0')}:${m[2]}`:String(x);
+  };
+  const a=fmt(start), b=fmt(end);
+  if(a && b) return `${a}–${b}`;
+  return a || b || '—';
+}
+function durationForEntry(e){
+  const mins=Number(e.minutes||e.durationMinutes||e.dauerMinuten||e.duration||0);
+  if(!mins) return '';
+  const h=Math.floor(mins/60), m=mins%60;
+  if(h && m) return `${h}h ${m}m`;
+  if(h) return `${h}h`;
+  return `${m}m`;
+}
+function collectWacheRows(){
+  const raw=[];
+  const push=(x)=>{ if(x && typeof x==='object') raw.push(x); };
+
+  if(Array.isArray(DATA.wache)) DATA.wache.forEach(push);
+  if(Array.isArray(DATA.wache?.entries)) DATA.wache.entries.forEach(push);
+  if(Array.isArray(DATA.wache?.sessions)) DATA.wache.sessions.forEach(push);
+  if(Array.isArray(DATA.sessions)) DATA.sessions.forEach(push);
+  if(Array.isArray(DATA.sessions?.entries)) DATA.sessions.entries.forEach(push);
+  if(Array.isArray(DATA.sessions?.sessions)) DATA.sessions.sessions.forEach(push);
+
+  // If sessions are grouped by id/object
+  for(const src of [DATA.wache, DATA.sessions]){
+    if(src && typeof src==='object' && !Array.isArray(src)){
+      for(const v of Object.values(src)){
+        if(Array.isArray(v)) v.forEach(push);
+        else if(v && typeof v==='object' && (v.userId || v.memberId || v.start || v.from || v.weekKey)) push(v);
+      }
+    }
+  }
+
+  return raw.map(e=>{
+    const start=e.start || e.from || e.startAt || e.startTs || e.createdAt || e.at || e.date || '';
+    const d=new Date(start);
+    const wk=e.weekKey || e.week || isoWeekKeyFromDateLike(start);
+    const dk=e.dateKey || (!isNaN(d)?dateKey(new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()))):'');
+    return {...e, _weekKey:wk, _dateKey:dk, _userId:e.userId||e.memberId||e.discordId||e.discord_id||e.id};
+  }).filter(e=>e._weekKey);
+}
+function collectAbgabeRows(){
+  const rows=(typeof allAbgabeRows==='function'?allAbgabeRows():[]);
+  return rows.map(r=>({
+    ...r,
+    _weekKey:r.weekKey || r.week || isoWeekKeyFromDateLike(r.createdAt||r.at||r.deadline||r.date),
+    _userId:r.userId||r.memberId||r.discordId||r.discord_id||r.id
+  })).filter(r=>r._weekKey);
+}
+function uniqueSortedWeeks(rows){
+  return [...new Set(rows.map(r=>r._weekKey).filter(Boolean))].sort().reverse();
+}
+function weekChooser(kind, weeks, selected){
+  if(!selected && weeks.length) selected=weeks[0];
+  const fn=kind==='wache'?'selectWacheWeek':'selectAbgabeWeek';
+  return `<div class="week-chips">${weeks.slice(0,20).map(w=>`<button class="${w===selected?'active':''}" onclick="${fn}('${esc(w)}')">${esc(w)}</button>`).join('')}</div>`;
+}
+function selectWacheWeek(w){
+  SELECTED_WACHE_WEEK=w;
+  renderCurrent();
+}
+function selectAbgabeWeek(w){
+  SELECTED_ABGABE_WEEK=w;
+  renderCurrent();
+}
+function wacheWeekDetail(rows, weekKey){
+  const monday=weekMonday(weekKey);
+  const byDay={};
+  for(let i=0;i<7;i++){
+    const d=new Date(monday || Date.now());
+    if(monday) d.setUTCDate(monday.getUTCDate()+i);
+    byDay[i]=[];
+  }
+  for(const e of rows.filter(x=>x._weekKey===weekKey)){
+    let idx=0;
+    if(e._dateKey && monday){
+      const dd=new Date(e._dateKey+'T00:00:00Z');
+      idx=Math.round((dd-monday)/86400000);
+      if(idx<0||idx>6) idx=0;
+    } else {
+      const st=new Date(e.start || e.from || e.startAt || e.startTs || e.createdAt || e.at || '');
+      idx=isNaN(st)?0:((st.getDay()+6)%7);
+    }
+    byDay[idx].push(e);
+  }
+  const cells=[];
+  for(let i=0;i<7;i++){
+    const date=monday?`<small>${dateKey(new Date(monday.getTime()+i*86400000))}</small>`:'';
+    const items=byDay[i].length?byDay[i].map(e=>{
+      const name=displayNameForUser(e._userId);
+      const range=timeRangeForEntry(e);
+      const dur=durationForEntry(e);
+      return `<div class="dienst-entry"><b>${esc(name)}</b><span>${esc(range)}${dur?' · '+esc(dur):''}</span></div>`;
+    }).join(''):'<span class="muted">Keine Dienste</span>';
+    cells.push(`<td><div class="day-head">${dayLabelFromIndex(i)} ${date}</div>${items}</td>`);
+  }
+  return `<div class="panel full-panel"><h2>Wache Woche ${esc(weekKey)}</h2><div class="table-wrap week-table-wrap"><table class="week-table"><thead><tr>${[0,1,2,3,4,5,6].map(i=>`<th>${dayLabelFromIndex(i)}</th>`).join('')}</tr></thead><tbody><tr>${cells.join('')}</tr></tbody></table></div></div>`;
+}
+function abgabeStatusFlags(r){
+  const status=String(r.status||'').toLowerCase();
+  const submitted=Boolean(r.submitted || r.done || r.paid || r.abgegeben || ['done','paid','abgegeben','erledigt','ok'].includes(status));
+  const excused=Boolean(r.excused || r.entschuldigt || ['excused','entschuldigt','abgemeldet'].includes(status));
+  const warning=Boolean(r.warning || r.warnphase || r.warned || ['warning','warnphase','warnung'].includes(status));
+  const sanctioned=Boolean(r.sanctioned || r.sanktioniert || r.sanctionId || ['sanctioned','sanktioniert'].includes(status));
+  return {submitted, excused, warning, sanctioned};
+}
+function yn(v){ return v?'<span class="yes">Ja</span>':'<span class="no">Nein</span>'; }
+function abgabeWeekDetail(rows, weekKey){
+  const weekRows=rows.filter(x=>x._weekKey===weekKey);
+  const grouped=new Map();
+  for(const r of weekRows){
+    const key=normalizeLookupId(r._userId || r.userId || '') || JSON.stringify(r).slice(0,20);
+    if(!grouped.has(key)) grouped.set(key, []);
+    grouped.get(key).push(r);
+  }
+  const tableRows=[];
+  for(const [uid, list] of grouped.entries()){
+    const flags=list.reduce((acc,r)=>{
+      const f=abgabeStatusFlags(r);
+      acc.submitted ||= f.submitted;
+      acc.excused ||= f.excused;
+      acc.warning ||= f.warning;
+      acc.sanctioned ||= f.sanctioned;
+      return acc;
+    },{submitted:false,excused:false,warning:false,sanctioned:false});
+    const cats=[...new Set(list.map(r=>niceKey(r.category||r.type||r.art||'Abgabe')))].join(', ');
+    const statuses=[...new Set(list.map(r=>niceKey(r.status||'offen')))].join(', ');
+    tableRows.push([
+      userCell(uid),
+      esc(cats),
+      yn(flags.submitted),
+      yn(flags.excused),
+      yn(flags.warning),
+      yn(flags.sanctioned),
+      esc(statuses)
+    ]);
+  }
+  tableRows.sort((a,b)=>String(a[0]).localeCompare(String(b[0])));
+  return `<div class="panel full-panel"><h2>Abgaben Woche ${esc(weekKey)}</h2>${tableRows.length?simpleTable(['Name','Art','Abgegeben','Entschuldigt','Warnphase','Sanktioniert','Status'], tableRows):'<p class="muted">Keine Abgaben für diese Woche gefunden.</p>'}</div>`;
+}
+
+// Override Wache page with weekly drilldown
+wache = function(){
+  const rows=collectWacheRows();
+  const weeks=uniqueSortedWeeks(rows);
+  if(!SELECTED_WACHE_WEEK || !weeks.includes(SELECTED_WACHE_WEEK)) SELECTED_WACHE_WEEK=weeks[0]||null;
+  const summaryRows=weeks.map(w=>{
+    const wr=rows.filter(r=>r._weekKey===w);
+    const people=new Set(wr.map(r=>normalizeLookupId(r._userId)).filter(Boolean));
+    const mins=wr.reduce((s,r)=>s+Number(r.minutes||r.durationMinutes||r.dauerMinuten||0),0);
+    return [`<button class="linkbtn" onclick="selectWacheWeek('${esc(w)}')">${esc(w)}</button>`, esc(wr.length), esc(people.size), mins?esc(Math.round(mins/60*10)/10+'h'):'—'];
+  });
+  return `<div class="toolbar"><span class="pill gold">${weeks.length} Wochen</span></div>
+    <div class="panel"><h2>Wache nach Wochen</h2><p class="muted">Klicke auf eine Woche, dann siehst du Montag bis Sonntag mit allen Diensten.</p>${weekChooser('wache',weeks,SELECTED_WACHE_WEEK)}${simpleTable(['Woche','Dienste','Personen','Stunden'],summaryRows)}</div>
+    ${SELECTED_WACHE_WEEK?wacheWeekDetail(rows,SELECTED_WACHE_WEEK):''}`;
+};
+
+// Override Abgaben page with weekly drilldown
+abgaben = function(){
+  const rows=collectAbgabeRows();
+  const weeks=uniqueSortedWeeks(rows);
+  if(!SELECTED_ABGABE_WEEK || !weeks.includes(SELECTED_ABGABE_WEEK)) SELECTED_ABGABE_WEEK=weeks[0]||null;
+  const summaryRows=weeks.map(w=>{
+    const wr=rows.filter(r=>r._weekKey===w);
+    const flags=wr.map(abgabeStatusFlags);
+    const submitted=flags.filter(f=>f.submitted).length;
+    const excused=flags.filter(f=>f.excused).length;
+    const warning=flags.filter(f=>f.warning).length;
+    const sanctioned=flags.filter(f=>f.sanctioned).length;
+    return [`<button class="linkbtn" onclick="selectAbgabeWeek('${esc(w)}')">${esc(w)}</button>`, esc(wr.length), esc(submitted), esc(excused), esc(warning), esc(sanctioned)];
+  });
+  return `<div class="toolbar"><span class="pill gold">${weeks.length} Wochen</span><button onclick="goModule('leader_all');openCentralSection('system','abgaben')">Abgaben einstellen</button></div>
+    <div class="panel"><h2>Abgaben nach Wochen</h2><p class="muted">Klicke auf eine Woche, dann siehst du pro Person abgegeben/nicht abgegeben, entschuldigt, Warnphase und sanktioniert.</p>${weekChooser('abgabe',weeks,SELECTED_ABGABE_WEEK)}${simpleTable(['Woche','Einträge','Abgegeben','Entschuldigt','Warnphase','Sanktioniert'],summaryRows)}</div>
+    ${SELECTED_ABGABE_WEEK?abgabeWeekDetail(rows,SELECTED_ABGABE_WEEK):''}`;
+};
+
+
+// ===== Discord-like Abgaben-Wochenansicht + Web-Eintragung =====
+function abgabeFlagEmoji(kind, value){
+  if(kind==='submitted') return value ? '✅' : '❌';
+  if(kind==='sanctioned') return value ? '✔️' : '—';
+  if(kind==='warning') return value ? '⏰' : '—';
+  if(kind==='excused') return value ? '🟡' : '—';
+  if(kind==='prepaid') return value ? '🟦' : '—';
+  return value ? '✔️' : '—';
+}
+function abgabeHumanStatus(r){
+  const f=abgabeStatusFlags2(r);
+  if(f.prepaid) return 'Vorausgezahlt';
+  if(f.excused) return 'Entschuldigt';
+  if(f.submitted) return 'Abgegeben';
+  if(f.warning) return 'Warnphase';
+  if(f.sanctioned) return 'Sanktioniert';
+  return 'Nicht abgegeben';
+}
+function abgabeStatusFlags2(r){
+  const status=String(r.status||r.state||'').toLowerCase();
+  const text=String(`${r.status||''} ${r.note||''} ${r.reason||''}`).toLowerCase();
+  return {
+    submitted:Boolean(r.submitted || r.done || r.paid || r.abgegeben || ['done','paid','abgegeben','erledigt','ok'].includes(status)),
+    excused:Boolean(r.excused || r.entschuldigt || ['excused','entschuldigt','abgemeldet'].includes(status) || text.includes('tage')),
+    warning:Boolean(r.warning || r.warnphase || r.warned || ['warning','warnphase','warnung','nachholung','late'].includes(status)),
+    sanctioned:Boolean(r.sanctioned || r.sanktioniert || r.sanctionId || ['sanctioned','sanktioniert'].includes(status)),
+    prepaid:Boolean(r.prepaid || r.vorausgezahlt || ['prepaid','vorausgezahlt','vorauszahlung'].includes(status) || text.includes('voraus'))
+  };
+}
+function abgabeWeekGrouped(rows, weekKey){
+  const weekRows=rows.filter(x=>x._weekKey===weekKey);
+  const grouped=new Map();
+  for(const r of weekRows){
+    const uid=normalizeLookupId(r._userId || r.userId || r.memberId || '');
+    const key=uid || (r.name || JSON.stringify(r).slice(0,18));
+    if(!grouped.has(key)) grouped.set(key, []);
+    grouped.get(key).push(r);
+  }
+  const people=[];
+  for(const [uid,list] of grouped.entries()){
+    const flags=list.reduce((acc,r)=>{
+      const f=abgabeStatusFlags2(r);
+      acc.submitted ||= f.submitted;
+      acc.excused ||= f.excused;
+      acc.warning ||= f.warning;
+      acc.sanctioned ||= f.sanctioned;
+      acc.prepaid ||= f.prepaid;
+      return acc;
+    },{submitted:false,excused:false,warning:false,sanctioned:false,prepaid:false});
+    const amount=list.find(x=>Number(x.amount||x.menge))?.amount || list.find(x=>Number(x.menge))?.menge || '';
+    const category=[...new Set(list.map(r=>niceKey(r.category||r.type||r.art||'Abgabe')))].join(', ');
+    const rawStatus=[...new Set(list.map(r=>niceKey(r.status||'offen')))].join(', ');
+    let group='missing';
+    if(flags.prepaid) group='prepaid';
+    else if(flags.excused) group='excused';
+    else if(flags.submitted) group='submitted';
+    else if(flags.warning) group='warning';
+    else if(flags.sanctioned) group='sanctioned';
+    people.push({uid,list,flags,amount,category,rawStatus,group,name:displayNameForUser(uid)});
+  }
+  people.sort((a,b)=>String(a.name).localeCompare(String(b.name)));
+  return people;
+}
+function discordLikeGroup(title, emoji, list, empty='—'){
+  return `<div class="discord-group"><h3>${emoji} ${esc(title)} <span>(${list.length})</span></h3>${
+    list.length ? list.map(p=>`<div class="discord-line">• <b>${esc(p.name)}</b>${p.amount?` — ${esc(typeof moneyFull==='function'?moneyFull(p.amount):money(p.amount))}`:''}${p.rawStatus && p.rawStatus!=='Offen'?` <small>(${esc(p.rawStatus)})</small>`:''}</div>`).join('') : `<div class="muted">${empty}</div>`
+  }</div>`;
+}
+function abgabeWeekDetail(rows, weekKey){
+  const people=abgabeWeekGrouped(rows, weekKey);
+  const submitted=people.filter(p=>p.group==='submitted');
+  const excused=people.filter(p=>p.group==='excused');
+  const warning=people.filter(p=>p.group==='warning');
+  const prepaid=people.filter(p=>p.group==='prepaid');
+  const sanctioned=people.filter(p=>p.group==='sanctioned');
+  const missing=people.filter(p=>p.group==='missing');
+
+  const simpleRows=people.map(p=>[
+    userCell(p.uid),
+    esc(p.category||'—'),
+    abgabeFlagEmoji('submitted', p.flags.submitted || p.flags.prepaid),
+    abgabeFlagEmoji('warning', p.flags.warning),
+    abgabeFlagEmoji('excused', p.flags.excused),
+    abgabeFlagEmoji('prepaid', p.flags.prepaid),
+    abgabeFlagEmoji('sanctioned', p.flags.sanctioned),
+    `<select onchange="quickSetAbgabeStatus('${esc(p.uid)}','${esc(weekKey)}',this.value)">
+      <option value="">ändern...</option>
+      <option value="abgegeben">✅ Abgegeben</option>
+      <option value="warnphase">⏰ Warnphase</option>
+      <option value="entschuldigt">🟡 Entschuldigt</option>
+      <option value="vorausgezahlt">🟦 Vorausgezahlt</option>
+      <option value="sanktioniert">✔️ Sanktioniert</option>
+      <option value="offen">❌ Nicht abgegeben</option>
+    </select>`
+  ]);
+
+  return `<div class="panel full-panel"><div class="week-detail-head"><div><h2>Abgaben Woche ${esc(weekKey)}</h2><p class="muted">Wie im Discord: Wer hat abgegeben, wer ist in Warnphase/Nachholung, wer ist entschuldigt, wer hat vorausgezahlt und wer fehlt.</p></div><button class="primary" onclick="openAbgabeEntryModal('${esc(weekKey)}')">+ Abgabe eintragen</button></div>
+    <div class="discord-abgabe-board">
+      ${discordLikeGroup('Noch offen', '🚩', missing)}
+      ${discordLikeGroup('Abgegeben', '✅', submitted)}
+      ${discordLikeGroup('Entschuldigt', '🟡', excused)}
+      ${discordLikeGroup('Warnphase / Nachholung', '🟠', warning)}
+      ${discordLikeGroup('Vorausgezahlt', '🟦', prepaid)}
+      ${discordLikeGroup('Sanktioniert', '❌', sanctioned)}
+    </div>
+    <h3 class="subhead">Kurz-Tabelle</h3>
+    ${simpleTable(['Name','Art','Abgegeben','Warnphase','Entschuldigt','Vorausgezahlt','Sanktioniert','Aktion'], simpleRows)}
+  </div>`;
+}
+function collectKnownMembersForAbgabe(){
+  const out=new Map();
+  const add=(id,name)=>{
+    id=normalizeLookupId(id);
+    if(!id) return;
+    out.set(id, name || displayNameForUser(id));
+  };
+  const arrays=[
+    ...(Array.isArray(DATA?.members)?DATA.members:[]),
+    ...(Array.isArray(DATA?.phonebook)?DATA.phonebook:[]),
+    ...(Array.isArray(DATA?.phonebook?.items)?DATA.phonebook.items:[]),
+    ...(Array.isArray(DATA?.numbers)?DATA.numbers:[]),
+    ...(Array.isArray(DATA?.numbers?.members)?DATA.numbers.members:[])
+  ];
+  arrays.forEach(x=>{
+    if(!x || typeof x!=='object') return;
+    add(x.userId||x.discordId||x.discord_id||x.id||x.memberId, x.nickname||x.displayName||x.name||x.username||x.rpName||x.charName);
+  });
+  for(const src of [DATA?.numbers, DATA?.phonebook, DATA?.membersById, DATA?.users]){
+    if(src && typeof src==='object' && !Array.isArray(src)){
+      Object.entries(src).forEach(([id,x])=>{
+        if(typeof x==='string') add(id,x);
+        else if(x && typeof x==='object') add(id,x.nickname||x.displayName||x.name||x.username||x.rpName||x.charName);
+      });
+    }
+  }
+  // Also from current abgabe rows
+  collectAbgabeRows().forEach(r=>add(r._userId));
+  return [...out.entries()].sort((a,b)=>String(a[1]).localeCompare(String(b[1])));
+}
+function openAbgabeEntryModal(weekKey){
+  const members=collectKnownMembersForAbgabe();
+  const cats=['routen','patronen','schwarzpulver','meth'];
+  modal(`<h2>Abgabe eintragen</h2>
+    <div class="form-grid">
+      <label>Woche<input id="manual_abg_week" value="${esc(weekKey||SELECTED_ABGABE_WEEK||'')}"></label>
+      <label>Person<select id="manual_abg_user">${members.map(([id,name])=>`<option value="${esc(id)}">${esc(name)} — ${esc(shortDiscordId(id))}</option>`).join('')}</select></label>
+      <label>Art<select id="manual_abg_category">${cats.map(k=>`<option value="${esc(k)}">${esc(niceKey(k))}</option>`).join('')}</select></label>
+      <label>Betrag / Menge<input id="manual_abg_amount" type="number" value="0"></label>
+      <label>Status<select id="manual_abg_status">
+        <option value="abgegeben">✅ Abgegeben</option>
+        <option value="warnphase">⏰ Warnphase</option>
+        <option value="entschuldigt">🟡 Entschuldigt</option>
+        <option value="vorausgezahlt">🟦 Vorausgezahlt</option>
+        <option value="sanktioniert">✔️ Sanktioniert</option>
+        <option value="offen">❌ Nicht abgegeben</option>
+      </select></label>
+      <label>Notiz<input id="manual_abg_note" placeholder="optional"></label>
+    </div>
+    <div class="modal-actions"><button onclick="closeModal()">Abbrechen</button><button class="primary" onclick="saveManualAbgabeEntry()">Speichern</button></div>`);
+}
+async function saveManualAbgabeEntry(){
+  const body={
+    weekKey:document.getElementById('manual_abg_week')?.value.trim(),
+    userId:document.getElementById('manual_abg_user')?.value,
+    category:document.getElementById('manual_abg_category')?.value,
+    amount:Number(document.getElementById('manual_abg_amount')?.value||0),
+    status:document.getElementById('manual_abg_status')?.value,
+    note:document.getElementById('manual_abg_note')?.value||''
+  };
+  await api('/api/abgaben/manual-web',{method:'POST',body:JSON.stringify(body)});
+  closeModal();
+  await refresh(true);
+  SELECTED_ABGABE_WEEK=body.weekKey;
+  renderCurrent();
+  toast('Abgabe eingetragen');
+}
+async function quickSetAbgabeStatus(userId, weekKey, status){
+  if(!status) return;
+  const cats=['routen','patronen','schwarzpulver','meth'];
+  const category=prompt('Für welche Abgabe? routen / patronen / schwarzpulver / meth', cats[0]) || cats[0];
+  await api('/api/abgaben/manual-web',{method:'PATCH',body:JSON.stringify({userId,weekKey,category,status})});
+  await refresh(true);
+  SELECTED_ABGABE_WEEK=weekKey;
+  renderCurrent();
+  toast('Status geändert');
+}
+
+// Override Abgaben page summary to match Discord groups
+abgaben = function(){
+  const rows=collectAbgabeRows();
+  const weeks=uniqueSortedWeeks(rows);
+  if(!SELECTED_ABGABE_WEEK || !weeks.includes(SELECTED_ABGABE_WEEK)) SELECTED_ABGABE_WEEK=weeks[0]||null;
+  const summaryRows=weeks.map(w=>{
+    const people=abgabeWeekGrouped(rows,w);
+    return [
+      `<button class="linkbtn" onclick="selectAbgabeWeek('${esc(w)}')">${esc(w)}</button>`,
+      esc(people.length),
+      esc(people.filter(p=>p.group==='submitted').length),
+      esc(people.filter(p=>p.group==='warning').length),
+      esc(people.filter(p=>p.group==='excused').length),
+      esc(people.filter(p=>p.group==='prepaid').length),
+      esc(people.filter(p=>p.group==='missing').length)
+    ];
+  });
+  return `<div class="toolbar"><span class="pill gold">${weeks.length} Wochen</span><button class="primary" onclick="openAbgabeEntryModal('${esc(SELECTED_ABGABE_WEEK||'')}')">+ Abgabe eintragen</button><button onclick="goModule('leader_all');openCentralSection('system','abgaben')">Abgaben einstellen</button></div>
+    <div class="panel"><h2>Abgaben nach Wochen</h2><p class="muted">Klicke auf eine Woche. Dann siehst du die gleiche Logik wie im Discord-Post.</p>${weekChooser('abgabe',weeks,SELECTED_ABGABE_WEEK)}${simpleTable(['Woche','Personen','✅ Abgegeben','⏰ Warnphase','🟡 Entschuldigt','🟦 Vorausgezahlt','❌ Offen'],summaryRows)}</div>
+    ${SELECTED_ABGABE_WEEK?abgabeWeekDetail(rows,SELECTED_ABGABE_WEEK):''}`;
+};
+
+
+
+
+/* ===== SINGLE SOURCE CENTRAL UI - do not add more central renderers below this block ===== */
+(function(){
+  'use strict';
+  const CENTRAL = 'leader_all';
+  const CATS = ['routenwache','patronen','schwarzgeld','meth'];
+  const DAYS = {1:'Montag',2:'Dienstag',3:'Mittwoch',4:'Donnerstag',5:'Freitag',6:'Samstag',7:'Sonntag'};
+  const NAMES = {routenwache:'Routenwache', patronen:'Patronen', schwarzgeld:'Schwarzgeld', meth:'Meth'};
+  window.centralTab = window.centralTab || 'leader';
+  window.centralSection = window.centralSection || 'dashboard';
+
+  const E = window.esc || (s => String(s ?? '').replace(/[&<>\"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[m])));
+  const N = k => NAMES[k] || (typeof niceKey === 'function' ? niceKey(k) : k);
+  const isAdmin = () => !!(DATA?.me?.permissions?.roleGroups?.isAdminUser || DATA?.me?.permissions?.actions?.admin || DATA?.me?.permissions?.actions?.dashboardAdmin || DATA?.me?.permissions?.actions?.adminPanelWrite);
+  const isLeader = () => isAdmin() || !!(DATA?.me?.permissions?.roleGroups?.isLeadership || DATA?.me?.permissions?.modules?.leader_all || DATA?.me?.permissions?.actions?.leaderPanelWrite || DATA?.me?.permissions?.actions?.configWrite);
+  const apiCall = (path, opts={}) => api(path, opts);
+
+  function isoWeekKey(d=new Date()){
+    const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    const day = date.getUTCDay() || 7;
+    date.setUTCDate(date.getUTCDate() + 4 - day);
+    const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+    const week = Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+    return `${date.getUTCFullYear()}-W${String(week).padStart(2,'0')}`;
+  }
+  function weeksList(){
+    const set = new Set([isoWeekKey()]);
+    try { Object.keys(DATA?.abgaben?.weeks || {}).forEach(w => set.add(w)); } catch(_){ }
+    try { Object.keys(DATA?.config?.settings?.abgabenTemporaryOverrides || {}).forEach(w => set.add(w)); } catch(_){ }
+    return [...set].filter(Boolean).sort().reverse().slice(0,16);
+  }
+
+  function cleanPageLists(){
+    const hasCentral = arr => arr.some(p => p && p[0] === CENTRAL);
+    function clean(arr){
+      const out=[];
+      for(const p of (arr||[])){
+        if(!p) continue;
+        if(p[0] === 'settings') continue;
+        if(p[0] === 'leader_all' || String(p[1]||'').includes('Leader Control')){
+          if(!out.some(x=>x[0]===CENTRAL)) out.push([CENTRAL,'Zentrale Verwaltung','Leader Panel · Systemsteuerung · Admin Panel',CENTRAL]);
+          continue;
+        }
+        out.push(p);
+      }
+      if(!hasCentral(out)) out.push([CENTRAL,'Zentrale Verwaltung','Leader Panel · Systemsteuerung · Admin Panel',CENTRAL]);
+      return out;
+    }
+    try { window.allPages = allPages = clean(allPages); } catch(_){ }
+    try { window.pages = pages = clean(pages); } catch(_){ }
+  }
+
+  const oldIcon = window.icon || icon;
+  window.icon = icon = function(k){ if(k === CENTRAL) return '⚙️'; return oldIcon ? oldIcon(k) : '•'; };
+
+  const oldBuildNav = window.buildNav || buildNav;
+  window.buildNav = buildNav = function(){
+    cleanPageLists();
+    const nav = document.querySelector('#nav');
+    if(!nav) return oldBuildNav && oldBuildNav();
+    nav.innerHTML = (pages||[]).map(p => `<button class="navbtn ${current===p[0]?'active':''}" onclick="go('${p[0]}')"><span>${icon(p[0])}</span>${E(p[1])}</button>`).join('');
+  };
+
+  window.go = go = function(p){
+    if(p === 'settings') p = CENTRAL;
+    if(p === CENTRAL && !isLeader()) return toast('Zentrale Verwaltung ist nur für Leaderschaft/Admins.');
+    current = p;
+    buildNav();
+    renderCurrent();
+  };
+
+  window.renderCurrent = renderCurrent = function(){
+    if(!DATA) return;
+    cleanPageLists();
+    const p = (pages||[]).find(x => x[0] === current) || pages[0];
+    if(!p){ document.querySelector('#content').innerHTML = locked(); return; }
+    const title = document.querySelector('#pageTitle'), sub = document.querySelector('#pageSubtitle');
+    if(title) title.textContent = p[1];
+    if(sub) sub.textContent = p[2];
+    updateTopControls && updateTopControls();
+    let html='';
+    if(current === CENTRAL) html = centralPage();
+    else {
+      const map = {overview,map,families,phonebook,members,abgaben,abgabenStats,sanctions,blood,cashbox,inventory,terms,wache,absences,config,dashboard:overview,monitoring:config};
+      const fn = map[current];
+      html = fn ? fn() : locked();
+    }
+    document.querySelector('#content').innerHTML = html;
+    afterRender && afterRender();
+  };
+
+  function top(){
+    return `<div class="central-topbar"><div class="central-nav-actions"><button onclick="historyBackCentral()">← Zurück</button><button onclick="go('overview')">⌂ Übersicht</button></div><div><h2>⚙️ Zentrale Verwaltung</h2><p>Leader Panel · Systemsteuerung · Admin Panel</p></div><button onclick="refresh()">Aktualisieren</button></div>`;
+  }
+  window.historyBackCentral = function(){
+    if(window.centralSection && window.centralSection !== 'dashboard'){ window.centralSection='dashboard'; return renderCurrent(); }
+    go('overview');
+  };
+  window.setCentralTab = function(tab){
+    if(tab === 'admin' && !isAdmin()) return toast('Admin Panel ist nur für Admins.');
+    window.centralTab = tab;
+    window.centralSection = tab === 'leader' ? 'dashboard' : tab === 'system' ? 'system' : 'members';
+    renderCurrent();
+  };
+  window.openCentralSection = function(tab, section){
+    if(tab === 'admin' && !isAdmin()) return toast('Admin Panel ist nur für Admins.');
+    window.centralTab = tab;
+    window.centralSection = section || (tab === 'leader' ? 'dashboard' : tab);
+    renderCurrent();
+  };
+
+  function tabButton(tab,label,desc){
+    return `<button class="central-tab ${window.centralTab===tab?'active':''}" onclick="setCentralTab('${tab}')"><b>${label}</b><span>${desc}</span></button>`;
+  }
+  function centralTabs(){
+    return `<div class="central-tabs clean-three-tabs">
+      ${tabButton('leader','Leader Panel','Abgaben, Wache, Sanktionen, Freigaben')}
+      ${tabButton('system','Systemsteuerung','Reminder, Smart Ping, Automatik, Sicherheit')}
+      ${tabButton('admin','Admin Panel','Mitglieder, Rollen, Kanäle, Logs')}
+    </div>`;
+  }
+  function centralPage(){
+    if(!isLeader()) return locked();
+    const body = window.centralTab === 'admin' ? adminPanel() : window.centralTab === 'system' ? systemPanel() : leaderPanel();
+    return `<div class="central-page single-source-ui">${top()}${centralTabs()}${body}</div>`;
+  }
+
+  function subActions(items){ return `<div class="central-subactions">${items.map(([tab,sec,label])=>`<button class="${window.centralSection===sec?'active':''}" onclick="openCentralSection('${tab}','${sec}')">${label}</button>`).join('')}</div>`; }
+  function panel(title, desc, content){ return `<section class="central-panel"><div class="central-panel-head"><div><h2>${title}</h2>${desc?`<p>${desc}</p>`:''}</div></div>${content}</section>`; }
+
+  function leaderPanel(){
+    const buttons = subActions([['leader','dashboard','Übersicht'],['leader','abgaben','Abgaben'],['leader','wache','Wache'],['leader','sanctions','Sanktionen & Freigaben'],['leader','blood','Blood in/out']]);
+    let content = '';
+    if(window.centralSection === 'abgaben') content = abgabenCentral();
+    else if(window.centralSection === 'wache') content = panel('🟢 Wache','Wache einstellen und aktuelle Woche prüfen.', typeof wache === 'function' ? wache() : '<p>Keine Wache-Funktion gefunden.</p>');
+    else if(window.centralSection === 'sanctions') content = sanctionsCentral();
+    else if(window.centralSection === 'blood') content = panel('◇ Blood in/out','Blood-Protokoll und Aktionen.', typeof blood === 'function' ? blood() : '<p>Keine Blood-Funktion gefunden.</p>');
+    else content = leaderDashboard();
+    return `${buttons}${content}`;
+  }
+
+  function leaderDashboard(){
+    const st = DATA?.stats || {};
+    const cfg = DATA?.config?.settings?.abgabenConfig || {};
+    const en = DATA?.config?.settings?.abgabenEnabled || {};
+    return panel('Leader Panel','Alles Wichtige in einer kompakten Übersicht.', `<div class="central-overview-row">
+      <button class="overview-card danger" onclick="openCentralSection('leader','sanctions')"><span>Offene Sanktionen</span><b>${E(st.openSanctions ?? 0)}</b></button>
+      <button class="overview-card" onclick="openCentralSection('leader','abgaben')"><span>Aktive Abgaben</span><b>${CATS.filter(k=>en[k]!==false).length}</b></button>
+      <button class="overview-card" onclick="openCentralSection('leader','wache')"><span>Wache</span><b>${DATA?.config?.settings?.wacheEnabled===false?'AUS':'AN'}</b></button>
+      <button class="overview-card" onclick="openCentralSection('leader','blood')"><span>Blood in/out</span><b>Öffnen</b></button>
+    </div><div class="compact-list">${CATS.map(k=>{const c=cfg[k]||{}; return `<div><span>${E(N(k))}</span><b>${en[k]!==false?'AN':'AUS'} · ${E(c.amount||0)} · ${E(DAYS[Number(c.deadlineDay||7)]||'So')} ${String(c.deadlineHour??23).padStart(2,'0')}:${String(c.deadlineMinute??59).padStart(2,'0')}</b></div>`;}).join('')}</div>`);
+  }
+
+  function abgabenCentral(){
+    return panel('📦 Abgaben','Pflichtabgaben bearbeiten und einmalig verschieben.', `<div class="central-inline-actions"><button class="primary" onclick="saveAbgabenRules()">Abgaben-Regeln speichern</button><button onclick="toggleAbgabenList()">Abgabenliste öffnen</button></div>${abgabeRules()}${abgabeListBlock()}`);
+  }
+  window.toggleAbgabenList = function(){ window.showAbgabenList = !window.showAbgabenList; renderCurrent(); };
+  function abgabeRules(){
+    const cfg = DATA?.config?.settings?.abgabenConfig || {};
+    const en = DATA?.config?.settings?.abgabenEnabled || {};
+    const overrides = DATA?.config?.settings?.abgabenTemporaryOverrides || {};
+    const weeks = weeksList(); const week = window.shiftWeek || weeks[0] || isoWeekKey(); window.shiftWeek = week;
+    return `<div class="shift-week-row"><label>Woche<select onchange="window.shiftWeek=this.value;renderCurrent()">${weeks.map(w=>`<option value="${E(w)}" ${w===week?'selected':''}>${E(w)}</option>`).join('')}</select></label><span>+7 Tage ist doppelte Abgabe, Betrag bleibt änderbar.</span></div><div class="abgabe-rule-grid">${CATS.map(k=>{
+      const c=cfg[k]||{}; const o=(overrides[week]||{})[k]||{}; const base=Number(c.amount||0); const preAmount=Number(o.amountOverride || (o.shiftDays===7 ? base*2 : base)); const time=`${String(c.deadlineHour??23).padStart(2,'0')}:${String(c.deadlineMinute??59).padStart(2,'0')}`;
+      return `<article class="abgabe-rule-card"><div class="abgabe-card-title"><h3>${E(N(k))}</h3><label><input id="abg_${k}_enabled" type="checkbox" ${en[k]!==false?'checked':''}> aktiv</label></div><div class="abgabe-fields"><label>Betrag/Menge<input id="abg_${k}_amount" type="number" value="${E(base)}"></label><label>Frist-Tag<select id="abg_${k}_day">${[1,2,3,4,5,6,7].map(d=>`<option value="${d}" ${Number(c.deadlineDay||7)===d?'selected':''}>${DAYS[d]}</option>`).join('')}</select></label><label>Uhrzeit<input id="abg_${k}_time" type="time" value="${time}"></label></div><div class="abgabe-move-box"><div><b>Einmalig verschieben</b><small>${o.shiftDays?`Aktiv: +${E(o.shiftDays)} Tag(e)${o.doubleAbgabe?' / doppelte Abgabe':''}`:'Keine aktive Verschiebung'}</small></div><div class="move-buttons"><button onclick="setTempShift('${k}',1)">+1 Tag</button><button onclick="setTempShift('${k}',2)">+2 Tage</button><button class="primary" onclick="setTempShift('${k}',7)">+7 doppelt</button></div><div class="move-custom"><label>Tage<input id="move_${k}_days" type="number" min="1" max="30" value="${E(o.shiftDays||1)}"></label><label>Betrag/Menge<input id="move_${k}_amount" type="number" value="${E(preAmount)}"></label><button onclick="saveTempShift('${k}')">Speichern</button><button class="danger-btn" onclick="clearTempShift('${k}')">Löschen</button></div></div></article>`;
+    }).join('')}</div>`;
+  }
+  function abgabeListBlock(){
+    if(!window.showAbgabenList) return '';
+    return `<div class="nested-module">${typeof abgaben === 'function' ? abgaben() : '<p>Keine Abgabenliste gefunden.</p>'}</div>`;
+  }
+  window.setTempShift = function(cat, days){
+    const d=document.getElementById(`move_${cat}_days`); if(d) d.value=String(days);
+    const amount=document.getElementById(`move_${cat}_amount`); const base=Number(document.getElementById(`abg_${cat}_amount`)?.value||0);
+    if(amount && Number(days)===7) amount.value=String(base*2);
+    saveTempShift(cat);
+  };
+  window.saveTempShift = async function(cat){
+    const week = window.shiftWeek || isoWeekKey();
+    const days = Number(document.getElementById(`move_${cat}_days`)?.value || 1);
+    const amount = Number(document.getElementById(`move_${cat}_amount`)?.value || 0);
+    await apiCall('/api/config/abgaben/temporary-shift',{method:'POST',body:JSON.stringify({category:cat,weekKey:week,days,amount})});
+    await refresh(true); toast('Verschiebung gespeichert');
+  };
+  window.clearTempShift = async function(cat){
+    const week = window.shiftWeek || isoWeekKey();
+    await apiCall('/api/config/abgaben/temporary-clear',{method:'POST',body:JSON.stringify({category:cat,weekKey:week})});
+    await refresh(true); toast('Verschiebung gelöscht');
+  };
+  window.saveAbgabenRules = async function(){
+    for(const k of CATS){
+      const [h,m] = String(document.getElementById(`abg_${k}_time`)?.value || '23:59').split(':');
+      await apiCall('/api/config/abgaben',{method:'POST',body:JSON.stringify({category:k,enabled:!!document.getElementById(`abg_${k}_enabled`)?.checked,amount:Number(document.getElementById(`abg_${k}_amount`)?.value||0),deadlineDay:Number(document.getElementById(`abg_${k}_day`)?.value||7),deadlineHour:Number(h||23),deadlineMinute:Number(m||59)})});
+    }
+    await refresh(true); toast('Abgaben-Regeln gespeichert');
+  };
+
+  function sanctionsCentral(){
+    return panel('⚠️ Sanktionen & Freigaben','Beim Löschen werden auch gespeicherte Discord-Nachrichten aus „Ausgeteilte Strafen“ gelöscht, soweit IDs vorhanden sind.', `<div class="central-inline-actions"><button class="danger-btn" onclick="deleteAllOpenSanctionsFull()">Alle offenen Sanktionen löschen</button></div>${typeof sanctions === 'function' ? sanctions() : '<p>Keine Sanktionen-Funktion gefunden.</p>'}`);
+  }
+  window.deleteAllOpenSanctionsFull = async function(){
+    if(!confirm('Alle offenen Sanktionen löschen und Discord-Nachrichten entfernen?')) return;
+    const r = await apiCall('/api/sanctions/delete-open',{method:'POST',body:JSON.stringify({deleteMessages:true,deleteDms:true})});
+    await refresh(true); toast(`Offene Sanktionen gelöscht: ${r.count||0}`);
+  };
+
+  function systemPanel(){
+    const set=DATA?.config?.settings||{};
+    const keys=['smartPingEnabled','autoSanctionsEnabled','termRemindersEnabled','decisionHintsEnabled','leaderReminderDmEnabled','fridayMissingReportEnabled','mondayOverdueReportEnabled','dryRunEnabled','logSystemEnabled','spamProtectionEnabled'];
+    return panel('⚙️ Systemsteuerung','Nur globale Bot-Steuerung. Abgaben sind im Leader Panel.', `<div class="settings-grid compact-settings">${keys.map(k=>typeof niceSettingCard==='function'?niceSettingCard(k,set):`<label>${E(k)}<input id="set_${k}" type="checkbox" ${set[k]?'checked':''}></label>`).join('')}</div><button class="primary" onclick="saveSystemSettingsOnly()">Systemsteuerung speichern</button>`);
+  }
+  window.saveSystemSettingsOnly = async function(){
+    const body={}; ['smartPingEnabled','autoSanctionsEnabled','termRemindersEnabled','decisionHintsEnabled','leaderReminderDmEnabled','fridayMissingReportEnabled','mondayOverdueReportEnabled','dryRunEnabled','logSystemEnabled','spamProtectionEnabled'].forEach(k=>{ const el=document.getElementById('set_'+k); if(el) body[k]=!!el.checked; });
+    await apiCall('/api/config/settings',{method:'POST',body:JSON.stringify(body)}); await refresh(true); toast('Systemsteuerung gespeichert');
+  };
+
+  function adminPanel(){
+    if(!isAdmin()) return panel('Admin Panel','Nur Admins dürfen diesen Bereich ändern.', '<div class="locked-note">Nur Admins.</div>');
+    const buttons = subActions([['admin','members','Mitglieder'],['admin','roles','Rollen/Rechte'],['admin','channels','Kanäle'],['admin','logs','Logs/Diagnose']]);
+    let body='';
+    if(window.centralSection === 'roles') body = rolesPanel();
+    else if(window.centralSection === 'channels') body = channelsPanel();
+    else if(window.centralSection === 'logs') body = logsPanel();
+    else body = membersAdminPanel();
+    return `${buttons}${body}`;
+  }
+  function displayMember(m){ return m.serverName || m.displayName || m.nickname || m.globalName || m.username || m.id || '—'; }
+  function membersAdminPanel(){
+    const rows=(DATA?.members||[]).slice().sort((a,b)=>displayMember(a).localeCompare(displayMember(b))).slice(0,250);
+    return panel('👥 Mitgliederverwaltung','Profile löschen, kicken, bannen und Rollen bearbeiten.', `<div class="member-admin-list">${rows.map(m=>`<div class="member-admin-row"><div><b>${E(displayMember(m))}</b><small>${E(m.id||'')}</small></div><div class="member-admin-actions"><button onclick="openMemberModal('${E(m.id)}')">Profil</button><button onclick="openRoleModal('${E(m.id)}')">Rollen</button><button class="danger-btn" onclick="deleteMemberProfile('${E(m.id)}')">Profil löschen</button><button class="danger-btn" onclick="kickMember('${E(m.id)}')">Kick</button><button class="danger-btn" onclick="banMember('${E(m.id)}')">Ban</button></div></div>`).join('') || '<p>Keine Mitglieder gefunden.</p>'}</div>`);
+  }
+  window.deleteMemberProfile = async function(id){ if(!confirm('Web-Profil dieses Mitglieds löschen?')) return; await apiCall('/api/members/'+encodeURIComponent(id),{method:'DELETE'}); await refresh(true); toast('Profil gelöscht'); };
+  window.kickMember = async function(id){ const reason=prompt('Grund für Kick?','Kick durch Web-Dashboard'); if(reason===null) return; await apiCall('/api/discord/members/'+encodeURIComponent(id)+'/kick',{method:'POST',body:JSON.stringify({reason})}); await refresh(true); toast('Mitglied gekickt'); };
+  window.banMember = async function(id){ const reason=prompt('Grund für Ban?','Ban durch Web-Dashboard'); if(reason===null) return; const del=confirm('Nachrichten der letzten 24 Stunden löschen?'); await apiCall('/api/discord/members/'+encodeURIComponent(id)+'/ban',{method:'POST',body:JSON.stringify({reason,deleteMessageSeconds:del?86400:0})}); await refresh(true); toast('Mitglied gebannt'); };
+  window.openRoleModal = function(id){ openModal(`<h2>Rollen bearbeiten</h2><p class="muted">Discord-Rollen-IDs eintragen. Mehrere IDs mit Komma, Leerzeichen oder Zeilenumbruch trennen.</p><form id="roleForm" class="form-grid"><label class="full">Rollen hinzufügen<textarea name="add"></textarea></label><label class="full">Rollen entfernen<textarea name="remove"></textarea></label><button class="primary full">Speichern</button></form>`); document.getElementById('roleForm').onsubmit=async e=>{e.preventDefault(); const fd=new FormData(e.target); await apiCall('/api/discord/members/'+encodeURIComponent(id)+'/roles',{method:'POST',body:JSON.stringify({add:fd.get('add'),remove:fd.get('remove')})}); closeModal(); await refresh(true); toast('Rollen geändert');}; };
+  function rolesPanel(){ return panel('Rollen/Rechte','Rollen- und Rechte-Konfiguration.', typeof config === 'function' ? config() : '<p>Konfiguration nicht gefunden.</p>'); }
+  function channelsPanel(){ const ch=DATA?.config?.channels||{}; return panel('Kanäle','Discord-Kanäle und IDs.', `<div class="compact-list">${Object.entries(ch).map(([k,v])=>`<div><span>${E(k)}</span><b>${E(v)}</b></div>`).join('')||'<p>Keine Kanäle gefunden.</p>'}</div>`); }
+  function logsPanel(){ const items=DATA?.audit?.items||[]; return panel('Logs / Diagnose','Letzte Aktionen.', `<div class="timeline">${items.slice(0,30).map(a=>`<div><b>${E(a.action)}</b><br><span class="muted">${typeof dt==='function'?dt(a.at):E(a.at)} · ${E(a.by)}</span></div>`).join('')||'<p>Keine Logs.</p>'}</div>`); }
+
+  cleanPageLists();
+})();

@@ -1,0 +1,2156 @@
+{
+  "message_id": "1514017186245513327",
+  "last_query": "",
+  "families": {
+    "Kartell:LO:La Occulta": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Lucinda",
+        "nummer": "55429859"
+      },
+      "12": {
+        "name": "Emilio Sanchez",
+        "nummer": ""
+      },
+      "category": "Kartell",
+      "kuerzel": "LO",
+      "familie": "La Occulta",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:-:Silentorder": {
+      "10": {
+        "name": "Dean",
+        "nummer": "95588962"
+      },
+      "11": {
+        "name": "Malia",
+        "nummer": "68251983"
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Kartell",
+      "kuerzel": "-",
+      "familie": "Silentorder",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:TG:The Gentleman": {
+      "10": {
+        "name": "Alisha",
+        "nummer": "67719800"
+      },
+      "11": {
+        "name": "Ardi",
+        "nummer": "84078061"
+      },
+      "12": {
+        "name": "John",
+        "nummer": "99970599"
+      },
+      "category": "Kartell",
+      "kuerzel": "TG",
+      "familie": "The Gentleman",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:-:Lama todoris": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Kartell",
+      "kuerzel": "-",
+      "familie": "Lama todoris",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:-:Olskool Recordz": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Abu Makaevli",
+        "nummer": "88517358"
+      },
+      "category": "Kartell",
+      "kuerzel": "-",
+      "familie": "Olskool Recordz",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:V:Vendetta": {
+      "10": {
+        "name": "Alex Goldberg",
+        "nummer": "66988447"
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Thomas Maretti",
+        "nummer": "69326032"
+      },
+      "category": "Kartell",
+      "kuerzel": "V",
+      "familie": "Vendetta",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:ZM:Zamin": {
+      "10": {
+        "name": "Jay Johnsen",
+        "nummer": "62891860"
+      },
+      "11": {
+        "name": "Alma Joon",
+        "nummer": "6632409"
+      },
+      "12": {
+        "name": "Vito Scarletta",
+        "nummer": ""
+      },
+      "category": "Kartell",
+      "kuerzel": "ZM",
+      "familie": "Zamin",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:LCC:Los Carronero Kartell": {
+      "10": {
+        "name": "Elena",
+        "nummer": "56939212"
+      },
+      "11": {
+        "name": "Djole Zdravko",
+        "nummer": "59147297"
+      },
+      "12": {
+        "name": "Fari",
+        "nummer": "54362547"
+      },
+      "category": "Kartell",
+      "kuerzel": "LCC",
+      "familie": "Los Carronero Kartell",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:LJ:Los Jueces": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Raik",
+        "nummer": "65034340"
+      },
+      "category": "Kartell",
+      "kuerzel": "LJ",
+      "familie": "Los Jueces",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:BBC:Bez Bazara Cartel": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Haci",
+        "nummer": "97231926"
+      },
+      "12": {
+        "name": "Eighto",
+        "nummer": "90481088"
+      },
+      "category": "Kartell",
+      "kuerzel": "BBC",
+      "familie": "Bez Bazara Cartel",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:SC:Sicario Cartell": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Paco",
+        "nummer": "99392967"
+      },
+      "12": {
+        "name": "Luciano",
+        "nummer": "55361234"
+      },
+      "category": "Kartell",
+      "kuerzel": "SC",
+      "familie": "Sicario Cartell",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:LMA:La Manada": {
+      "10": {
+        "name": "Christian",
+        "nummer": "68123654"
+      },
+      "11": {
+        "name": "Steven Koch",
+        "nummer": "55951257"
+      },
+      "12": {
+        "name": "Lukas Keuler",
+        "nummer": "50460620"
+      },
+      "category": "Kartell",
+      "kuerzel": "LMA",
+      "familie": "La Manada",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:LDF:Linea de Fuego": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Kartell",
+      "kuerzel": "LDF",
+      "familie": "Linea de Fuego",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:VV:Varkow": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Kartell",
+      "kuerzel": "VV",
+      "familie": "Varkow",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:LPC:Luzpura": {
+      "10": {
+        "name": "Makki Hermann",
+        "nummer": "84471098"
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Carlos Veguelez",
+        "nummer": "53288431"
+      },
+      "category": "Kartell",
+      "kuerzel": "LPC",
+      "familie": "Luzpura",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:CDLS:Cartel de los Santos": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "La Cabeza",
+        "nummer": "52187638"
+      },
+      "category": "Kartell",
+      "kuerzel": "CDLS",
+      "familie": "Cartel de los Santos",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:EX:Exilium": {
+      "10": {
+        "name": "Elli Lambert",
+        "nummer": "63231657"
+      },
+      "11": {
+        "name": "Dom",
+        "nummer": "99399757"
+      },
+      "12": {
+        "name": "Max White",
+        "nummer": "65047845"
+      },
+      "category": "Kartell",
+      "kuerzel": "EX",
+      "familie": "Exilium",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:LKK:LeberkäseKartell": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Kartell",
+      "kuerzel": "LKK",
+      "familie": "LeberkäseKartell",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:RB:Rosa Blanca": {
+      "10": {
+        "name": "Makki Hermann",
+        "nummer": "84471098"
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Nick Romano",
+        "nummer": "53075893"
+      },
+      "category": "Kartell",
+      "kuerzel": "RB",
+      "familie": "Rosa Blanca",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:BP:Black Python": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Rony",
+        "nummer": "63476356"
+      },
+      "category": "Kartell",
+      "kuerzel": "BP",
+      "familie": "Black Python",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:DLN:De la Noche": {
+      "10": {
+        "name": "Samuel",
+        "nummer": "55286784"
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Kartell",
+      "kuerzel": "DLN",
+      "familie": "De la Noche",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:-:La Muerte": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Benny",
+        "nummer": ""
+      },
+      "category": "Kartell",
+      "kuerzel": "-",
+      "familie": "La Muerte",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:CH:Crimson Harryson": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Kartell",
+      "kuerzel": "CH",
+      "familie": "Crimson Harryson",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:MRD:Merida": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Kartell",
+      "kuerzel": "MRD",
+      "familie": "Merida",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Kartell:LN:Linea Negra": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Kartell",
+      "kuerzel": "LN",
+      "familie": "Linea Negra",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:LO:L'Ombra": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Paco Aguilar",
+        "nummer": "98638132"
+      },
+      "category": "Mafia",
+      "kuerzel": "LO",
+      "familie": "L'Ombra",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:OZ:Organizazia": {
+      "10": {
+        "name": "Santos",
+        "nummer": "50534497"
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Mafia",
+      "kuerzel": "OZ",
+      "familie": "Organizazia",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:-:Noctis": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Mafia",
+      "kuerzel": "-",
+      "familie": "Noctis",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:MNS:Mansoor": {
+      "10": {
+        "name": "Mirano",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Travis",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Conan Hawkins",
+        "nummer": "85247143"
+      },
+      "category": "Mafia",
+      "kuerzel": "MNS",
+      "familie": "Mansoor",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:KAZ:Kazal": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Paul",
+        "nummer": "63496387"
+      },
+      "12": {
+        "name": "Nino",
+        "nummer": "98695581"
+      },
+      "category": "Mafia",
+      "kuerzel": "KAZ",
+      "familie": "Kazal",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:KAN:Kenway": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Fenasi",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Kaviro Atesh",
+        "nummer": "94524981"
+      },
+      "category": "Mafia",
+      "kuerzel": "KAN",
+      "familie": "Kenway",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:FB:Falkenberg": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Spipe",
+        "nummer": "62816021"
+      },
+      "12": {
+        "name": "Felix Falkenberg",
+        "nummer": "82923891"
+      },
+      "category": "Mafia",
+      "kuerzel": "FB",
+      "familie": "Falkenberg",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:-:Ashiret": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Mafia",
+      "kuerzel": "-",
+      "familie": "Ashiret",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:-:Novera": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Taja",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Mafia",
+      "kuerzel": "-",
+      "familie": "Novera",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:-:EthernalReighn": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Canon Senys",
+        "nummer": "97335050"
+      },
+      "category": "Mafia",
+      "kuerzel": "-",
+      "familie": "EthernalReighn",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:LSL:Los Santos Linaggio": {
+      "10": {
+        "name": "Tony",
+        "nummer": "50588585"
+      },
+      "11": {
+        "name": "Jimmy",
+        "nummer": "65501008"
+      },
+      "12": {
+        "name": "Bny \"Benji\"",
+        "nummer": "67551554"
+      },
+      "category": "Mafia",
+      "kuerzel": "LSL",
+      "familie": "Los Santos Linaggio",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:CV:Caravelli": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Isabella Caravelli",
+        "nummer": "69717553"
+      },
+      "12": {
+        "name": "Caravelli",
+        "nummer": "6358339"
+      },
+      "category": "Mafia",
+      "kuerzel": "CV",
+      "familie": "Caravelli",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:CR:Crna Ruza": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Mafia",
+      "kuerzel": "CR",
+      "familie": "Crna Ruza",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:BL:Bellatoris Lucis": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Mafia",
+      "kuerzel": "BL",
+      "familie": "Bellatoris Lucis",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Mafia:-:Al Talib": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Mafia",
+      "kuerzel": "-",
+      "familie": "Al Talib",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Syndikat:SAB:Skull and Bones": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Priester",
+        "nummer": "999"
+      },
+      "category": "Syndikat",
+      "kuerzel": "SAB",
+      "familie": "Skull and Bones",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Syndikat:-:Empire Syndikat": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Syndikat",
+      "kuerzel": "-",
+      "familie": "Empire Syndikat",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Syndikat:BL:Bellatoris Lucis": {
+      "10": {
+        "name": "Lumalee Milano",
+        "nummer": "59961050"
+      },
+      "11": {
+        "name": "Kira Knight",
+        "nummer": "90759913"
+      },
+      "12": {
+        "name": "Emilio Santress",
+        "nummer": "94157994"
+      },
+      "category": "Syndikat",
+      "kuerzel": "BL",
+      "familie": "Bellatoris Lucis",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Syndikat:RN:Rednecks": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Roberto",
+        "nummer": ""
+      },
+      "category": "Syndikat",
+      "kuerzel": "RN",
+      "familie": "Rednecks",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Syndikat:AB:Asiatische Botschaft": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Xiao Ling",
+        "nummer": "1408060"
+      },
+      "category": "Syndikat",
+      "kuerzel": "AB",
+      "familie": "Asiatische Botschaft",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Syndikat:V:Vindicta": {
+      "10": {
+        "name": "Alistar",
+        "nummer": "67316088"
+      },
+      "11": {
+        "name": "Ninetta Jigsaw",
+        "nummer": "54215789"
+      },
+      "12": {
+        "name": "Jigsaw",
+        "nummer": "60439735"
+      },
+      "category": "Syndikat",
+      "kuerzel": "V",
+      "familie": "Vindicta",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Syndikat:UN:Union": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Jacky",
+        "nummer": "59292574"
+      },
+      "category": "Syndikat",
+      "kuerzel": "UN",
+      "familie": "Union",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Syndikat:DE:Die Eintracht": {
+      "10": {
+        "name": "Ash Wagandha",
+        "nummer": "56269975"
+      },
+      "11": {
+        "name": "Martin Ludder",
+        "nummer": "5736678"
+      },
+      "12": {
+        "name": "Rick Fratino",
+        "nummer": "63183067"
+      },
+      "category": "Syndikat",
+      "kuerzel": "DE",
+      "familie": "Die Eintracht",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Syndikat:-:Epsilon": {
+      "10": {
+        "name": "Kalle Burns",
+        "nummer": "66442255"
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Sheolinski",
+        "nummer": "98696975"
+      },
+      "category": "Syndikat",
+      "kuerzel": "-",
+      "familie": "Epsilon",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Syndikat:Exit:Exit": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "CJ",
+        "nummer": "68689302"
+      },
+      "12": {
+        "name": "Jearzy",
+        "nummer": ""
+      },
+      "category": "Syndikat",
+      "kuerzel": "Exit",
+      "familie": "Exit",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:BV:Black Vision": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Gang",
+      "kuerzel": "BV",
+      "familie": "Black Vision",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:Mahgreb:Mahgreb": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Gang",
+      "kuerzel": "Mahgreb",
+      "familie": "Mahgreb",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:R9B:Red9Block": {
+      "10": {
+        "name": "Edwin Karlsson",
+        "nummer": "59413040"
+      },
+      "11": {
+        "name": "Alexey",
+        "nummer": "55740877"
+      },
+      "12": {
+        "name": "Floki Loco",
+        "nummer": "59039536"
+      },
+      "category": "Gang",
+      "kuerzel": "R9B",
+      "familie": "Red9Block",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:TL7:The Last 7": {
+      "10": {
+        "name": "Layen Zilla",
+        "nummer": "68652950"
+      },
+      "11": {
+        "name": "Maxi Meyer",
+        "nummer": "68762167"
+      },
+      "12": {
+        "name": "Alisha Davis",
+        "nummer": "55984213"
+      },
+      "category": "Gang",
+      "kuerzel": "TL7",
+      "familie": "The Last 7",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:-:Phantoms": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Gang",
+      "kuerzel": "-",
+      "familie": "Phantoms",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:18th:18th Street": {
+      "10": {
+        "name": "Dragan Slavko",
+        "nummer": "56804267"
+      },
+      "11": {
+        "name": "Antonio",
+        "nummer": "50739613"
+      },
+      "12": {
+        "name": "Kevoo Dicapri",
+        "nummer": "91254482"
+      },
+      "category": "Gang",
+      "kuerzel": "18th",
+      "familie": "18th Street",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:AT:Al Thalib": {
+      "10": {
+        "name": "Raya",
+        "nummer": "60761146"
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Gang",
+      "kuerzel": "AT",
+      "familie": "Al Thalib",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:-:Opium": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Gang",
+      "kuerzel": "-",
+      "familie": "Opium",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:PS:Pink Serphants": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Kevin Cold",
+        "nummer": "55039224"
+      },
+      "category": "Gang",
+      "kuerzel": "PS",
+      "familie": "Pink Serphants",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:-:Bloodline": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Gang",
+      "kuerzel": "-",
+      "familie": "Bloodline",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:VG:Vagos": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Harri",
+        "nummer": "64135844"
+      },
+      "12": {
+        "name": "Damon Ohana",
+        "nummer": "54711954"
+      },
+      "category": "Gang",
+      "kuerzel": "VG",
+      "familie": "Vagos",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:LL:Hooligans": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Eno Can",
+        "nummer": ""
+      },
+      "category": "Gang",
+      "kuerzel": "LL",
+      "familie": "Hooligans",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:Ky:Jurodei": {
+      "10": {
+        "name": "Felix",
+        "nummer": "95759163"
+      },
+      "11": {
+        "name": "Brian",
+        "nummer": "58954791"
+      },
+      "12": {
+        "name": "Biggie",
+        "nummer": "52471433"
+      },
+      "category": "Gang",
+      "kuerzel": "Ky",
+      "familie": "Jurodei",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:Inno:Innocents": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Dennis",
+        "nummer": "93136988"
+      },
+      "12": {
+        "name": "Richi",
+        "nummer": "50013745"
+      },
+      "category": "Gang",
+      "kuerzel": "Inno",
+      "familie": "Innocents",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:SGF:Strawberry Gangster Families": {
+      "10": {
+        "name": "T",
+        "nummer": "89929791"
+      },
+      "11": {
+        "name": "KK",
+        "nummer": "53985019"
+      },
+      "12": {
+        "name": "Prince",
+        "nummer": ""
+      },
+      "category": "Gang",
+      "kuerzel": "SGF",
+      "familie": "Strawberry Gangster Families",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:BS:Blue Side": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Leon",
+        "nummer": "93072018"
+      },
+      "12": {
+        "name": "Oncel",
+        "nummer": "88535508"
+      },
+      "category": "Gang",
+      "kuerzel": "BS",
+      "familie": "Blue Side",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:PE:Public Enemies": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Ty",
+        "nummer": "96732325"
+      },
+      "12": {
+        "name": "KD",
+        "nummer": "50158766"
+      },
+      "category": "Gang",
+      "kuerzel": "PE",
+      "familie": "Public Enemies",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:CN:CloudNation": {
+      "10": {
+        "name": "Natcho",
+        "nummer": "99804179"
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Herbert Fischer",
+        "nummer": "50626379"
+      },
+      "category": "Gang",
+      "kuerzel": "CN",
+      "familie": "CloudNation",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:Grove:Grove Street": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Eli Jackson",
+        "nummer": "61266832"
+      },
+      "12": {
+        "name": "Loco",
+        "nummer": "95972062"
+      },
+      "category": "Gang",
+      "kuerzel": "Grove",
+      "familie": "Grove Street",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:BdIS:Barrio de la Sombra": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Catalina",
+        "nummer": "97502908"
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Gang",
+      "kuerzel": "BdIS",
+      "familie": "Barrio de la Sombra",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:91:91Thugs": {
+      "10": {
+        "name": "Snow",
+        "nummer": "67979299"
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Carlo Arslan",
+        "nummer": "98883248"
+      },
+      "category": "Gang",
+      "kuerzel": "91",
+      "familie": "91Thugs",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:INS:Internationales": {
+      "10": {
+        "name": "Baris",
+        "nummer": "91166587"
+      },
+      "11": {
+        "name": "Anil",
+        "nummer": "63910881"
+      },
+      "12": {
+        "name": "Loco",
+        "nummer": "6762200"
+      },
+      "category": "Gang",
+      "kuerzel": "INS",
+      "familie": "Internationales",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:B44:Block44": {
+      "10": {
+        "name": "Martin Miller",
+        "nummer": "55602203"
+      },
+      "11": {
+        "name": "Oliver Queen",
+        "nummer": "86386893"
+      },
+      "12": {
+        "name": "John",
+        "nummer": "54217039"
+      },
+      "category": "Gang",
+      "kuerzel": "B44",
+      "familie": "Block44",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:NM:No Mercy": {
+      "10": {
+        "name": "Brian Stanford",
+        "nummer": "5697125"
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Paris",
+        "nummer": "64801756"
+      },
+      "category": "Gang",
+      "kuerzel": "NM",
+      "familie": "No Mercy",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:SB:Shadow Block": {
+      "10": {
+        "name": "Joel",
+        "nummer": "97693635"
+      },
+      "11": {
+        "name": "Sharky",
+        "nummer": "58153133"
+      },
+      "12": {
+        "name": "Izaak Chambers",
+        "nummer": "59822888"
+      },
+      "category": "Gang",
+      "kuerzel": "SB",
+      "familie": "Shadow Block",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:-:Hope": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Gang",
+      "kuerzel": "-",
+      "familie": "Hope",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:ASC:Atomic Street Club": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "Morty Decaso",
+        "nummer": ""
+      },
+      "category": "Gang",
+      "kuerzel": "ASC",
+      "familie": "Atomic Street Club",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "Gang:VBG:Vinewood Block Gangsters": {
+      "10": {
+        "name": "Santos",
+        "nummer": "59025269"
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "Gang",
+      "kuerzel": "VBG",
+      "familie": "Vinewood Block Gangsters",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "MC:SONS MC:Iron Sons": {
+      "10": {
+        "name": "Mac Brooks",
+        "nummer": "92123649"
+      },
+      "11": {
+        "name": "Michael",
+        "nummer": "51661661"
+      },
+      "12": {
+        "name": "James Miyagi",
+        "nummer": "98933194"
+      },
+      "category": "MC",
+      "kuerzel": "SONS MC",
+      "familie": "Iron Sons",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "MC:ROD MC:Ravens of Doom": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Lima Underwood",
+        "nummer": "96625759"
+      },
+      "12": {
+        "name": "Devon Sullivan",
+        "nummer": "96974744"
+      },
+      "category": "MC",
+      "kuerzel": "ROD MC",
+      "familie": "Ravens of Doom",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "MC:RD MC:Red District MC": {
+      "10": {
+        "name": "John",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Franky Lopez",
+        "nummer": "66310918"
+      },
+      "12": {
+        "name": "Harlan Vane",
+        "nummer": "59086769"
+      },
+      "category": "MC",
+      "kuerzel": "RD MC",
+      "familie": "Red District MC",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "MC:MOR MC:Morteco MC": {
+      "10": {
+        "name": "Rick Loco",
+        "nummer": "92845979"
+      },
+      "11": {
+        "name": "Sassy",
+        "nummer": "99778655"
+      },
+      "12": {
+        "name": "Angel Loco",
+        "nummer": "66092233"
+      },
+      "category": "MC",
+      "kuerzel": "MOR MC",
+      "familie": "Morteco MC",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "MC:TLM:Lost MC": {
+      "10": {
+        "name": "Tim DaSilva",
+        "nummer": "61947142"
+      },
+      "11": {
+        "name": "Jan General",
+        "nummer": "97005132"
+      },
+      "12": {
+        "name": "Titus Smile",
+        "nummer": "92545851"
+      },
+      "category": "MC",
+      "kuerzel": "TLM",
+      "familie": "Lost MC",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "MC:LOM:Legion of Mayhem": {
+      "10": {
+        "name": "Timo Kamahel",
+        "nummer": "67071408"
+      },
+      "11": {
+        "name": "Mace",
+        "nummer": "96669028"
+      },
+      "12": {
+        "name": "Aiden",
+        "nummer": "62290421"
+      },
+      "category": "MC",
+      "kuerzel": "LOM",
+      "familie": "Legion of Mayhem",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "MC:TMC:Trust MC": {
+      "10": {
+        "name": "",
+        "nummer": ""
+      },
+      "11": {
+        "name": "Leonardo Morell",
+        "nummer": "96183109"
+      },
+      "12": {
+        "name": "Gustl Meier",
+        "nummer": "86224555"
+      },
+      "category": "MC",
+      "kuerzel": "TMC",
+      "familie": "Trust MC",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    },
+    "MC:-:Hellhounds MC": {
+      "10": {
+        "name": "Nathan Hakura",
+        "nummer": "66895902"
+      },
+      "11": {
+        "name": "",
+        "nummer": ""
+      },
+      "12": {
+        "name": "",
+        "nummer": ""
+      },
+      "category": "MC",
+      "kuerzel": "-",
+      "familie": "Hellhounds MC",
+      "rv1": {
+        "name": "",
+        "nummer": ""
+      },
+      "rv2": {
+        "name": "",
+        "nummer": ""
+      }
+    }
+  }
+}

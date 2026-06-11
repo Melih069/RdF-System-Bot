@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reyes del Fuego Dashboard</title>
+  <link rel="stylesheet" href="styles.css?v=single-source-central-v33" />
+</head>
+<body>
+  <div id="login" class="login">
+    <div class="login-card glass">
+      <div class="brand-mark logo-mark"><img src="/assets/reyes-logo.jpeg" alt="RdF Reyes del Fuego Logo"></div>
+      <h1>Reyes del Fuego</h1>
+      <p>Login über Discord. Danach prüft das Dashboard deine Serverrollen und zeigt nur freigegebene Bereiche.</p>
+      <a class="discord-login" href="/auth/discord">Mit Discord einloggen</a>
+      <details class="legacy-login">
+        <summary>Notfall-Token Login</summary>
+        <input id="tokenInput" type="password" placeholder="Dashboard Token, falls gesetzt" />
+        <button onclick="setTokenAndLoad()">Dashboard öffnen</button>
+      </details>
+      <div id="oauthHint" class="oauth-hint"><small>Redirect wird automatisch erkannt …</small></div>
+    </div>
+  </div>
+
+  <div id="app" class="app hidden">
+    <aside class="sidebar">
+      <div class="logo"><span class="side-logo-mark"><img src="/assets/reyes-logo.jpeg" alt="RdF Reyes del Fuego Logo"></span><div><b>Reyes del Fuego</b><em>Live Admin</em></div></div>
+      <div id="userBox" class="userbox"></div>
+      <nav id="nav"></nav>
+      <div class="side-footer">
+        <span id="syncState" class="dot-text"><i></i> offline</span>
+        <button class="ghost" onclick="logout()">Logout</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar glass">
+        <div>
+          <h1 id="pageTitle">Übersicht</h1>
+          <p id="pageSubtitle">Live-Daten aus deinen JSON-Dateien</p>
+        </div>
+        <div class="top-actions">
+          <input id="globalSearch" list="searchSuggestions" oninput="renderCurrent()" placeholder="Suche Name, Nummer, PLZ, Kürzel..." />
+          <datalist id="searchSuggestions"></datalist>
+          <button id="topRefresh" onclick="refresh()">Aktualisieren</button>
+          <button id="quickAddFamily" class="primary" onclick="openFamilyModal()">+ Familie</button>
+        </div>
+      </header>
+      <section id="content"></section>
+    </main>
+  </div>
+
+  <div id="modal" class="modal hidden" onclick="if(event.target.id==='modal') closeModal()">
+    <div class="modal-card glass">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js?v=single-source-central-v33"></script>
+</body>
+</html>

@@ -1,0 +1,4841 @@
+{
+  "channels": {
+    "routen": "1486179085804634322",
+    "patronen": "1486179088271151326",
+    "schwarzpulver": "1486179089847947274",
+    "meth": "1486179095128834260",
+    "termine": "1486179096265359391",
+    "sanktionen": "1486179097259413514",
+    "ausgeteilte": "1467315688946270320",
+    "abmeldungen": "1449724254613667870",
+    "ankuendigungen": "1449723543620292710",
+    "abstimmungen": "1486179101441134746",
+    "statistik": "1480265038978617425",
+    "dashboard": "1486921108019220490",
+    "wache_dashboard": "1505621671296372816",
+    "freigaben": "1475995970960494784",
+    "leader_reminder": "1475995970960494784",
+    "lagerbestand": "1503205611100438629",
+    "kasse": "1503205611100438629",
+    "kassenberichte": "1503384302732185653",
+    "lagerberichte": "1503384302732185653",
+    "abgabenberichte": "1480265038978617425",
+    "wache_reports": "1478453665655427405",
+    "public_link": "1513989902658961499"
+  },
+  "panelMessages": {
+    "abmeldungen": {
+      "channelId": "1449724254613667870",
+      "messageId": "1486765104576991333",
+      "payloadHash": "d3ef3fdfc6069886c1f3dbbf0e746e70ae22c3236a476d86579267b9a5474bdc",
+      "updatedAt": 1778091672535
+    },
+    "sanktionen": {
+      "channelId": "1514461704464105492",
+      "messageId": "1514648025031639121",
+      "payloadHash": "d2d270d2be35e72e298e5ceb1f66369f408074ab27eb76db6a4923c79aad00ba",
+      "updatedAt": 1781190630061
+    },
+    "termine": {
+      "channelId": "1481406881363656926",
+      "messageId": "1486497600508137553",
+      "payloadHash": "344fbd183bfbbd35f50021cad3760bc74f9e8eaf32146b4f712782ad999c860f",
+      "updatedAt": 1779044768283
+    },
+    "dashboard": {
+      "channelId": "1486921108019220490",
+      "messageId": "1486928798598565950",
+      "payloadHash": "b94f74dd3db45635d9c027ab666c2134b0238f7e32639fc38e08e12b980318b8",
+      "updatedAt": 1781193601808
+    },
+    "members_dashboard": {
+      "channelId": "1486921108019220490",
+      "messageId": "1501652904065503352",
+      "payloadHash": "ef417f5be6a4fbec779992d414a1e1dd7e08383ea333235869a5643d18d0a4e1",
+      "updatedAt": 1781193603051
+    },
+    "term_dashboard": {
+      "channelId": "1481406881363656926",
+      "messageId": "1502814261079183523",
+      "payloadHash": "26aff4c455c1fd1531c2e46f406ea57ccdc5ede03734c011d0b2545004717a29",
+      "updatedAt": 1781193602314
+    }
+  },
+  "settings": {
+    "leaderReminderDmEnabled": true,
+    "routeAdminFridayReportEnabled": true,
+    "routeAdminMondayReportEnabled": true,
+    "smartPingEnabled": true,
+    "dashboardEnabled": true,
+    "sanctionApprovalEnabled": true,
+    "autoSanctionsEnabled": true,
+    "termRemindersEnabled": true,
+    "decisionHintsEnabled": true,
+    "fridayMissingReportEnabled": true,
+    "mondayOverdueReportEnabled": true,
+    "abgabenEnabled": {
+      "routen": true,
+      "patronen": true,
+      "schwarzpulver": false,
+      "meth": false
+    },
+    "dryRunEnabled": false,
+    "abgabenConfig": {
+      "routen": {
+        "amount": 300000,
+        "deadlineDay": 7,
+        "deadlineHour": 23,
+        "deadlineMinute": 59
+      },
+      "patronen": {
+        "amount": 150,
+        "deadlineDay": 7,
+        "deadlineHour": 23,
+        "deadlineMinute": 59
+      },
+      "schwarzpulver": {
+        "amount": 200,
+        "deadlineDay": 7,
+        "deadlineHour": 23,
+        "deadlineMinute": 59
+      },
+      "meth": {
+        "amount": 500,
+        "deadlineDay": 7,
+        "deadlineHour": 23,
+        "deadlineMinute": 59
+      }
+    },
+    "wacheConfig": {
+      "enabled": true,
+      "requiredMinutesPerWeek": 0,
+      "absenceExcuseDays": 0,
+      "sessionMinutes": 60,
+      "sanctionAmount": 0,
+      "reportChannelKey": "statistik",
+      "reportChannelId": "1478453665655427405",
+      "dashboardChannelId": "1505621671296372816",
+      "maxParticipants": 5,
+      "enabledAt": 1779044790324,
+      "startHour": 14,
+      "endHour": 24,
+      "reportSkipBeforeTs": 1779044790324
+    },
+    "abgabenTemporaryOverrides": {
+      "2026-W18": {
+        "routen": {
+          "deadlineDay": 6,
+          "deadlineHour": 23,
+          "deadlineMinute": 59,
+          "setAt": 1778016289348,
+          "setBy": "447008003170762753"
+        }
+      }
+    },
+    "abgabenReportSkipBeforeTs": 1779733019152,
+    "abgabenEnabledAt": {
+      "routen": 1777829010812,
+      "patronen": 1777828972495,
+      "schwarzpulver": 0,
+      "meth": 0
+    },
+    "abgabenDisabledAt": {
+      "routen": 0,
+      "patronen": 0,
+      "schwarzpulver": 0,
+      "meth": 0
+    },
+    "dmSettings": {
+      "enabled": true,
+      "areas": {
+        "general": true,
+        "abgaben": false,
+        "sanktionen": true,
+        "wache": false,
+        "termine": true,
+        "leader": false
+      },
+      "dailyDedupEnabled": true,
+      "buttonsEnabled": true
+    },
+    "archiveConfig": {
+      "enabled": true,
+      "keepWeeks": 12
+    },
+    "appearance": {
+      "embedColor": "#D4AF37",
+      "prefix": "!",
+      "footerText": "Admin GUI • live steuerbar",
+      "dashboardTitle": "Live Dashboard • Übersicht",
+      "cashboxTitle": "Familienkasse",
+      "leaderPanelTitle": "Leader Panel",
+      "adminPanelTitle": "Admin Controls"
+    },
+    "rules": {
+      "abgabeAutoSanction": {
+        "enabled": true,
+        "overdueDays": 2,
+        "catalogNo": "29",
+        "penaltyType": "Schwarzgeld",
+        "amount": 100000
+      },
+      "termNoResponseSanction": {
+        "enabled": true,
+        "catalogNo": "18",
+        "penaltyType": "Grüngeld",
+        "amount": 50000
+      },
+      "sanctionEscalation": {
+        "enabled": true,
+        "dueDays": 3,
+        "surchargeAmount": 100000,
+        "bloodoutAfterSurchargeDays": 2
+      }
+    },
+    "systemControl": {
+      "reminders": {
+        "enabled": true,
+        "dmEnabled": true,
+        "abgabeEnabled": true,
+        "sanctionEnabled": true,
+        "termEnabled": true,
+        "wacheEnabled": true,
+        "abgabeStages": {
+          "thu": {
+            "enabled": true,
+            "day": 4,
+            "hour": 16,
+            "minute": 0
+          },
+          "fri": {
+            "enabled": true,
+            "day": 5,
+            "hour": 16,
+            "minute": 0
+          },
+          "sun": {
+            "enabled": true,
+            "day": 7,
+            "hour": 16,
+            "minute": 0
+          }
+        },
+        "termMinutesBefore": [
+          1440,
+          60,
+          30
+        ],
+        "overdueRepeatHours": 24
+      },
+      "smartPing": {
+        "enabled": true,
+        "minRisk": 30,
+        "reliableSkipScore": 85,
+        "sundayOnlyScore": 70,
+        "mediumScore": 50,
+        "openAbgabenThreshold": 1,
+        "sanctionThreshold": 1,
+        "termNoResponseThreshold": 1,
+        "activeDays": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "labelVeryReliable": 85,
+        "labelReliable": 70,
+        "labelMedium": 50,
+        "labelUnreliable": 30,
+        "openAbgabenPenaltyStart": 1,
+        "openAbgabenPenaltyPoints": 10,
+        "termNoResponsePenaltyPoints": 6,
+        "sanctionPenaltyLight": 5,
+        "sanctionPenaltyMedium": 20,
+        "sanctionPenaltyHeavy": 35,
+        "wachePenaltyStart": 1,
+        "wachePenaltyPoints": 10,
+        "wacheRepeatPenaltyPoints": 20,
+        "wachePenaltyHeavyAfter": 3,
+        "maxNegativePenalty": 65
+      },
+      "automations": {
+        "enabled": true,
+        "abgabeAutoSanctions": true,
+        "termNoResponseSanctions": true,
+        "sanctionEscalation": true,
+        "absenceCleanup": true,
+        "termReminders": true,
+        "abgabeReminders": true,
+        "sanctionReminders": true,
+        "wacheReports": true,
+        "weeklyReports": true,
+        "monthlyReports": true,
+        "cashboxMonthlyReports": false,
+        "warehouseMinimumWarnings": true,
+        "recovery": true,
+        "uiSync": true,
+        "dataIntegrity": true,
+        "warehouseMonthlyReports": true
+      }
+    },
+    "logSystemEnabled": false,
+    "abgabenAbsenceExcuseDays": 5,
+    "leadershipDutiesEnabled": false,
+    "customization": {
+      "templates": {
+        "bloodin": {
+          "enabled": true,
+          "title": "🟢 Bloodin",
+          "message": "{name} ist der Familie beigetreten.",
+          "color": "#22c55e",
+          "embed": true,
+          "fields": [
+            {
+              "name": "Mitglied",
+              "value": "{name}"
+            },
+            {
+              "name": "Discord ID",
+              "value": "{userId}"
+            },
+            {
+              "name": "Zeit",
+              "value": "{date}"
+            }
+          ]
+        },
+        "bloodout": {
+          "enabled": true,
+          "title": "🔴 Bloodout",
+          "message": "{name} hat den Server verlassen.",
+          "color": "#ef4444",
+          "embed": true,
+          "fields": [
+            {
+              "name": "Mitglied",
+              "value": "{name}"
+            },
+            {
+              "name": "Discord ID",
+              "value": "{userId}"
+            },
+            {
+              "name": "Grund",
+              "value": "{reason}"
+            },
+            {
+              "name": "Zeit",
+              "value": "{date}"
+            }
+          ]
+        }
+      },
+      "abgabeTypes": [],
+      "statCards": [],
+      "labels": {}
+    },
+    "reportSettings": {
+      "weeklyReportsEnabled": true,
+      "monthlyReportsEnabled": true,
+      "waitForLatestAbgabeDeadline": true,
+      "abgabeShiftMode": "wait_latest",
+      "weeklyReportHour": 12,
+      "weeklyReportMinute": 0,
+      "monthlyReportDay": 1,
+      "monthlyReportHour": 12,
+      "monthlyReportMinute": 0
+    },
+    "reportsEnabled": true,
+    "weeklyReportsEnabled": true,
+    "monthlyReportsEnabled": true,
+    "waitForLatestAbgabeDeadline": true,
+    "weeklyReportHour": 12,
+    "weeklyReportMinute": 0,
+    "monthlyReportDay": 1,
+    "monthlyReportHour": 12,
+    "monthlyReportMinute": 0
+  },
+  "roleTracking": {
+    "assignments": {
+      "326737015670308875": {
+        "1465315181382074539": {
+          "ts": 1773597235206,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1773597235206,
+          "source": "fallback_joined_at"
+        }
+      },
+      "350183224904908800": {
+        "1465315181382074539": {
+          "ts": 1765719892192,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1765719892192,
+          "source": "fallback_joined_at"
+        }
+      },
+      "900779211722223656": {
+        "1485708546527068210": {
+          "ts": 1769360330829,
+          "source": "fallback_joined_at"
+        },
+        "1485794465162461264": {
+          "ts": 1778425630907,
+          "source": "member_role_add"
+        },
+        "1465315181382074539": {
+          "ts": 1778785899779,
+          "source": "member_role_add"
+        }
+      },
+      "588329021754966027": {
+        "1465315181382074539": {
+          "ts": 1769212058210,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1769212058210,
+          "source": "fallback_joined_at"
+        }
+      },
+      "1095441486864199752": {
+        "1465315181382074539": {
+          "ts": 1769713386392,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1769713386392,
+          "source": "fallback_joined_at"
+        }
+      },
+      "332581895785283584": {
+        "1465315181382074539": {
+          "ts": 1780433735565,
+          "source": "member_role_add"
+        },
+        "1485708546527068210": {
+          "ts": 1772218065503,
+          "source": "fallback_joined_at"
+        }
+      },
+      "723976777059270748": {
+        "1485708546527068210": {
+          "ts": 1774540555311,
+          "source": "fallback_joined_at"
+        }
+      },
+      "1045105873783095418": {
+        "1465315181382074539": {
+          "ts": 1770329359832,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1770329359832,
+          "source": "fallback_joined_at"
+        }
+      },
+      "470853829043159070": {
+        "1485708546527068210": {
+          "ts": 1772252834176,
+          "source": "fallback_joined_at"
+        }
+      },
+      "1307392555742269564": {
+        "1485708546527068210": {
+          "ts": 1772243272677,
+          "source": "fallback_joined_at"
+        },
+        "1485794465162461264": {
+          "ts": 1772243272677,
+          "source": "fallback_joined_at"
+        },
+        "1465315181382074539": {
+          "ts": 1778785900000,
+          "source": "member_role_add"
+        }
+      },
+      "1457182169087606784": {
+        "1465315181382074539": {
+          "ts": 1779294929335,
+          "source": "member_role_add"
+        },
+        "1485708546527068210": {
+          "ts": 1772142739194,
+          "source": "fallback_joined_at"
+        },
+        "1485794465162461264": {
+          "ts": 1779047039838,
+          "source": "member_role_add"
+        },
+        "1485794589427367968": {
+          "ts": 1779294944796,
+          "source": "member_role_add"
+        }
+      },
+      "1271613915192623167": {
+        "1465315181382074539": {
+          "ts": 1770515114018,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1770515114018,
+          "source": "fallback_joined_at"
+        }
+      },
+      "498919586456928257": {
+        "1465315181382074539": {
+          "ts": 1774905668551,
+          "source": "member_role_add"
+        },
+        "1485708546527068210": {
+          "ts": 1774905673477,
+          "source": "member_role_add"
+        }
+      },
+      "1031274363833561108": {
+        "1465315181382074539": {
+          "ts": 1769360323021,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1769360323021,
+          "source": "fallback_joined_at"
+        }
+      },
+      "1295020027824832627": {
+        "1465315181382074539": {
+          "ts": 1773446761867,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1773446761867,
+          "source": "fallback_joined_at"
+        }
+      },
+      "1345424497171497010": {
+        "1485708546527068210": {
+          "ts": 1769910634135,
+          "source": "fallback_joined_at"
+        }
+      },
+      "1344014405976850454": {
+        "1465315181382074539": {
+          "ts": 1765725009560,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1765725009560,
+          "source": "fallback_joined_at"
+        }
+      },
+      "1089621304304488599": {
+        "1465315181382074539": {
+          "ts": 1773953483586,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1773953483586,
+          "source": "fallback_joined_at"
+        }
+      },
+      "390443362701934592": {
+        "1465315181382074539": {
+          "ts": 1774213101476,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1774213101476,
+          "source": "fallback_joined_at"
+        }
+      },
+      "399259007761645569": {
+        "1465315181382074539": {
+          "ts": 1771970982617,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1771970982617,
+          "source": "fallback_joined_at"
+        }
+      },
+      "1464712960248385590": {
+        "1465315181382074539": {
+          "ts": 1772669033240,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1772669033240,
+          "source": "fallback_joined_at"
+        }
+      },
+      "590987150481424394": {
+        "1465315181382074539": {
+          "ts": 1775159912442,
+          "source": "member_role_add"
+        },
+        "1485708546527068210": {
+          "ts": 1775159909370,
+          "source": "member_role_add"
+        }
+      },
+      "1430619231355011123": {
+        "1465315181382074539": {
+          "ts": 1765719325761,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1765719325761,
+          "source": "fallback_joined_at"
+        }
+      },
+      "1319730115705311332": {
+        "1485708546527068210": {
+          "ts": 1775160040441,
+          "source": "member_role_add"
+        }
+      },
+      "1105411982221398036": {
+        "1465315181382074539": {
+          "ts": 1775687610404,
+          "source": "fallback_joined_at"
+        }
+      },
+      "325382005455978496": {
+        "1485794465162461264": {
+          "ts": 1777757739912,
+          "source": "fallback_joined_at"
+        },
+        "1485708546527068210": {
+          "ts": 1777757739912,
+          "source": "fallback_joined_at"
+        },
+        "1465315181382074539": {
+          "ts": 1778785900653,
+          "source": "member_role_add"
+        }
+      },
+      "522090867897663488": {
+        "1485794465162461264": {
+          "ts": 1777672183234,
+          "source": "fallback_joined_at"
+        },
+        "1465315181382074539": {
+          "ts": 1778785901787,
+          "source": "member_role_add"
+        }
+      },
+      "623592195240230914": {
+        "1485794465162461264": {
+          "ts": 1776718341815,
+          "source": "fallback_joined_at"
+        },
+        "1465315181382074539": {
+          "ts": 1778785900609,
+          "source": "member_role_add"
+        },
+        "1485708546527068210": {
+          "ts": 1779115416071,
+          "source": "member_role_add"
+        },
+        "1485794589427367968": {
+          "ts": 1779115418837,
+          "source": "member_role_add"
+        }
+      },
+      "724238471018840074": {
+        "1485794465162461264": {
+          "ts": 1776717786412,
+          "source": "fallback_joined_at"
+        },
+        "1465315181382074539": {
+          "ts": 1778785900562,
+          "source": "member_role_add"
+        },
+        "1485794589427367968": {
+          "ts": 1776717786412,
+          "source": "fallback_joined_at"
+        }
+      },
+      "1227254024248496161": {
+        "1485794465162461264": {
+          "ts": 1777759187169,
+          "source": "fallback_joined_at"
+        },
+        "1465315181382074539": {
+          "ts": 1778891912039,
+          "source": "member_role_add"
+        }
+      },
+      "1449109712825225436": {
+        "1485794465162461264": {
+          "ts": 1777233141177,
+          "source": "fallback_joined_at"
+        },
+        "1465315181382074539": {
+          "ts": 1778785834948,
+          "source": "member_role_add"
+        }
+      },
+      "1495791328691490826": {
+        "1485794465162461264": {
+          "ts": 1777059571657,
+          "source": "fallback_joined_at"
+        },
+        "1465315181382074539": {
+          "ts": 1778785901572,
+          "source": "member_role_add"
+        }
+      },
+      "451086657568112641": {
+        "1485794465162461264": {
+          "ts": 1778425631022,
+          "source": "member_role_add"
+        },
+        "1465315181382074539": {
+          "ts": 1778785901052,
+          "source": "member_role_add"
+        }
+      },
+      "668441351901282325": {
+        "1485794465162461264": {
+          "ts": 1778425630930,
+          "source": "member_role_add"
+        },
+        "1465315181382074539": {
+          "ts": 1778785900827,
+          "source": "member_role_add"
+        }
+      },
+      "1315059532774510733": {
+        "1485794465162461264": {
+          "ts": 1779481431273,
+          "source": "member_role_add"
+        },
+        "1465315181382074539": {
+          "ts": 1779481425129,
+          "source": "member_role_add"
+        },
+        "1485794589427367968": {
+          "ts": 1779481432195,
+          "source": "member_role_add"
+        }
+      },
+      "476754340925931530": {
+        "1485794465162461264": {
+          "ts": 1778425631323,
+          "source": "member_role_add"
+        },
+        "1465315181382074539": {
+          "ts": 1778786010162,
+          "source": "member_role_add"
+        }
+      },
+      "1322995756755456081": {
+        "1485794465162461264": {
+          "ts": 1778425631440,
+          "source": "member_role_add"
+        },
+        "1465315181382074539": {
+          "ts": 1778786002882,
+          "source": "member_role_add"
+        }
+      },
+      "631805731569664011": {
+        "1465315181382074539": {
+          "ts": 1778889590084,
+          "source": "member_role_add"
+        },
+        "1485794465162461264": {
+          "ts": 1778889636969,
+          "source": "member_role_add"
+        }
+      },
+      "615148722791251978": {
+        "1465315181382074539": {
+          "ts": 1778889590092,
+          "source": "member_role_add"
+        },
+        "1485794465162461264": {
+          "ts": 1778889636881,
+          "source": "member_role_add"
+        }
+      },
+      "1234788985621053544": {
+        "1465315181382074539": {
+          "ts": 1778889590120,
+          "source": "member_role_add"
+        },
+        "1485794465162461264": {
+          "ts": 1778889636798,
+          "source": "member_role_add"
+        }
+      },
+      "453922958608564246": {
+        "1465315181382074539": {
+          "ts": 1778889590186,
+          "source": "member_role_add"
+        },
+        "1485794465162461264": {
+          "ts": 1778889636616,
+          "source": "member_role_add"
+        }
+      },
+      "303203573708226564": {
+        "1465315181382074539": {
+          "ts": 1778889590445,
+          "source": "member_role_add"
+        },
+        "1485794465162461264": {
+          "ts": 1778889636561,
+          "source": "member_role_add"
+        }
+      },
+      "478168485122539531": {
+        "1465315181382074539": {
+          "ts": 1778889590509,
+          "source": "member_role_add"
+        },
+        "1485794465162461264": {
+          "ts": 1778889636520,
+          "source": "member_role_add"
+        }
+      },
+      "1081323939462123612": {
+        "1485794465162461264": {
+          "ts": 1779047047860,
+          "source": "member_role_add"
+        },
+        "1465315181382074539": {
+          "ts": 1779056707206,
+          "source": "member_role_add"
+        }
+      },
+      "625604865317535744": {
+        "1485794465162461264": {
+          "ts": 1779047642801,
+          "source": "member_role_add"
+        }
+      },
+      "447008003170762753": {
+        "1465315181382074539": {
+          "ts": 1779057418795,
+          "source": "member_role_add"
+        }
+      },
+      "1084573586376892547": {
+        "1465315181382074539": {
+          "ts": 1779057426815,
+          "source": "member_role_add"
+        }
+      },
+      "527958115627302913": {
+        "1465315181382074539": {
+          "ts": 1779057431325,
+          "source": "member_role_add"
+        }
+      },
+      "1397359665695948904": {
+        "1485794465162461264": {
+          "ts": 1779584692269,
+          "source": "member_role_add"
+        },
+        "1465315181382074539": {
+          "ts": 1779730147342,
+          "source": "member_role_add"
+        }
+      },
+      "1261286888761856122": {
+        "1485794465162461264": {
+          "ts": 1779648531124,
+          "source": "member_role_add"
+        },
+        "1465315181382074539": {
+          "ts": 1779648539461,
+          "source": "member_role_add"
+        }
+      },
+      "834443993827377242": {
+        "1485794465162461264": {
+          "ts": 1779741084152,
+          "source": "member_role_add"
+        },
+        "1465315181382074539": {
+          "ts": 1779741087839,
+          "source": "member_role_add"
+        }
+      },
+      "481229229472874502": {
+        "1485794465162461264": {
+          "ts": 1779829661724,
+          "source": "fallback_joined_at"
+        },
+        "1465315181382074539": {
+          "ts": 1779916118735,
+          "source": "member_role_add"
+        }
+      },
+      "727337828752818186": {
+        "1485794465162461264": {
+          "ts": 1779829189049,
+          "source": "fallback_joined_at"
+        },
+        "1465315181382074539": {
+          "ts": 1779916115366,
+          "source": "member_role_add"
+        }
+      },
+      "688358335937904672": {
+        "1485794465162461264": {
+          "ts": 1779922743977,
+          "source": "member_role_add"
+        },
+        "1465315181382074539": {
+          "ts": 1779918733894,
+          "source": "fallback_joined_at"
+        }
+      }
+    }
+  },
+  "roles": {
+    "leadership": [],
+    "routenverwaltung": [],
+    "permissions": {
+      "admin": [
+        "1514394487621685471"
+      ],
+      "sanction_manage": [],
+      "sanction_approve": [],
+      "absence_manage": [],
+      "attendance_manage": [],
+      "config_manage": [
+        "1514394487621685471"
+      ],
+      "dashboard_view": [
+        "1514394487621685471"
+      ],
+      "rollback_manage": []
+    }
+  },
+  "safety": {
+    "whitelistUserIds": [],
+    "blacklistUserIds": []
+  },
+  "diagnostics": {
+    "dmFailures": [],
+    "dmStatus": {
+      "451086657568112641": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400780
+      },
+      "668441351901282325": {
+        "status": "disabled",
+        "reason": "Bereich sanktionen deaktiviert",
+        "updatedAt": 1779047044204
+      },
+      "1315059532774510733": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1780236000370
+      },
+      "527958115627302913": {
+        "status": "ok",
+        "reason": "",
+        "updatedAt": 1781164842615
+      },
+      "623592195240230914": {
+        "status": "ok",
+        "reason": "",
+        "updatedAt": 1781164844092
+      },
+      "325382005455978496": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400832
+      },
+      "724238471018840074": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400839
+      },
+      "1495791328691490826": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400843
+      },
+      "715520879202926683": {
+        "status": "ok",
+        "reason": "",
+        "updatedAt": 1778421619574
+      },
+      "522090867897663488": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400848
+      },
+      "1227254024248496161": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400791
+      },
+      "1449109712825225436": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400802
+      },
+      "476754340925931530": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1778853600797
+      },
+      "1322995756755456081": {
+        "status": "ok",
+        "reason": "",
+        "updatedAt": 1778428971860
+      },
+      "447008003170762753": {
+        "status": "ok",
+        "reason": "",
+        "updatedAt": 1781164842060
+      },
+      "1233152028096856126": {
+        "status": "ok",
+        "reason": "",
+        "updatedAt": 1778428972580
+      },
+      "1307392555742269564": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400785
+      },
+      "1084573586376892547": {
+        "status": "ok",
+        "reason": "",
+        "updatedAt": 1781164845140
+      },
+      "1234788985621053544": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1779372000633
+      },
+      "615148722791251978": {
+        "status": "ok",
+        "reason": "",
+        "updatedAt": 1781164843625
+      },
+      "631805731569664011": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1779372000648
+      },
+      "478168485122539531": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1779372000615
+      },
+      "625604865317535744": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400815
+      },
+      "303203573708226564": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400819
+      },
+      "1457182169087606784": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400807
+      },
+      "1397359665695948904": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400811
+      },
+      "1261286888761856122": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400824
+      },
+      "900779211722223656": {
+        "status": "ok",
+        "reason": "",
+        "updatedAt": 1781164844675
+      },
+      "481229229472874502": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400827
+      },
+      "332581895785283584": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400701
+      },
+      "688358335937904672": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400774
+      },
+      "727337828752818186": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1781186400794
+      },
+      "1081323939462123612": {
+        "status": "disabled",
+        "reason": "Bereich abgaben deaktiviert",
+        "updatedAt": 1780977600747
+      }
+    },
+    "dmDailySends": {
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500713_44653:issued": 1781161500734,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500737_181787:issued": 1781161500749,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500750_355301:issued": 1781161500757,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500758_362228:issued": 1781161500766,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500767_561005:issued": 1781161500775,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500775_562720:issued": 1781161500784,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500785_798467:issued": 1781161500801,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500802_56657:issued": 1781161500811,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500811_605222:issued": 1781161500821,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500713_44653:offen:3:2026-06-11": 1781164800277,
+      "2026-06-11:447008003170762753:general:pq1s1m": 1781164801166,
+      "2026-06-11:527958115627302913:general:pq1s1m": 1781164804321,
+      "2026-06-11:615148722791251978:general:pq1s1m": 1781164805788,
+      "2026-06-11:623592195240230914:general:pq1s1m": 1781164806579,
+      "2026-06-11:900779211722223656:general:pq1s1m": 1781164807643,
+      "2026-06-11:1084573586376892547:general:pq1s1m": 1781164808543,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500737_181787:offen:3:2026-06-11": 1781164809408,
+      "2026-06-11:447008003170762753:general:1cv42z": 1781164809987,
+      "2026-06-11:527958115627302913:general:1cv42z": 1781164810403,
+      "2026-06-11:615148722791251978:general:1cv42z": 1781164811070,
+      "2026-06-11:623592195240230914:general:1cv42z": 1781164811444,
+      "2026-06-11:900779211722223656:general:1cv42z": 1781164811807,
+      "2026-06-11:1084573586376892547:general:1cv42z": 1781164812144,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500750_355301:offen:3:2026-06-11": 1781164812486,
+      "2026-06-11:447008003170762753:general:61l2n2": 1781164813132,
+      "2026-06-11:527958115627302913:general:61l2n2": 1781164813551,
+      "2026-06-11:615148722791251978:general:61l2n2": 1781164813869,
+      "2026-06-11:623592195240230914:general:61l2n2": 1781164814176,
+      "2026-06-11:900779211722223656:general:61l2n2": 1781164814762,
+      "2026-06-11:1084573586376892547:general:61l2n2": 1781164815224,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500758_362228:offen:3:2026-06-11": 1781164815996,
+      "2026-06-11:447008003170762753:general:qgfakj": 1781164816387,
+      "2026-06-11:527958115627302913:general:qgfakj": 1781164816703,
+      "2026-06-11:615148722791251978:general:qgfakj": 1781164817522,
+      "2026-06-11:623592195240230914:general:qgfakj": 1781164817888,
+      "2026-06-11:900779211722223656:general:qgfakj": 1781164818372,
+      "2026-06-11:1084573586376892547:general:qgfakj": 1781164818876,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500767_561005:offen:3:2026-06-11": 1781164819588,
+      "2026-06-11:447008003170762753:general:hx9h1l": 1781164819982,
+      "2026-06-11:527958115627302913:general:hx9h1l": 1781164820483,
+      "2026-06-11:615148722791251978:general:hx9h1l": 1781164820925,
+      "2026-06-11:623592195240230914:general:hx9h1l": 1781164821516,
+      "2026-06-11:900779211722223656:general:hx9h1l": 1781164823771,
+      "2026-06-11:1084573586376892547:general:hx9h1l": 1781164824113,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500775_562720:offen:3:2026-06-11": 1781164824667,
+      "2026-06-11:447008003170762753:general:x9vnkp": 1781164826019,
+      "2026-06-11:527958115627302913:general:x9vnkp": 1781164826402,
+      "2026-06-11:615148722791251978:general:x9vnkp": 1781164826759,
+      "2026-06-11:623592195240230914:general:x9vnkp": 1781164827162,
+      "2026-06-11:900779211722223656:general:x9vnkp": 1781164827837,
+      "2026-06-11:1084573586376892547:general:x9vnkp": 1781164828532,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500785_798467:offen:3:2026-06-11": 1781164829050,
+      "2026-06-11:447008003170762753:general:nsz7ao": 1781164829504,
+      "2026-06-11:527958115627302913:general:nsz7ao": 1781164829905,
+      "2026-06-11:615148722791251978:general:nsz7ao": 1781164830298,
+      "2026-06-11:623592195240230914:general:nsz7ao": 1781164830679,
+      "2026-06-11:900779211722223656:general:nsz7ao": 1781164833475,
+      "2026-06-11:1084573586376892547:general:nsz7ao": 1781164836591,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500802_56657:offen:3:2026-06-11": 1781164836874,
+      "2026-06-11:447008003170762753:general:kyg881": 1781164837647,
+      "2026-06-11:527958115627302913:general:kyg881": 1781164837981,
+      "2026-06-11:615148722791251978:general:kyg881": 1781164838342,
+      "2026-06-11:623592195240230914:general:kyg881": 1781164838736,
+      "2026-06-11:900779211722223656:general:kyg881": 1781164839343,
+      "2026-06-11:1084573586376892547:general:kyg881": 1781164839768,
+      "2026-06-11:1449109712825225436:sanktionen:sanction:san_1781161500811_605222:offen:3:2026-06-11": 1781164840086,
+      "2026-06-11:447008003170762753:general:6d7dlz": 1781164841581,
+      "2026-06-11:527958115627302913:general:6d7dlz": 1781164842065,
+      "2026-06-11:615148722791251978:general:6d7dlz": 1781164842619,
+      "2026-06-11:623592195240230914:general:6d7dlz": 1781164843632,
+      "2026-06-11:900779211722223656:general:6d7dlz": 1781164844096,
+      "2026-06-11:1084573586376892547:general:6d7dlz": 1781164844681
+    }
+  },
+  "dmFailures": [],
+  "auditLog": [
+    {
+      "id": "audit_1778097911808_632839",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "527958115627302913",
+      "at": 1778097911808,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W18",
+        "amount": 300,
+        "status": "zu_spaet",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778173238418_14748",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778173238418,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778358312403_623781",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "325382005455978496",
+      "at": 1778358312403,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778358347004_543689",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "325382005455978496",
+      "at": 1778358347004,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W19",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778358851013_86768",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "1449109712825225436",
+      "at": 1778358851013,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W19",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778425347822_272567",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "623592195240230914",
+      "at": 1778425347822,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778425376133_276601",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "623592195240230914",
+      "at": 1778425376133,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19",
+        "amount": 900000,
+        "status": "abgegeben",
+        "prepaidWeeks": 2
+      }
+    },
+    {
+      "id": "audit_1778425395996_227688",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "451086657568112641",
+      "at": 1778425395996,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778425399683_844385",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "1307392555742269564",
+      "at": 1778425399683,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778425403983_694228",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "724238471018840074",
+      "at": 1778425403983,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778425467984_729439",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "1449109712825225436",
+      "at": 1778425467984,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778428579439_857160",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "476754340925931530",
+      "at": 1778428579439,
+      "details": {
+        "sanctionId": "san_1778428579439_992591",
+        "source": "abgabe-auto",
+        "relatedWeek": "2026-W18",
+        "relatedCategory": "patronen"
+      }
+    },
+    {
+      "id": "audit_1778428579450_487668",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "451086657568112641",
+      "at": 1778428579450,
+      "details": {
+        "sanctionId": "san_1778428579450_70821",
+        "source": "abgabe-auto",
+        "relatedWeek": "2026-W18",
+        "relatedCategory": "patronen"
+      }
+    },
+    {
+      "id": "audit_1778428579457_38045",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "668441351901282325",
+      "at": 1778428579457,
+      "details": {
+        "sanctionId": "san_1778428579457_986795",
+        "source": "abgabe-auto",
+        "relatedWeek": "2026-W18",
+        "relatedCategory": "patronen"
+      }
+    },
+    {
+      "id": "audit_1778428579464_533745",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "1315059532774510733",
+      "at": 1778428579464,
+      "details": {
+        "sanctionId": "san_1778428579464_153829",
+        "source": "abgabe-auto",
+        "relatedWeek": "2026-W18",
+        "relatedCategory": "patronen"
+      }
+    },
+    {
+      "id": "audit_1778428579469_517058",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "1322995756755456081",
+      "at": 1778428579469,
+      "details": {
+        "sanctionId": "san_1778428579469_379200",
+        "source": "abgabe-auto",
+        "relatedWeek": "2026-W18",
+        "relatedCategory": "patronen"
+      }
+    },
+    {
+      "id": "audit_1778431590335_910598",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "1227254024248496161",
+      "at": 1778431590335,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1778431590342_198589",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "1227254024248496161",
+      "at": 1778431590342,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W19",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1778438942078_851174",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "1495791328691490826",
+      "at": 1778438942079,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W19",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778438958274_916856",
+      "type": "abgabe_entschuldigt",
+      "actorId": "668441351901282325",
+      "targetId": "668441351901282325",
+      "at": 1778438958274,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1778438958278_787209",
+      "type": "abgabe_entschuldigt",
+      "actorId": "668441351901282325",
+      "targetId": "668441351901282325",
+      "at": 1778438958278,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W19",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1778449672036_424870",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "1495791328691490826",
+      "at": 1778449672036,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19",
+        "amount": 600000,
+        "status": "abgegeben",
+        "prepaidWeeks": 1
+      }
+    },
+    {
+      "id": "audit_1778449678599_257386",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "522090867897663488",
+      "at": 1778449678599,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778449753546_205015",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "527958115627302913",
+      "at": 1778449753546,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778449761122_795491",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "527958115627302913",
+      "at": 1778449761122,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19",
+        "amount": 600000,
+        "status": "abgegeben",
+        "prepaidWeeks": 1
+      }
+    },
+    {
+      "id": "audit_1778449787132_7382",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "527958115627302913",
+      "at": 1778449787132,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W19",
+        "note": "Manuell entschuldigt"
+      }
+    },
+    {
+      "id": "audit_1778449909098_446452",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "623592195240230914",
+      "at": 1778449909099,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W19",
+        "note": "Manuell entschuldigt"
+      }
+    },
+    {
+      "id": "audit_1778449915130_55844",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "724238471018840074",
+      "at": 1778449915131,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W19",
+        "note": "Manuell entschuldigt"
+      }
+    },
+    {
+      "id": "audit_1778449920250_18180",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "522090867897663488",
+      "at": 1778449920250,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W19",
+        "note": "Manuell entschuldigt"
+      }
+    },
+    {
+      "id": "audit_1778451536280_489594",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "1495791328691490826",
+      "at": 1778451536280,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778451536288_339548",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "1495791328691490826",
+      "at": 1778451536288,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778451552664_859104",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "527958115627302913",
+      "at": 1778451552664,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778451552669_570229",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "527958115627302913",
+      "at": 1778451552669,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778465410169_386380",
+      "type": "system_automation_config_geaendert",
+      "actorId": "447008003170762753",
+      "targetId": null,
+      "at": 1778465410169,
+      "details": {
+        "cashboxMonthlyReports": false
+      }
+    },
+    {
+      "id": "audit_1778466203575_555530",
+      "type": "regel_config_geaendert",
+      "actorId": "447008003170762753",
+      "targetId": null,
+      "at": 1778466203575,
+      "details": {
+        "ruleKey": "termNoResponseSanction",
+        "changes": {
+          "enabled": true,
+          "catalogNo": "18",
+          "amount": 50000,
+          "penaltyType": "Grüngeld"
+        }
+      }
+    },
+    {
+      "id": "audit_1778466222195_338495",
+      "type": "regel_config_geaendert",
+      "actorId": "447008003170762753",
+      "targetId": null,
+      "at": 1778466222195,
+      "details": {
+        "ruleKey": "abgabeAutoSanction",
+        "changes": {
+          "enabled": true,
+          "overdueDays": 2,
+          "catalogNo": "29",
+          "amount": 100000,
+          "penaltyType": "Schwarzgeld"
+        }
+      }
+    },
+    {
+      "id": "audit_1778469228085_193033",
+      "type": "system_dm_config_geaendert",
+      "actorId": "447008003170762753",
+      "targetId": null,
+      "at": 1778469228085,
+      "details": {
+        "enabled": false
+      }
+    },
+    {
+      "id": "audit_1778469230952_692476",
+      "type": "system_dm_config_geaendert",
+      "actorId": "447008003170762753",
+      "targetId": null,
+      "at": 1778469230952,
+      "details": {
+        "enabled": true
+      }
+    },
+    {
+      "id": "audit_1778469320964_285793",
+      "type": "system_reminder_config_geaendert",
+      "actorId": "447008003170762753",
+      "targetId": null,
+      "at": 1778469320964,
+      "details": {
+        "enabled": false
+      }
+    },
+    {
+      "id": "audit_1778469324035_657893",
+      "type": "system_reminder_config_geaendert",
+      "actorId": "447008003170762753",
+      "targetId": null,
+      "at": 1778469324035,
+      "details": {
+        "enabled": true
+      }
+    },
+    {
+      "id": "audit_1778469357930_838847",
+      "type": "system_dm_config_geaendert",
+      "actorId": "447008003170762753",
+      "targetId": null,
+      "at": 1778469357930,
+      "details": {
+        "enabled": false
+      }
+    },
+    {
+      "id": "audit_1778469371549_666051",
+      "type": "system_dm_config_geaendert",
+      "actorId": "447008003170762753",
+      "targetId": null,
+      "at": 1778469371549,
+      "details": {
+        "enabled": true
+      }
+    },
+    {
+      "id": "audit_1778469381280_719832",
+      "type": "system_dm_config_geaendert",
+      "actorId": "447008003170762753",
+      "targetId": null,
+      "at": 1778469381280,
+      "details": {
+        "enabled": false
+      }
+    },
+    {
+      "id": "audit_1778469480402_996029",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778469480402,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778469497809_47991",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778469497809,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778469497814_166359",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778469497814,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778499765607_568280",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778499765607,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778499776666_601931",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778499776667,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778499776673_263113",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778499776673,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778499940734_405820",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778499940734,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778499957838_281629",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778499957838,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778499957844_488840",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778499957844,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778503722576_83096",
+      "type": "system_smartping_config_geaendert",
+      "actorId": "447008003170762753",
+      "targetId": null,
+      "at": 1778503722576,
+      "details": {
+        "enabled": true,
+        "activeDays": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "minRisk": 30,
+        "reliableSkipScore": 85,
+        "sundayOnlyScore": 70,
+        "mediumScore": 50,
+        "labelVeryReliable": 85,
+        "labelReliable": 70,
+        "labelMedium": 50,
+        "labelUnreliable": 30,
+        "openAbgabenThreshold": 1,
+        "sanctionThreshold": 1,
+        "termNoResponseThreshold": 1,
+        "openAbgabenPenaltyStart": 1,
+        "openAbgabenPenaltyPoints": 10,
+        "termNoResponsePenaltyPoints": 6,
+        "sanctionPenaltyLight": 5,
+        "sanctionPenaltyMedium": 20,
+        "sanctionPenaltyHeavy": 35,
+        "wachePenaltyStart": 1,
+        "wachePenaltyPoints": 10,
+        "wacheRepeatPenaltyPoints": 20,
+        "wachePenaltyHeavyAfter": 3
+      }
+    },
+    {
+      "id": "audit_1778523893698_915990",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "1084573586376892547",
+      "at": 1778523893698,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778524577205_364918",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "1322995756755456081",
+      "at": 1778524577205,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778525623801_357953",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "724238471018840074",
+      "at": 1778525623802,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778529489640_14379",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "522090867897663488",
+      "at": 1778529489640,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778531898704_720141",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "623592195240230914",
+      "at": 1778531898704,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778531907587_854144",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "623592195240230914",
+      "at": 1778531907587,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "amount": 600,
+        "status": "abgegeben",
+        "prepaidWeeks": 1
+      }
+    },
+    {
+      "id": "audit_1778533572190_542041",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "451086657568112641",
+      "at": 1778533572190,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778692482064_476081",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "900779211722223656",
+      "at": 1778692482065,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1778692482071_21702",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "900779211722223656",
+      "at": 1778692482071,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1778692482077_525875",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "900779211722223656",
+      "at": 1778692482077,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1778692482082_151578",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "900779211722223656",
+      "at": 1778692482082,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1778696100977_133954",
+      "type": "abgabe_entschuldigt",
+      "actorId": "900779211722223656",
+      "targetId": "900779211722223656",
+      "at": 1778696100977,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1778696100984_112227",
+      "type": "abgabe_entschuldigt",
+      "actorId": "900779211722223656",
+      "targetId": "900779211722223656",
+      "at": 1778696100984,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1778696100988_298735",
+      "type": "abgabe_entschuldigt",
+      "actorId": "900779211722223656",
+      "targetId": "900779211722223656",
+      "at": 1778696100988,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1778696100992_188443",
+      "type": "abgabe_entschuldigt",
+      "actorId": "900779211722223656",
+      "targetId": "900779211722223656",
+      "at": 1778696100992,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1778769238212_719706",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "1084573586376892547",
+      "at": 1778769238212,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778785288451_12632",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "1322995756755456081",
+      "at": 1778785288451,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778785550883_717568",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778785550883,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778785564816_587783",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778785564816,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778785564822_13988",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778785564822,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786145531_530353",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "1322995756755456081",
+      "at": 1778786145531,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20",
+        "amount": 300000,
+        "status": "zu_spaet",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778786164681_708180",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778786164681,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786164687_717260",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778786164687,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786172074_793784",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "451086657568112641",
+      "at": 1778786172074,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786172080_343134",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "451086657568112641",
+      "at": 1778786172080,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786175737_603926",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "1307392555742269564",
+      "at": 1778786175737,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786175742_555250",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "1307392555742269564",
+      "at": 1778786175742,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786188128_523176",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "1449109712825225436",
+      "at": 1778786188128,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786188135_913942",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "1449109712825225436",
+      "at": 1778786188135,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786221826_880741",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "1315059532774510733",
+      "at": 1778786221826,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786221832_370846",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "1315059532774510733",
+      "at": 1778786221832,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786229702_703075",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "527958115627302913",
+      "at": 1778786229702,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786229708_191736",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "527958115627302913",
+      "at": 1778786229708,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786237792_593874",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "623592195240230914",
+      "at": 1778786237792,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786237798_671828",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "623592195240230914",
+      "at": 1778786237798,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786244243_126424",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "325382005455978496",
+      "at": 1778786244243,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786244249_762301",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "325382005455978496",
+      "at": 1778786244249,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786252236_651761",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "724238471018840074",
+      "at": 1778786252236,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786252242_142163",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "724238471018840074",
+      "at": 1778786252242,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786256941_298597",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "1495791328691490826",
+      "at": 1778786256941,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786256948_993359",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "1495791328691490826",
+      "at": 1778786256948,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786262265_445200",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "522090867897663488",
+      "at": 1778786262265,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786262272_331898",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "522090867897663488",
+      "at": 1778786262272,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786338760_776782",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "522090867897663488",
+      "at": 1778786338760,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786338766_712604",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "522090867897663488",
+      "at": 1778786338766,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786354835_165419",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "522090867897663488",
+      "at": 1778786354835,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786354841_793531",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "522090867897663488",
+      "at": 1778786354841,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786389447_399734",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778786389447,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786389454_179446",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778786389454,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778786410337_784434",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778786410337,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778786416480_315847",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778786416480,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1778786416487_8743",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1778786416487,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1778877994317_230169",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "325382005455978496",
+      "at": 1778877994317,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778909253746_804752",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1307392555742269564",
+      "at": 1778909253746,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778909268017_747945",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1495791328691490826",
+      "at": 1778909268017,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1778940942406_265298",
+      "type": "system_automation_config_geaendert",
+      "actorId": "447008003170762753",
+      "targetId": null,
+      "at": 1778940942406,
+      "details": {
+        "monthlyReports": true
+      }
+    },
+    {
+      "id": "audit_1778978184128_919250",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "724238471018840074",
+      "at": 1778978184128,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779033962419_834977",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1779033962419,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779033982591_911105",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1779033982591,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1779033982597_47505",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "447008003170762753",
+      "targetId": "447008003170762753",
+      "at": 1779033982597,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W19"
+      }
+    },
+    {
+      "id": "audit_1779047043691_328011",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "668441351901282325",
+      "at": 1779047043691,
+      "details": {
+        "sanctionId": "san_1779047043691_885733",
+        "source": "manual",
+        "relatedWeek": null,
+        "relatedCategory": null
+      }
+    },
+    {
+      "id": "audit_1779047091508_602616",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "1315059532774510733",
+      "at": 1779047091508,
+      "details": {
+        "sanctionId": "san_1779047091508_249354",
+        "source": "manual",
+        "relatedWeek": null,
+        "relatedCategory": null
+      }
+    },
+    {
+      "id": "audit_1779129936418_241696",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1449109712825225436",
+      "at": 1779129936418,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779134781010_961895",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "623592195240230914",
+      "targetId": "1449109712825225436",
+      "at": 1779134781011,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21"
+      }
+    },
+    {
+      "id": "audit_1779134781021_679757",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "623592195240230914",
+      "targetId": "1449109712825225436",
+      "at": 1779134781021,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1779134800882_336911",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1449109712825225436",
+      "at": 1779134800883,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "amount": 300,
+        "status": "zu_spaet",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779135367013_468850",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "478168485122539531",
+      "at": 1779135367013,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779217071130_192166",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "1457182169087606784",
+      "at": 1779217071130,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779217077683_124150",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "1457182169087606784",
+      "at": 1779217077683,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "amount": 316,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779217810497_108875",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "453922958608564246",
+      "at": 1779217810497,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779217819597_707926",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "453922958608564246",
+      "at": 1779217819597,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779218025082_663406",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "303203573708226564",
+      "at": 1779218025082,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779218728054_722",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "1495791328691490826",
+      "at": 1779218728054,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779218773625_336642",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "1495791328691490826",
+      "at": 1779218773625,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W20",
+        "amount": 600000,
+        "status": "zu_spaet",
+        "prepaidWeeks": 1
+      }
+    },
+    {
+      "id": "audit_1779218871522_667772",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "724238471018840074",
+      "at": 1779218871522,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779224578255_161460",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "453922958608564246",
+      "at": 1779224578255,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20",
+        "amount": 300,
+        "status": "zu_spaet",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779224581767_73137",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "623592195240230914",
+      "targetId": "453922958608564246",
+      "at": 1779224581767,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21"
+      }
+    },
+    {
+      "id": "audit_1779224581775_697701",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "623592195240230914",
+      "targetId": "453922958608564246",
+      "at": 1779224581775,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W20"
+      }
+    },
+    {
+      "id": "audit_1779224591699_717249",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "453922958608564246",
+      "at": 1779224591699,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779297383724_943992",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "522090867897663488",
+      "at": 1779297383724,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779297391197_245113",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "522090867897663488",
+      "at": 1779297391197,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779385873887_794044",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "325382005455978496",
+      "at": 1779385873887,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779385881055_629424",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "325382005455978496",
+      "at": 1779385881055,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779386233514_804902",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "303203573708226564",
+      "at": 1779386233514,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779492626145_174031",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "615148722791251978",
+      "at": 1779492626145,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779492635667_93137",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "615148722791251978",
+      "at": 1779492635667,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779492748819_983383",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "623592195240230914",
+      "at": 1779492748819,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779644409902_697001",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "451086657568112641",
+      "at": 1779644409902,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779644424340_378302",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "451086657568112641",
+      "at": 1779644424340,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779647839089_588623",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "1227254024248496161",
+      "at": 1779647839089,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1779647839099_26321",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "1227254024248496161",
+      "at": 1779647839099,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1779647839111_121454",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "1227254024248496161",
+      "at": 1779647839111,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1779647839123_85467",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "1227254024248496161",
+      "at": 1779647839123,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1779647839141_99614",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "1227254024248496161",
+      "at": 1779647839142,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W23",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1779647839156_531760",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "1227254024248496161",
+      "at": 1779647839156,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W23",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1779647856179_935732",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "1227254024248496161",
+      "at": 1779647856179,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "note": "Manuell entschuldigt"
+      }
+    },
+    {
+      "id": "audit_1779647861791_967428",
+      "type": "abgabe_entschuldigt",
+      "actorId": "447008003170762753",
+      "targetId": "1227254024248496161",
+      "at": 1779647861791,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "note": "Manuell entschuldigt"
+      }
+    },
+    {
+      "id": "audit_1779649223564_712540",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "1495791328691490826",
+      "at": 1779649223564,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779649234162_990176",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "1495791328691490826",
+      "at": 1779649234162,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779652781477_547472",
+      "type": "abgabe_entschuldigt",
+      "actorId": "1084573586376892547",
+      "targetId": "1307392555742269564",
+      "at": 1779652781477,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W21",
+        "note": "Manuell entschuldigt"
+      }
+    },
+    {
+      "id": "audit_1779652829502_135736",
+      "type": "abgabe_entschuldigt",
+      "actorId": "1084573586376892547",
+      "targetId": "1307392555742269564",
+      "at": 1779652829502,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W21",
+        "note": "Manuell entschuldigt"
+      }
+    },
+    {
+      "id": "audit_1779728916919_405781",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1397359665695948904",
+      "at": 1779728916919,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22",
+        "amount": 300,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779899777845_952983",
+      "type": "abgabe_eingetragen",
+      "actorId": "900779211722223656",
+      "targetId": "900779211722223656",
+      "at": 1779899777845,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779904179321_262920",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "727337828752818186",
+      "at": 1779904179321,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22",
+        "amount": 150,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1779904192837_50765",
+      "type": "abgabe_eingetragen",
+      "actorId": "900779211722223656",
+      "targetId": "727337828752818186",
+      "at": 1779904192837,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22",
+        "amount": 150,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780014115626_70735",
+      "type": "abgabe_eingetragen",
+      "actorId": "900779211722223656",
+      "targetId": "727337828752818186",
+      "at": 1780014115626,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780091593354_182443",
+      "type": "abgabe_eingetragen",
+      "actorId": "900779211722223656",
+      "targetId": "615148722791251978",
+      "at": 1780091593354,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780091601342_459621",
+      "type": "abgabe_eingetragen",
+      "actorId": "900779211722223656",
+      "targetId": "615148722791251978",
+      "at": 1780091601342,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22",
+        "amount": 150,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780091678859_169789",
+      "type": "abgabe_eingetragen",
+      "actorId": "900779211722223656",
+      "targetId": "615148722791251978",
+      "at": 1780091678859,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22",
+        "amount": 180,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780227405061_944084",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "481229229472874502",
+      "at": 1780227405061,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22",
+        "amount": 600000,
+        "status": "abgegeben",
+        "prepaidWeeks": 1
+      }
+    },
+    {
+      "id": "audit_1780252455761_18899",
+      "type": "abgabe_eingetragen",
+      "actorId": "900779211722223656",
+      "targetId": "1457182169087606784",
+      "at": 1780252455761,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22",
+        "amount": 150,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780252464372_440970",
+      "type": "abgabe_eingetragen",
+      "actorId": "900779211722223656",
+      "targetId": "1457182169087606784",
+      "at": 1780252464372,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780255516284_121030",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1315059532774510733",
+      "at": 1780255516284,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780255541363_700738",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1315059532774510733",
+      "at": 1780255541363,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22",
+        "amount": 150,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780255812826_622052",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "623592195240230914",
+      "at": 1780255812826,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22",
+        "amount": 150,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780257395300_742262",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "724238471018840074",
+      "at": 1780257395300,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22",
+        "amount": 150,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780257914464_92852",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1261286888761856122",
+      "at": 1780257914464,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780259979658_110309",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "303203573708226564",
+      "at": 1780259979658,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780259998401_769522",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "303203573708226564",
+      "at": 1780259998401,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22",
+        "amount": 150,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780265077969_895346",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1307392555742269564",
+      "at": 1780265077969,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W23",
+        "amount": 150,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780265091383_320632",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1495791328691490826",
+      "at": 1780265091383,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W23",
+        "amount": 150,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780265106946_700594",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1307392555742269564",
+      "at": 1780265106946,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W23",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780265119794_976313",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1495791328691490826",
+      "at": 1780265119794,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W23",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780265147092_479295",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "623592195240230914",
+      "targetId": "1495791328691490826",
+      "at": 1780265147092,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W23"
+      }
+    },
+    {
+      "id": "audit_1780265147102_407151",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "623592195240230914",
+      "targetId": "1495791328691490826",
+      "at": 1780265147102,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22"
+      }
+    },
+    {
+      "id": "audit_1780265151390_558285",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1495791328691490826",
+      "at": 1780265151390,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22",
+        "amount": 300000,
+        "status": "zu_spaet",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780265158250_614722",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "623592195240230914",
+      "targetId": "1307392555742269564",
+      "at": 1780265158250,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W23"
+      }
+    },
+    {
+      "id": "audit_1780265158261_494048",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "623592195240230914",
+      "targetId": "1307392555742269564",
+      "at": 1780265158261,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22"
+      }
+    },
+    {
+      "id": "audit_1780265159827_855359",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1307392555742269564",
+      "at": 1780265159827,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22",
+        "amount": 300000,
+        "status": "zu_spaet",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780265203721_399721",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "623592195240230914",
+      "targetId": "1495791328691490826",
+      "at": 1780265203721,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W23"
+      }
+    },
+    {
+      "id": "audit_1780265203731_588525",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "623592195240230914",
+      "targetId": "1495791328691490826",
+      "at": 1780265203731,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22"
+      }
+    },
+    {
+      "id": "audit_1780265210373_49830",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1495791328691490826",
+      "at": 1780265210373,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22",
+        "amount": 150,
+        "status": "zu_spaet",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780265229929_804560",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "623592195240230914",
+      "targetId": "1307392555742269564",
+      "at": 1780265229929,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W23"
+      }
+    },
+    {
+      "id": "audit_1780265229939_513199",
+      "type": "abgabe_zurueckgesetzt",
+      "actorId": "623592195240230914",
+      "targetId": "1307392555742269564",
+      "at": 1780265229939,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22"
+      }
+    },
+    {
+      "id": "audit_1780265234191_417725",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1307392555742269564",
+      "at": 1780265234191,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22",
+        "amount": 150,
+        "status": "zu_spaet",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780265433162_145773",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "1315059532774510733",
+      "at": 1780265433162,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W23",
+        "amount": 150,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780337257656_118524",
+      "type": "abgabe_eingetragen",
+      "actorId": "900779211722223656",
+      "targetId": "325382005455978496",
+      "at": 1780337257656,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W23",
+        "amount": 150,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780341648155_514793",
+      "type": "abgabe_eingetragen",
+      "actorId": "1084573586376892547",
+      "targetId": "325382005455978496",
+      "at": 1780341648155,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22",
+        "amount": 300000,
+        "status": "zu_spaet",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780341931641_744984",
+      "type": "sanktion_bezahlt",
+      "actorId": "447008003170762753",
+      "targetId": "1315059532774510733",
+      "at": 1780341931641,
+      "details": {
+        "sanctionId": "san_1779047091508_249354"
+      }
+    },
+    {
+      "id": "audit_1780341935122_586148",
+      "type": "sanktion_bezahlt",
+      "actorId": "447008003170762753",
+      "targetId": "668441351901282325",
+      "at": 1780341935122,
+      "details": {
+        "sanctionId": "san_1779047043691_885733"
+      }
+    },
+    {
+      "id": "audit_1780346000781_867938",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "522090867897663488",
+      "at": 1780346000781,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W23",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780346004776_377980",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "522090867897663488",
+      "at": 1780346004776,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W22",
+        "amount": 300000,
+        "status": "zu_spaet",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780346013787_116371",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "522090867897663488",
+      "at": 1780346013787,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W23",
+        "amount": 150,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780346015017_938757",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "522090867897663488",
+      "at": 1780346015017,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W22",
+        "amount": 150,
+        "status": "zu_spaet",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780607122285_996588",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "332581895785283584",
+      "at": 1780607122285,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W23",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780607227557_112904",
+      "type": "abgabe_eingetragen",
+      "actorId": "447008003170762753",
+      "targetId": "332581895785283584",
+      "at": 1780607227557,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W23",
+        "amount": 300000,
+        "status": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780639956156_456956",
+      "type": "abgabe_entschuldigt",
+      "actorId": "1449109712825225436",
+      "targetId": "1449109712825225436",
+      "at": 1780639956156,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W23",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1780639956176_532351",
+      "type": "abgabe_entschuldigt",
+      "actorId": "1449109712825225436",
+      "targetId": "1449109712825225436",
+      "at": 1780639956176,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W23",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1780639956198_430756",
+      "type": "abgabe_entschuldigt",
+      "actorId": "1449109712825225436",
+      "targetId": "1449109712825225436",
+      "at": 1780639956198,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W24",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1780639956232_237681",
+      "type": "abgabe_entschuldigt",
+      "actorId": "1449109712825225436",
+      "targetId": "1449109712825225436",
+      "at": 1780639956232,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W24",
+        "note": "Ab 5 Tage abgemeldet"
+      }
+    },
+    {
+      "id": "audit_1780703079270_66410",
+      "type": "system_dm_config_geaendert",
+      "actorId": "447008003170762753",
+      "targetId": null,
+      "at": 1780703079270,
+      "details": {
+        "enabled": true
+      }
+    },
+    {
+      "id": "audit_1780703109783_162537",
+      "type": "system_dm_config_geaendert",
+      "actorId": "447008003170762753",
+      "targetId": null,
+      "at": 1780703109783,
+      "details": {
+        "enabled": true,
+        "areas": {
+          "general": true,
+          "abgaben": false,
+          "sanktionen": true,
+          "wache": false,
+          "termine": true,
+          "leader": false
+        },
+        "dailyDedupEnabled": true,
+        "buttonsEnabled": true
+      }
+    },
+    {
+      "id": "audit_1780830025968_299233",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "615148722791251978",
+      "at": 1780830025968,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W23",
+        "amount": 150,
+        "status": "abgegeben",
+        "requestedStatus": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1780830043316_125284",
+      "type": "abgabe_eingetragen",
+      "actorId": "623592195240230914",
+      "targetId": "615148722791251978",
+      "at": 1780830043316,
+      "details": {
+        "category": "routen",
+        "weekKey": "2026-W23",
+        "amount": 300000,
+        "status": "abgegeben",
+        "requestedStatus": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1781031157935_713599",
+      "type": "abgabe_eingetragen",
+      "actorId": "900779211722223656",
+      "targetId": "325382005455978496",
+      "at": 1781031157935,
+      "details": {
+        "category": "patronen",
+        "weekKey": "2026-W24",
+        "amount": 150,
+        "status": "abgegeben",
+        "requestedStatus": "abgegeben",
+        "prepaidWeeks": 0
+      }
+    },
+    {
+      "id": "audit_1781161500713_550171",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "1449109712825225436",
+      "at": 1781161500713,
+      "details": {
+        "sanctionId": "san_1781161500713_44653",
+        "source": "abgabe-auto",
+        "relatedWeek": "2026-W18",
+        "relatedCategory": "patronen"
+      }
+    },
+    {
+      "id": "audit_1781161500737_922619",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "1449109712825225436",
+      "at": 1781161500737,
+      "details": {
+        "sanctionId": "san_1781161500737_181787",
+        "source": "abgabe-auto",
+        "relatedWeek": "2026-W19",
+        "relatedCategory": "patronen"
+      }
+    },
+    {
+      "id": "audit_1781161500750_681879",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "1449109712825225436",
+      "at": 1781161500750,
+      "details": {
+        "sanctionId": "san_1781161500750_355301",
+        "source": "abgabe-auto",
+        "relatedWeek": "2026-W20",
+        "relatedCategory": "patronen"
+      }
+    },
+    {
+      "id": "audit_1781161500758_51258",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "1449109712825225436",
+      "at": 1781161500758,
+      "details": {
+        "sanctionId": "san_1781161500758_362228",
+        "source": "abgabe-auto",
+        "relatedWeek": "2026-W21",
+        "relatedCategory": "routen"
+      }
+    },
+    {
+      "id": "audit_1781161500767_910927",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "1449109712825225436",
+      "at": 1781161500767,
+      "details": {
+        "sanctionId": "san_1781161500767_561005",
+        "source": "abgabe-auto",
+        "relatedWeek": "2026-W21",
+        "relatedCategory": "patronen"
+      }
+    },
+    {
+      "id": "audit_1781161500775_671982",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "1449109712825225436",
+      "at": 1781161500775,
+      "details": {
+        "sanctionId": "san_1781161500775_562720",
+        "source": "abgabe-auto",
+        "relatedWeek": "2026-W22",
+        "relatedCategory": "routen"
+      }
+    },
+    {
+      "id": "audit_1781161500785_163760",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "1449109712825225436",
+      "at": 1781161500785,
+      "details": {
+        "sanctionId": "san_1781161500785_798467",
+        "source": "abgabe-auto",
+        "relatedWeek": "2026-W22",
+        "relatedCategory": "patronen"
+      }
+    },
+    {
+      "id": "audit_1781161500802_235200",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "1449109712825225436",
+      "at": 1781161500802,
+      "details": {
+        "sanctionId": "san_1781161500802_56657",
+        "source": "abgabe-auto",
+        "relatedWeek": "2026-W23",
+        "relatedCategory": "routen"
+      }
+    },
+    {
+      "id": "audit_1781161500811_977186",
+      "type": "sanktion_erstellt",
+      "actorId": "system",
+      "targetId": "1449109712825225436",
+      "at": 1781161500811,
+      "details": {
+        "sanctionId": "san_1781161500811_605222",
+        "source": "abgabe-auto",
+        "relatedWeek": "2026-W23",
+        "relatedCategory": "patronen"
+      }
+    }
+  ],
+  "statsCache": {
+    "invalidatedAt": 1781161500811,
+    "reason": "sanction_created",
+    "dashboardEmbed:1449717412747415695": {
+      "value": {
+        "color": 13938487,
+        "title": "📊 Live Dashboard • Übersicht",
+        "description": "Woche **2026-W24** • Status live",
+        "fields": [
+          {
+            "name": "📦 Abgaben Gesamt",
+            "value": "Aktive Arten: **2** | Aus: **2**\nAbgegeben: **0 / 32**\nOffen: **32**\nWarnphase: **0**\nNachholen: **0**",
+            "inline": true
+          },
+          {
+            "name": "📦 Zusatz Gesamt",
+            "value": "Entschuldigt: **0**\nVorausgezahlt: **0**\nZu spät: **0**\nStress: **hoch** (100/100)",
+            "inline": true
+          },
+          {
+            "name": "​",
+            "value": "**📦 Einzelne Abgaben**",
+            "inline": false
+          },
+          {
+            "name": "💸 Routen",
+            "value": "Menge: **300.000$**\nFrist: **14.06.2026, 23:59 (noch 3 Tage)**\nAbgegeben: **0/16**\nOffen: **16** | Warn: **0**\nNachholen: **0** | Entsch.: **0**\nVoraus: **0** | Spät: **0**",
+            "inline": true
+          },
+          {
+            "name": "🧱 Patronenhülsen",
+            "value": "Menge: **150**\nFrist: **14.06.2026, 23:59 (noch 3 Tage)**\nAbgegeben: **0/16**\nOffen: **16** | Warn: **0**\nNachholen: **0** | Entsch.: **0**\nVoraus: **0** | Spät: **0**",
+            "inline": true
+          },
+          {
+            "name": "​",
+            "value": "​",
+            "inline": true
+          },
+          {
+            "name": "⚗️ Schwarzpulver",
+            "value": "Status: **AUS**\nMenge: **200**\nFrist: **14.06.2026, 23:59**\n​\n​\n​",
+            "inline": true
+          },
+          {
+            "name": "🧪 Methkisten",
+            "value": "Status: **AUS**\nMenge: **500 Kisten**\nFrist: **14.06.2026, 23:59**\n​\n​\n​",
+            "inline": true
+          },
+          {
+            "name": "​",
+            "value": "​",
+            "inline": true
+          },
+          {
+            "name": "​",
+            "value": "**🧩 Weitere Systeme**",
+            "inline": false
+          },
+          {
+            "name": "🟢 Wache",
+            "value": "Status: **AN**\nPflicht: **0 min/Woche**\nErfüllt: **16/16**\nOffen: **0** | Entschuldigt: **0**\nAktuell: **keine laufende Wache**",
+            "inline": true
+          },
+          {
+            "name": "⚖️ Sanktionen",
+            "value": "Offen: **9**\nHeute fällig: **0**\n+100k aktiv: **0**\nBloodout: **0**",
+            "inline": true
+          },
+          {
+            "name": "📅 Termine",
+            "value": "—\nKann: **0**\nVielleicht: **0**\nKann nicht: **0**\nKeine Antwort: **0**",
+            "inline": false
+          },
+          {
+            "name": "📋 Abmeldungen",
+            "value": "Aktiv: **0**\nEnden heute: **0**\nNur Termin: **0**\n5+ Tage: **0**",
+            "inline": true
+          },
+          {
+            "name": "🧠 Risiko",
+            "value": "Abgabe: **29**\nSanktion 48h: **0**\nKeine Antwort 48h: **0**\nFreigaben offen: **149**",
+            "inline": true
+          },
+          {
+            "name": "🔐 System",
+            "value": "Logs: **—**\nDM-Fehler: **0**\nRollbacks: **0**\nAttendance offen: **0**",
+            "inline": true
+          },
+          {
+            "name": "🧭 Hinweis",
+            "value": "Kein kommender Termin.\nIntegrität: **0** Hinweise",
+            "inline": false
+          },
+          {
+            "name": "​",
+            "value": "**📈 Auswertung**",
+            "inline": false
+          },
+          {
+            "name": "🏆 Zuverlässig",
+            "value": "1. RdF | Tobi Schwoob — **100%** (sehr zuverlässig)\n2. RDF | Tony Lucetti — **100%** (sehr zuverlässig)\n3. RDF | Gideon Russell — **100%** (sehr zuverlässig)\n4. RDF | Fenasi Kerim — **92%** (sehr zuverlässig)\n5. RDF | Roxy Pavlow — **92%** (sehr zuverlässig)",
+            "inline": true
+          },
+          {
+            "name": "🚨 Auffällig",
+            "value": "1. RDF | Mort Schwoob • Risk 100\n2. RDF | Thomas • Risk 100\n3. RDF | Domi Moonlight • Risk 100\n4. RDF | Fred Krüger • Risk 100\n5. RDF | STEVE MALIK • Risk 100",
+            "inline": true
+          },
+          {
+            "name": "🧾 Letzte Audit-Änderungen",
+            "value": "• 11.06., 09:05 System → <@1449109712825225436>: **sanktion_erstellt**\n• 11.06., 09:05 System → <@1449109712825225436>: **sanktion_erstellt**\n• 11.06., 09:05 System → <@1449109712825225436>: **sanktion_erstellt**\n• 11.06., 09:05 System → <@1449109712825225436>: **sanktion_erstellt**\n• 11.06., 09:05 System → <@1449109712825225436>: **sanktion_erstellt**\n• 11.06., 09:05 System → <@1449109712825225436>: **sanktion_erstellt**",
+            "inline": false
+          }
+        ],
+        "footer": {
+          "text": "Dashboard • Cache 5 Minuten • automatisch aktualisiert"
+        },
+        "timestamp": "2026-06-11T16:00:01.458Z"
+      },
+      "createdAt": 1781193601458,
+      "expiresAt": 1781193901458
+    }
+  },
+  "behaviorPatterns": {
+    "325382005455978496": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602563
+    },
+    "447008003170762753": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602567
+    },
+    "451086657568112641": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602570
+    },
+    "470853829043159070": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 4,
+      "wacheAvoided": 3,
+      "modifier": 18,
+      "labels": [
+        "Termine ignoriert",
+        "Wache auffällig"
+      ],
+      "updatedAt": 1778954401035
+    },
+    "522090867897663488": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602579
+    },
+    "527958115627302913": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602580
+    },
+    "623592195240230914": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602585
+    },
+    "668441351901282325": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 4,
+      "wacheAvoided": 7,
+      "modifier": 18,
+      "labels": [
+        "Termine ignoriert",
+        "Wache auffällig"
+      ],
+      "updatedAt": 1780340401378
+    },
+    "708689655259987968": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1778093271983
+    },
+    "715520879202926683": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 2,
+      "wacheAvoided": 3,
+      "modifier": 18,
+      "labels": [
+        "Termine ignoriert",
+        "Wache auffällig"
+      ],
+      "updatedAt": 1778954401045
+    },
+    "723976777059270748": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 1,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1778093271984
+    },
+    "724238471018840074": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602596
+    },
+    "900779211722223656": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602601
+    },
+    "1045105873783095418": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 3,
+      "wacheAvoided": 2,
+      "modifier": 18,
+      "labels": [
+        "Termine ignoriert",
+        "Wache auffällig"
+      ],
+      "updatedAt": 1778093271985
+    },
+    "1084573586376892547": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602603
+    },
+    "1174075782407143514": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602604
+    },
+    "1227254024248496161": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602608
+    },
+    "1233152028096856126": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 7,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1780614003587
+    },
+    "1271613915192623167": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 2,
+      "wacheAvoided": 2,
+      "modifier": 18,
+      "labels": [
+        "Termine ignoriert",
+        "Wache auffällig"
+      ],
+      "updatedAt": 1778093271986
+    },
+    "1307392555742269564": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602618
+    },
+    "1315059532774510733": {
+      "sundayLastMinute": 2,
+      "lateAbgaben": 0,
+      "dmDependent": 2,
+      "termIgnored": 1,
+      "wacheAvoided": 3,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1780470003311
+    },
+    "1319730115705311332": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 3,
+      "wacheAvoided": 7,
+      "modifier": 18,
+      "labels": [
+        "Termine ignoriert",
+        "Wache auffällig"
+      ],
+      "updatedAt": 1780333202131
+    },
+    "1344014405976850454": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 2,
+      "wacheAvoided": 3,
+      "modifier": 18,
+      "labels": [
+        "Termine ignoriert",
+        "Wache auffällig"
+      ],
+      "updatedAt": 1778954401050
+    },
+    "1345424497171497010": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 3,
+      "wacheAvoided": 3,
+      "modifier": 18,
+      "labels": [
+        "Termine ignoriert",
+        "Wache auffällig"
+      ],
+      "updatedAt": 1778954401051
+    },
+    "1449109712825225436": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602627
+    },
+    "1495791328691490826": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602640
+    },
+    "1322995756755456081": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1779228003092
+    },
+    "476754340925931530": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 1,
+      "modifier": 0,
+      "labels": [],
+      "updatedAt": 1778864566939
+    },
+    "631805731569664011": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 1,
+      "modifier": 0,
+      "labels": [],
+      "updatedAt": 1779390002282
+    },
+    "615148722791251978": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602583
+    },
+    "1234788985621053544": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 1,
+      "modifier": 0,
+      "labels": [],
+      "updatedAt": 1779390002310
+    },
+    "453922958608564246": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1779825603040
+    },
+    "303203573708226564": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602560
+    },
+    "478168485122539531": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 1,
+      "modifier": 0,
+      "labels": [],
+      "updatedAt": 1781193602571
+    },
+    "1081323939462123612": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 5,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781002893922
+    },
+    "1457182169087606784": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602635
+    },
+    "625604865317535744": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602587
+    },
+    "1397359665695948904": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602622
+    },
+    "1261286888761856122": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602611
+    },
+    "834443993827377242": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 1,
+      "wacheAvoided": 1,
+      "modifier": 0,
+      "labels": [],
+      "updatedAt": 1779962403387
+    },
+    "481229229472874502": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602575
+    },
+    "727337828752818186": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602599
+    },
+    "688358335937904672": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602590
+    },
+    "1283697283799580693": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602615
+    },
+    "332581895785283584": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 2,
+      "modifier": 8,
+      "labels": [
+        "Wache auffällig"
+      ],
+      "updatedAt": 1781193602565
+    },
+    "1040754827589865472": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 1,
+      "modifier": 0,
+      "labels": [],
+      "updatedAt": 1781193602602
+    },
+    "367724894089248788": {
+      "sundayLastMinute": 0,
+      "lateAbgaben": 0,
+      "dmDependent": 0,
+      "termIgnored": 0,
+      "wacheAvoided": 1,
+      "modifier": 0,
+      "labels": [],
+      "updatedAt": 1781193602566
+    }
+  },
+  "maintenance": {
+    "cronRuns": {
+      "mondayStart:2026-W24": {
+        "at": 1780869601360,
+        "label": "mondayStartWeekHandling"
+      },
+      "fridayReport:2026-W23": {
+        "at": 1780668000735,
+        "label": "postWeeklyMissingReportFriday"
+      },
+      "tuesdayAuto:2026-W22": {
+        "at": 1780430460497,
+        "label": "tuesday2201AutoSanctions"
+      },
+      "fridayReport:2026-W22": {
+        "at": 1780063200405,
+        "label": "postWeeklyMissingReportFriday"
+      },
+      "tuesdayAuto:2026-W21": {
+        "at": 1779825660387,
+        "label": "tuesday2201AutoSanctions"
+      },
+      "mondayStart:2026-W22": {
+        "at": 1779660001019,
+        "label": "mondayStartWeekHandling"
+      },
+      "fridayReport:2026-W21": {
+        "at": 1779458400324,
+        "label": "postWeeklyMissingReportFriday"
+      },
+      "tuesdayAuto:2026-W20": {
+        "at": 1779220860130,
+        "label": "tuesday2201AutoSanctions"
+      },
+      "mondayStart:2026-W21": {
+        "at": 1779055200253,
+        "label": "mondayStartWeekHandling"
+      },
+      "fridayReport:2026-W20": {
+        "at": 1778853600862,
+        "label": "postWeeklyMissingReportFriday"
+      },
+      "tuesdayAuto:2026-W19": {
+        "at": 1778616060262,
+        "label": "tuesday2201AutoSanctions"
+      },
+      "mondayStart:2026-W20": {
+        "at": 1778450401036,
+        "label": "mondayStartWeekHandling"
+      },
+      "fridayReport:2026-W19": {
+        "at": 1778428279459,
+        "label": "catchupFridayMissingReport"
+      },
+      "tuesdayAuto:2026-W18": {
+        "at": 1778428279455,
+        "label": "catchupTuesdayAutoSanctions"
+      },
+      "mondayStart:2026-W19": {
+        "at": 1778428279430,
+        "label": "catchupMondayStartWeekHandling"
+      }
+    },
+    "recovery": {},
+    "locks": {},
+    "integrity": {
+      "lastRunAt": 1781193601273,
+      "lastRepairCount": 0
+    }
+  },
+  "sanctionCatalog": {
+    "10": "Familienmitglied töten → 500.000 $ – Bloodout (Schwarz)",
+    "11": "Familienmitglied schlagen/anschießen → 50.000 $ – 200.000 $ (Schwarz)",
+    "12": "Schießen auf Anwesen → 100.000 $ (Schwarz)",
+    "13": "Ausparkpunkt blockieren → 250.000 $ (Grün)",
+    "14": "Stress außerhalb provozieren → 500.000 $ – 1.500.000 $ / Bloodout (Schwarz)",
+    "15": "Kleiderordnung missachtet → 100.000 $ (Grün)",
+    "16": "Keine Maske beim Gambo → 100.000 $ (Schwarz)",
+    "17": "Eigentum der Familie verschenkt → 100.000 $ – 1.500.000 $ (Schwarz)",
+    "18": "Nicht abgemeldet → 50.000 $ (Grün)",
+    "19": "Sanktion nicht bezahlt → +200.000 $ + Warnung (Schwarz)",
+    "20": "Familie nicht ernst nehmen → 100.000 $ – Bloodout (Schwarz)",
+    "21": "Familie lächerlich machen → Bloodout",
+    "22": "Fehlverhalten → 50.000 $ – 250.000 $ (Grün)",
+    "23": "Befehl höherer missachtet → Bis Bloodout",
+    "24": "Interne Infos weitergeben → Bloodout",
+    "25": "Keine Waffe dabei → 50.000 $ (Grün)",
+    "26": "Sanktion nach 3 Tagen nicht gezahlt → +100.000 $ (Schwarz)",
+    "27": "Familienmitglieder zinken → 250.000 $ (Schwarz)",
+    "28": "Personen tragen ohne Zustimmung → 50.000 $ (Grün)",
+    "29": "Wochenbeitrag nach 3 Tagen offen → +100.000 $ (Schwarz)",
+    "30": "Wochenbeitrag nach 2 Wochen offen → Bloodout",
+    "01": "Nicht erscheinen bei wichtigen Events → 200.000 $ – Bloodout (Grün)",
+    "02": "Beleidigung innerhalb der Familie → 150.000 $ (Schwarz)",
+    "03": "Beleidigung außerhalb → 200.000 $ – 400.000 $ (Schwarz)",
+    "04": "Funkpflicht missachtet → 100.000 $ (Schwarz)",
+    "05": "Funk missbraucht → 50.000 $ (Schwarz)",
+    "06": "Kindisches Verhalten → 100.000 $ (Grün)",
+    "07": "Aufstellung stören → 50.000 $ (Grün)",
+    "08": "Kolonne pitten/unterbrechen → 50.000 $ (Grün)",
+    "09": "Falsch geparkt → Verwarnung / 50.000 $ (Grün)"
+  },
+  "sanctionCatalogMeta": {
+    "10": {
+      "severity": "schwer"
+    },
+    "11": {
+      "severity": "mittel"
+    },
+    "12": {
+      "severity": "mittel"
+    },
+    "13": {
+      "severity": "mittel"
+    },
+    "14": {
+      "severity": "schwer"
+    },
+    "15": {
+      "severity": "mittel"
+    },
+    "16": {
+      "severity": "mittel"
+    },
+    "17": {
+      "severity": "schwer"
+    },
+    "18": {
+      "severity": "leicht"
+    },
+    "19": {
+      "severity": "mittel"
+    },
+    "20": {
+      "severity": "schwer"
+    },
+    "21": {
+      "severity": "schwer"
+    },
+    "22": {
+      "severity": "mittel"
+    },
+    "23": {
+      "severity": "schwer"
+    },
+    "24": {
+      "severity": "schwer"
+    },
+    "25": {
+      "severity": "leicht"
+    },
+    "26": {
+      "severity": "mittel"
+    },
+    "27": {
+      "severity": "mittel"
+    },
+    "28": {
+      "severity": "leicht"
+    },
+    "29": {
+      "severity": "mittel"
+    },
+    "30": {
+      "severity": "schwer"
+    },
+    "01": {
+      "severity": "schwer"
+    },
+    "02": {
+      "severity": "mittel"
+    },
+    "03": {
+      "severity": "mittel"
+    },
+    "04": {
+      "severity": "mittel"
+    },
+    "05": {
+      "severity": "mittel"
+    },
+    "06": {
+      "severity": "mittel"
+    },
+    "07": {
+      "severity": "leicht"
+    },
+    "08": {
+      "severity": "leicht"
+    },
+    "09": {
+      "severity": "leicht"
+    }
+  },
+  "analyticsResetAt": 1778940883779
+}

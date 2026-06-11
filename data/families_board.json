@@ -1,0 +1,1057 @@
+{
+  "families": {
+    "Kartell": [
+      {
+        "kuerzel": "LO",
+        "familie": "La Occulta",
+        "plz": "329?",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Emilio Sanchez",
+          "(11) Lucinda"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "Silentorder",
+        "plz": "777",
+        "schluessel": "Nein",
+        "leadership": [
+          "(11) Malia",
+          "(10) Dean"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "TG",
+        "familie": "The Gentleman",
+        "plz": "927",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) John",
+          "(11) Ardi",
+          "(10) Alisha"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "Lama todoris",
+        "plz": "1085?",
+        "schluessel": "-",
+        "leadership": [],
+        "datum_info": "?",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "Olskool Recordz",
+        "plz": "2009?",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Abu Makaevli"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "V",
+        "familie": "Vendetta",
+        "plz": "2011",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Thomas Maretti",
+          "(10) Alex Goldberg"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "ZM",
+        "familie": "Zamin",
+        "plz": "3030",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Vito Scarletta",
+          "(11) Alma Joon",
+          "(10) Jay Johnsen"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "LCC",
+        "familie": "Los Carronero Kartell",
+        "plz": "3035",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Fari",
+          "(11) Djole Zdravko",
+          "(10) Elena"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "LJ",
+        "familie": "Los Jueces",
+        "plz": "5009",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Raik"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "BBC",
+        "familie": "Bez Bazara Cartel",
+        "plz": "5024",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Eighto",
+          "(11) Haci"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "SC",
+        "familie": "Sicario Cartell",
+        "plz": "5041",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Luciano",
+          "(11) Paco"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "LMA",
+        "familie": "La Manada",
+        "plz": "6027",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Lukas Keuler",
+          "(11) Steven Koch",
+          "(10) Christian"
+        ],
+        "datum_info": "14.04.26",
+        "infos": "Gio"
+      },
+      {
+        "kuerzel": "LDF",
+        "familie": "Linea de Fuego",
+        "plz": "-",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "VV",
+        "familie": "Varkow",
+        "plz": "6068",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "LPC",
+        "familie": "Luzpura",
+        "plz": "6070",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Carlos Veguelez",
+          "(10) Makki Hermann"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "CDLS",
+        "familie": "Cartel de los Santos",
+        "plz": "6203",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) La Cabeza"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "EX",
+        "familie": "Exilium",
+        "plz": "7036",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Max White",
+          "(11) Dom",
+          "(10) Elli Lambert"
+        ],
+        "datum_info": "",
+        "infos": "?"
+      },
+      {
+        "kuerzel": "LKK",
+        "familie": "LeberkäseKartell",
+        "plz": "7054?",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "",
+        "infos": "Eisen + Metall"
+      },
+      {
+        "kuerzel": "RB",
+        "familie": "Rosa Blanca",
+        "plz": "7063",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Nick Romano",
+          "(10) Makki Hermann"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "BP",
+        "familie": "Black Python",
+        "plz": "7109",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Rony"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "DLN",
+        "familie": "De la Noche",
+        "plz": "Anwesenlos",
+        "schluessel": "Nein",
+        "leadership": [
+          "(10) Samuel"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "La Muerte",
+        "plz": "",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Benny"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "CH",
+        "familie": "Crimson Harryson",
+        "plz": "?",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "MRD",
+        "familie": "Merida",
+        "plz": "?",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "LN",
+        "familie": "Linea Negra",
+        "plz": "?",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "k/A",
+        "familie": "Kavkaz",
+        "plz": "6067",
+        "schluessel": "-",
+        "leadership": [],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "BT",
+        "familie": "Black Thorn",
+        "plz": "7057",
+        "schluessel": "-",
+        "leadership": [],
+        "datum_info": "",
+        "infos": ""
+      }
+    ],
+    "Mafia": [
+      {
+        "kuerzel": "LO",
+        "familie": "L'Ombra",
+        "plz": "333",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Paco Aguilar"
+        ],
+        "datum_info": "14.04.2026",
+        "infos": ""
+      },
+      {
+        "kuerzel": "OZ",
+        "familie": "Organizazia",
+        "plz": "2056",
+        "schluessel": "Ja",
+        "leadership": [
+          "(10) Santos"
+        ],
+        "datum_info": "14.04.2026",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "Noctis",
+        "plz": "2059",
+        "schluessel": "Ja",
+        "leadership": [],
+        "datum_info": "14.04.2026",
+        "infos": ""
+      },
+      {
+        "kuerzel": "MNS",
+        "familie": "Mansoor",
+        "plz": "5012",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Conan Hawkins",
+          "(11) Travis",
+          "(10) Mirano"
+        ],
+        "datum_info": "14.04.2026",
+        "infos": ""
+      },
+      {
+        "kuerzel": "KAZ",
+        "familie": "Kazal",
+        "plz": "5013",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Nino",
+          "(11) Paul"
+        ],
+        "datum_info": "14.04.2026",
+        "infos": ""
+      },
+      {
+        "kuerzel": "KAN",
+        "familie": "Kenway",
+        "plz": "5014",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Kaviro Atesh",
+          "(11) Fenasi"
+        ],
+        "datum_info": "14.04.2026",
+        "infos": ""
+      },
+      {
+        "kuerzel": "FB",
+        "familie": "Falkenberg",
+        "plz": "5025",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Felix Falkenberg",
+          "(11) Spipe"
+        ],
+        "datum_info": "14.04.2026",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "Ashiret",
+        "plz": "6192",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "Novera",
+        "plz": "6201",
+        "schluessel": "Nein",
+        "leadership": [
+          "(11) Taja"
+        ],
+        "datum_info": "14.04.2026",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "EthernalReighn",
+        "plz": "7060",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Canon Senys"
+        ],
+        "datum_info": "?",
+        "infos": ""
+      },
+      {
+        "kuerzel": "LSL",
+        "familie": "Los Santos Linaggio",
+        "plz": "7056",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Bny \"Benji\"",
+          "(11) Jimmy",
+          "(10) Tony"
+        ],
+        "datum_info": "14.04.2026",
+        "infos": ""
+      },
+      {
+        "kuerzel": "CV",
+        "familie": "Caravelli",
+        "plz": "7043",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Caravelli",
+          "(11) Isabella Caravelli"
+        ],
+        "datum_info": "14.04.2026",
+        "infos": ""
+      },
+      {
+        "kuerzel": "CR",
+        "familie": "Crna Ruza",
+        "plz": "",
+        "schluessel": "Ja",
+        "leadership": [],
+        "datum_info": "?",
+        "infos": ""
+      },
+      {
+        "kuerzel": "BL",
+        "familie": "Bellatoris Lucis",
+        "plz": "1085",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "?",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "Al Talib",
+        "plz": "7218",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "?",
+        "infos": ""
+      },
+      {
+        "kuerzel": "-",
+        "familie": "Silencio",
+        "plz": "7034",
+        "schluessel": "nein",
+        "leadership": [
+          "(12) Tash Kayzar"
+        ],
+        "datum_info": "26.04.2026",
+        "infos": ""
+      },
+      {
+        "kuerzel": "DNA",
+        "familie": "Donatelli",
+        "plz": "7034",
+        "schluessel": "nein",
+        "leadership": [],
+        "datum_info": "29.04.2026",
+        "infos": ""
+      },
+      {
+        "kuerzel": "?",
+        "familie": "Black Legacy",
+        "plz": "6068",
+        "schluessel": "nein",
+        "leadership": [
+          "(12) Esko White",
+          "(11) Can Blackwell",
+          "(10) Vinceto delacruse"
+        ],
+        "datum_info": "07.05.2026",
+        "infos": ""
+      }
+    ],
+    "Syndikat": [
+      {
+        "kuerzel": "SAB",
+        "familie": "Skull and Bones",
+        "plz": "200",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Priester 999"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "Empire Syndikat",
+        "plz": "597",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "",
+        "infos": "?"
+      },
+      {
+        "kuerzel": "BL",
+        "familie": "Bellatoris Lucis",
+        "plz": "1085",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Emilio Santress",
+          "(11) Kira Knight",
+          "(10) Lumalee Milano"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "RN",
+        "familie": "Rednecks",
+        "plz": "2027",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Roberto"
+        ],
+        "datum_info": "",
+        "infos": "?"
+      },
+      {
+        "kuerzel": "AB",
+        "familie": "Asiatische Botschaft",
+        "plz": "3055",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Xiao Ling"
+        ],
+        "datum_info": "14.04.26",
+        "infos": "❌"
+      },
+      {
+        "kuerzel": "V",
+        "familie": "Vindicta",
+        "plz": "5018",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Jigsaw",
+          "(11) Ninetta Jigsaw",
+          "(10) Alistar"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "UN",
+        "familie": "Union",
+        "plz": "7033",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Jacky"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "DE",
+        "familie": "Die Eintracht",
+        "plz": "6068",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Rick Fratino",
+          "(11) Martin Ludder",
+          "(10) Ash Wagandha"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "Epsilon",
+        "plz": "7151",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Sheolinski",
+          "(10) Kalle Burns"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "Exit",
+        "familie": "Exit",
+        "plz": "8180",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Jearzy",
+          "(11) CJ"
+        ],
+        "datum_info": "14.04.26",
+        "infos": "❌"
+      },
+      {
+        "kuerzel": "MS",
+        "familie": "Midnight Syndicat",
+        "plz": "6067",
+        "schluessel": "nein",
+        "leadership": [
+          "(12) Bob"
+        ],
+        "datum_info": "14.05.2026",
+        "infos": ""
+      }
+    ],
+    "Gang": [
+      {
+        "kuerzel": "BV",
+        "familie": "Black Vision",
+        "plz": "1014/1062",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "",
+        "infos": "?"
+      },
+      {
+        "kuerzel": "Mahgreb",
+        "familie": "Mahgreb",
+        "plz": "Alamosee",
+        "schluessel": "Ja",
+        "leadership": [],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "R9B",
+        "familie": "Red9Block",
+        "plz": "7031",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Floki Loco",
+          "(11) Alexey",
+          "(10) Edwin Karlsson"
+        ],
+        "datum_info": "19.4.2026",
+        "infos": ""
+      },
+      {
+        "kuerzel": "TL7",
+        "familie": "The Last 7",
+        "plz": "7069",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Alisha Davis",
+          "(11) Maxi Meyer",
+          "(10) Layen Zilla"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "Phantoms",
+        "plz": "7098",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "18th",
+        "familie": "18th Street",
+        "plz": "7144",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Kevoo Dicapri",
+          "(11) Antonio",
+          "(10) Dragan Slavko"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "AT",
+        "familie": "Al Thalib",
+        "plz": "7218",
+        "schluessel": "Nein",
+        "leadership": [
+          "(10) Raya"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "Opium",
+        "plz": "7340",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "PS",
+        "familie": "Pink Serphants",
+        "plz": "8075",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Kevin Cold"
+        ],
+        "datum_info": "",
+        "infos": "?"
+      },
+      {
+        "kuerzel": "",
+        "familie": "Bloodline",
+        "plz": "8095",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "",
+        "infos": "?"
+      },
+      {
+        "kuerzel": "VG",
+        "familie": "Vagos",
+        "plz": "8208",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Damon Ohana",
+          "(11) Harri"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "LL",
+        "familie": "Hooligans",
+        "plz": "8214",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Eno Can"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "Ky",
+        "familie": "Jurodei",
+        "plz": "8221",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Biggie",
+          "(11) Brian",
+          "(10) Felix"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "Inno",
+        "familie": "Innocents",
+        "plz": "9040",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Richi",
+          "(11) Dennis"
+        ],
+        "datum_info": "",
+        "infos": "?"
+      },
+      {
+        "kuerzel": "SGF",
+        "familie": "Strawberry Gangster Families",
+        "plz": "9081",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Prince",
+          "(11) KK",
+          "(10) T"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "BS",
+        "familie": "Blue Side",
+        "plz": "9089-9091",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Oncel",
+          "(11) Leon"
+        ],
+        "datum_info": "19.04",
+        "infos": ""
+      },
+      {
+        "kuerzel": "PE",
+        "familie": "Public Enemies",
+        "plz": "9135",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) KD",
+          "(11) Ty"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "CN",
+        "familie": "CloudNation",
+        "plz": "9108",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Herbert Fischer",
+          "(10) Natcho"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "Grove",
+        "familie": "Grove Street",
+        "plz": "7339",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Loco",
+          "(11) Eli Jackson"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "BdIS",
+        "familie": "Barrio de la Sombra",
+        "plz": "9121",
+        "schluessel": "Ja",
+        "leadership": [
+          "(11) Catalina"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "91",
+        "familie": "91Thugs",
+        "plz": "9154",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Carlo Arslan",
+          "(10) Snow"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "INS",
+        "familie": "Internationales",
+        "plz": "9184",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Loco",
+          "(11) Anil",
+          "(10) Baris"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "B44",
+        "familie": "Block44",
+        "plz": "9296",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) John",
+          "(11) Oliver Queen",
+          "(10) Martin Miller"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "NM",
+        "familie": "No Mercy",
+        "plz": "9316",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Paris",
+          "(10) Brian Stanford"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "SB",
+        "familie": "Shadow Block",
+        "plz": "9336",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Izaak Chambers",
+          "(11) Sharky",
+          "(10) Joel"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "Hope",
+        "plz": "9341",
+        "schluessel": "Nein",
+        "leadership": [],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "ASC",
+        "familie": "Atomic Street Club",
+        "plz": "10070",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Morty Decaso"
+        ],
+        "datum_info": "",
+        "infos": "?"
+      },
+      {
+        "kuerzel": "VBG",
+        "familie": "Vinewood Block Gangsters",
+        "plz": "7138",
+        "schluessel": "Nein",
+        "leadership": [
+          "(10) Santos"
+        ],
+        "datum_info": "",
+        "infos": ""
+      }
+    ],
+    "MC": [
+      {
+        "kuerzel": "SONS MC",
+        "familie": "Iron Sons",
+        "plz": "1013",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) James Miyagi",
+          "(11) Michael",
+          "(10) Mac Brooks"
+        ],
+        "datum_info": "",
+        "infos": "neue Kontakte"
+      },
+      {
+        "kuerzel": "ROD MC",
+        "familie": "Ravens of Doom",
+        "plz": "2020",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Devon Sullivan",
+          "(11) Lima Underwood"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "RD MC",
+        "familie": "Red District MC",
+        "plz": "4013",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Harlan Vane",
+          "(11) Franky Lopez",
+          "(10) John"
+        ],
+        "datum_info": "",
+        "infos": ""
+      },
+      {
+        "kuerzel": "MOR MC",
+        "familie": "Morteco MC",
+        "plz": "7022",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Angel Loco",
+          "(11) Sassy",
+          "(10) Rick Loco"
+        ],
+        "datum_info": "19.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "TLM",
+        "familie": "Lost MC",
+        "plz": "7299",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Titus Smile",
+          "(11) Jan General",
+          "(10) Tim DaSilva"
+        ],
+        "datum_info": "14.04.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "LOM",
+        "familie": "Legion of Mayhem",
+        "plz": "7345",
+        "schluessel": "Nein",
+        "leadership": [
+          "(12) Aiden",
+          "(11) Mace",
+          "(10) Timo Kamahel"
+        ],
+        "datum_info": "08.02.2026",
+        "infos": "?"
+      },
+      {
+        "kuerzel": "TMC",
+        "familie": "Trust MC",
+        "plz": "9289",
+        "schluessel": "Ja",
+        "leadership": [
+          "(12) Gustl Meier",
+          "(11) Leonardo Morell"
+        ],
+        "datum_info": "30.01.26",
+        "infos": ""
+      },
+      {
+        "kuerzel": "",
+        "familie": "Hellhounds MC",
+        "plz": "9322",
+        "schluessel": "Ja",
+        "leadership": [
+          "(10) Nathan Hakura"
+        ],
+        "datum_info": "",
+        "infos": ""
+      }
+    ],
+    "Bauer": []
+  },
+  "message_id": "1514017182592405626",
+  "page_index": 0,
+  "search_query": ""
+}

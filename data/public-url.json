@@ -1,0 +1,10 @@
+{
+  "url": "https://achievements-indicating-page-geek.trycloudflare.com",
+  "updatedAt": 1781144680988,
+  "status": "online",
+  "target": "http://localhost:8080",
+  "source": "cloudflared",
+  "discordUpdatedAt": 1781144680988,
+  "channelId": "1513989902658961499",
+  "messageId": "1514126330378194985"
+}

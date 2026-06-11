@@ -1,0 +1,73 @@
+{
+  "products": {
+    "kokain": {
+      "key": "kokain",
+      "name": "Kokain",
+      "price": 0,
+      "active": true
+    },
+    "meth": {
+      "key": "meth",
+      "name": "Meth",
+      "price": 0,
+      "active": true
+    },
+    "crack": {
+      "key": "crack",
+      "name": "Crack",
+      "price": 0,
+      "active": true
+    },
+    "heroin": {
+      "key": "heroin",
+      "name": "Heroin",
+      "price": 0,
+      "active": true
+    },
+    "mdma": {
+      "key": "mdma",
+      "name": "MDMA",
+      "price": 0,
+      "active": true
+    },
+    "lsd": {
+      "key": "lsd",
+      "name": "LSD",
+      "price": 0,
+      "active": true
+    },
+    "weed": {
+      "key": "weed",
+      "name": "Weed",
+      "price": 0,
+      "active": true
+    },
+    "item": {
+      "key": "item",
+      "name": "item",
+      "price": 0,
+      "active": true
+    }
+  },
+  "vehicles": {
+    "mule": {
+      "key": "mule",
+      "name": "Mule",
+      "capacity": 800,
+      "active": true
+    },
+    "guardian": {
+      "key": "guardian",
+      "name": "Guardian",
+      "capacity": 500,
+      "active": true
+    },
+    "burrito": {
+      "key": "burrito",
+      "name": "Burrito",
+      "capacity": 300,
+      "active": true
+    }
+  },
+  "loans": []
+}
